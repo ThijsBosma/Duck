@@ -45,7 +45,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void ShootRayCast()
     {
-        _raycastHasHit = Physics.Raycast(transform.position, transform.forward + new Vector3(0, 0, _Offset), out _hit);
+        _raycastHasHit = Physics.Raycast(transform.position, transform.forward, out _hit);
 
         if (_raycastHasHit && _hit.collider.GetComponent<IInteractable>() != null)
         {
