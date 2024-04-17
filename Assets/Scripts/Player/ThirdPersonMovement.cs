@@ -6,6 +6,7 @@ using UnityEngine;
 public class ThirdPersonMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody _RigidBody;
+
     [SerializeField] private float _Speed;
 
     private Vector3 _MovementInputs;

@@ -6,6 +6,7 @@ public class RotateCamera : MonoBehaviour
 {
     [SerializeField] private Transform focusPoint;
     [SerializeField] private Transform camPos;
+    [SerializeField] private Transform orientation;
 
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
@@ -39,6 +40,7 @@ public class RotateCamera : MonoBehaviour
             yRotation += Time.deltaTime * sensY * 10;
         }
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, xRotation, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(yRotation, xRotation, transform.rotation.eulerAngles.z);
+        orientation.rotation = Quaternion.Euler(0, xRotation, 0);
     }
 }
