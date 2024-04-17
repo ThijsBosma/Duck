@@ -21,11 +21,11 @@ public class ThirdPersonCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        viewDir = player.position - camT.localPosition;
+        viewDir = player.position - new Vector3(camT.position.x, player.position.y, camT.position.z);
         orientation.forward = viewDir.normalized;
 
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -36,6 +36,6 @@ public class ThirdPersonCam : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(player.position, camT.position);
+        Gizmos.DrawLine(player.position, viewDir.normalized);
     }
 }
