@@ -78,19 +78,19 @@ public class ThirdPersonController : MonoBehaviour
         _RigidBody = GetComponent<Rigidbody>();
     }
 
-    //private void OnDestroy()
-    //{
-    //    SavePlayerDataToJSON();
-    //}
+    private void OnDestroy()
+    {
+        SavePlayerDataToJSON();
+    }
 
-    //private void SavePlayerDataToJSON()
-    //{
-    //    string amountOfMoney = JsonUtility.ToJson(_playerData, true);
-    //    string filePath = Application.persistentDataPath + "/PlayerData.json";
+    private void SavePlayerDataToJSON()
+    {
+        string playerdata = JsonUtility.ToJson(_playerData, true);
+        string filePath = Application.persistentDataPath + "/PlayerData.json";
 
-    //    Debug.Log(filePath);
+        Debug.Log(filePath);
 
-    //    System.IO.File.WriteAllText(filePath, amountOfMoney);
-    //    Debug.Log("PlayerData");
-    //}
+        System.IO.File.WriteAllText(filePath, playerdata);
+        Debug.Log("PlayerData");
+    }
 }
