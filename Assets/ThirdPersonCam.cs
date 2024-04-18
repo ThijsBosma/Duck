@@ -12,7 +12,9 @@ public class ThirdPersonCam : MonoBehaviour
 
     [SerializeField] private float rotationSpeed;
 
+    [HideInInspector]
     public Vector3 viewDir;
+
     private void Awake()
     {
         instance = this;

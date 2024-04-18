@@ -25,11 +25,11 @@ public class RotateCamera : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            xRotation -= Time.deltaTime * sensX * 10;
+            xRotation += Time.deltaTime * sensX * 10;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            xRotation += Time.deltaTime * sensX * 10;
+            xRotation -= Time.deltaTime * sensX * 10;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {

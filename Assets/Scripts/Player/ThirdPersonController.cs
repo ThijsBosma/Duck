@@ -25,6 +25,7 @@ public class ThirdPersonController : MonoBehaviour
     void Update()
     {
         GetMovementInputs();
+        SpeedControl();
         ShootRayCast();
     }
 
@@ -43,6 +44,17 @@ public class ThirdPersonController : MonoBehaviour
     private void GetMovementInputs()
     {
         _movementInputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(_RigidBody.velocity.x, 0f, _RigidBody.velocity.z);
+
+        if (flatVel.magnitude > _Speed)
+        {
+            Vector3 limitedVel = flatVel.normalized * _Speed;
+            _RigidBody.velocity = new Vector3(limitedVel.x, _RigidBody.velocity.y, limitedVel.z);
+        }
     }
 
     private void ShootRayCast()
@@ -88,7 +100,7 @@ public class ThirdPersonController : MonoBehaviour
         string playerdata = JsonUtility.ToJson(_playerData, true);
         string filePath = Application.persistentDataPath + "/PlayerData.json";
 
-        Debug.Log(filePath);
+        Debug.Log($"Saved at {filePath}");
 
         System.IO.File.WriteAllText(filePath, playerdata);
         Debug.Log("PlayerData");
