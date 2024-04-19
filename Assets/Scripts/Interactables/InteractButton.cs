@@ -7,7 +7,7 @@ public class InteractButton : MonoBehaviour
     [SerializeField] protected Transform visual;
     [SerializeField] protected Transform waypoint;
 
-    public Transform playerT;
+    public Transform interactingObject;
 
     private Vector3 origin;
 
@@ -20,20 +20,48 @@ public class InteractButton : MonoBehaviour
         origin = visual.position;
     }
 
+    private void Update()
+    {
+        /*if (button.onButton)
+        {
+            Mathf.Round(interactingObject.position.y);
+
+            interactingObject.position = new Vector3(interactingObject.position.x,
+            visual.localScale.y + Mathf.Round(interactingObject.position.y),
+            interactingObject.position.z);
+
+            button.onButton = true;
+        }*/
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
         {
-            playerT = other.transform;
-            button.onButton = true;
+            interactingObject = other.transform;
 
-            playerT.position = new Vector3(playerT.position.x,
-            visual.localPosition.y + visual.localScale.y + playerT.position.y,
-            playerT.position.z);
+            if (other.gameObject.CompareTag("Box"))
+            {
+                other.GetComponent<Rigidbody>().useGravity = false;
+                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+
+            interactingObject.position = new Vector3(interactingObject.position.x,
+            visual.localScale.y + Mathf.Round(interactingObject.position.y),
+            interactingObject.position.z);
 
             visual.position = waypoint.position;
 
+            button.onButton = true;
+
             button.OnClick.Invoke();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
+        {
         }
     }
 
@@ -41,10 +69,15 @@ public class InteractButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
         {
-            playerT = null;
+            interactingObject = null;
             button.onButton = false;
 
-            if (!button.holdButton)
+            if (other.gameObject.CompareTag("Box"))
+            {
+                other.GetComponent<Rigidbody>().useGravity = true;
+            }
+
+            if (!button.holdButton && !button.onButton)
             {
                 visual.position = origin;
 

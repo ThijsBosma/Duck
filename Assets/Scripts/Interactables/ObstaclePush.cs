@@ -2,44 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclePush : ThirdPersonController, IPushPull, IInteractable
+public class ObstaclePush : MonoBehaviour, IInteractable
 {
-    [SerializeField] private float forceMagnitude;
+    [SerializeField] private Transform orientation;
+    [SerializeField] private Transform raycastPosition;
+
+    [SerializeField] private LayerMask boxLayer;
+
+    private Rigidbody rb;
+    private Rigidbody grabbedObjectRb;
+
+    private BoxCollider grabbedObjectCollider;
+
+    private GameObject grabbedObject;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        RaycastHit hit;
+
+        // grab object
+        if (Input.GetKeyDown(KeyCode.F) && grabbedObject == null)
         {
+            if (Physics.Raycast(raycastPosition.position, orientation.forward, out hit, 2, boxLayer))
+            {
+                Debug.Log(hit.collider.name);
 
+                rb.mass = 1.2f;
+                grabbedObject = hit.collider.gameObject;
+                grabbedObjectCollider = grabbedObject.GetComponentsInChildren<BoxCollider>()[1];
+                grabbedObjectCollider.isTrigger = true;
+
+                grabbedObjectRb = grabbedObject.GetComponent<Rigidbody>();
+
+                grabbedObjectRb.isKinematic = true;
+                grabbedObjectRb.useGravity = false;
+                grabbedObjectRb.mass = 0;
+
+                grabbedObject.transform.SetParent(transform);
+            }
         }
-    }
+        // release object
+        else if (Input.GetKeyUp(KeyCode.F) && grabbedObject != null)
+        {
+            rb.mass = 1;
+            grabbedObjectCollider.isTrigger = false;
 
-    public void Pull()
-    {
-        throw new System.NotImplementedException();
-    }
+            grabbedObjectRb.isKinematic = false;
+            grabbedObjectRb.useGravity = true;
+            grabbedObjectRb.mass = 10;
 
-    public void Push()
-    {
-        throw new System.NotImplementedException();
+            grabbedObject.transform.SetParent(null);
+
+            grabbedObjectCollider = null;
+            grabbedObjectRb = null;
+            grabbedObject = null;
+        }
+
+        Debug.DrawRay(raycastPosition.position, orientation.forward.normalized * 2, Color.green);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Rigidbody rb = collision.rigidbody;
-
-        if(rb != null)
+        if (collision.gameObject.CompareTag("Box"))
         {
-            Vector3 forceDirection = collision.transform.position - transform.position;
-            forceDirection.y = 0;
-            forceDirection.Normalize();
-
-            rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
+            Interact();
         }
     }
 
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Press F to grab");
     }
 }
