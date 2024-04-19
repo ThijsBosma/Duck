@@ -67,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                _hit.collider.GetComponent<IInteractable>().Interact(_playerData);
+                _hit.collider.GetComponent<IPlayerData>().CollectDuck(_playerData);
             }
         }
         else
@@ -78,9 +78,9 @@ public class ThirdPersonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<IInteractable>() != null)
+        if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
-            other.gameObject.GetComponent<IInteractable>().Interact(_playerData);
+            other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);
             Destroy(other.gameObject);
         }
     }
