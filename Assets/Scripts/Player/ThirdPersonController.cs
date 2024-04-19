@@ -67,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                _hit.collider.GetComponent<IPlayerData>().CollectDuck(_playerData);
+                _hit.collider.GetComponent<IInteractable>().Interact();
             }
         }
         else
