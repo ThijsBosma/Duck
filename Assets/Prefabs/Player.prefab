@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1268457334818990791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451708280816223679}
+  m_Layer: 0
+  m_Name: RaycastPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451708280816223679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268457334818990791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1879546677239287457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966175129511351158
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +74,7 @@ GameObject:
   - component: {fileID: 3072533232928034554}
   - component: {fileID: 5789226709662257355}
   - component: {fileID: 2678815009702539151}
+  - component: {fileID: 4790717904476149456}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -65,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 4457297060851687852}
   - {fileID: 4058647871130437723}
+  - {fileID: 1451708280816223679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3072533232928034554
@@ -130,10 +163,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _RigidBody: {fileID: 5789226709662257355}
-  _Speed: 3.5
+  _Speed: 4
   _Orientation: {fileID: 4457297060851687852}
   _InteractableText: {fileID: 0}
   _MaxRaycastLength: 3
+--- !u!114 &4790717904476149456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454602585343978873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b3e46a5fb95f24f97462ce391a7d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 4058647871130437723}
+  raycastPosition: {fileID: 1451708280816223679}
+  forceMagnitude: 1
+  boxLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6787727880273650965
 GameObject:
   m_ObjectHideFlags: 0
