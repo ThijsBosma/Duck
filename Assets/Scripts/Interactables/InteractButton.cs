@@ -9,29 +9,29 @@ public class InteractButton : MonoBehaviour
 
     public Transform interactingObject;
 
-    private Vector3 origin;
+    private Rigidbody interactingObjectRb;
 
     private PressButton button;
+
+    private MeshFilter visualFilter;
+    
+    private Vector3 origin;
+    private Vector3 interactingObjectStayPosition;
+
+    private float time;
 
     private void Start()
     {
         button = GetComponentInParent<PressButton>();
+
+        visualFilter = visual.GetComponent<MeshFilter>();
 
         origin = visual.position;
     }
 
     private void Update()
     {
-        /*if (button.onButton)
-        {
-            Mathf.Round(interactingObject.position.y);
-
-            interactingObject.position = new Vector3(interactingObject.position.x,
-            visual.localScale.y + Mathf.Round(interactingObject.position.y),
-            interactingObject.position.z);
-
-            button.onButton = true;
-        }*/
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,13 +42,17 @@ public class InteractButton : MonoBehaviour
 
             if (other.gameObject.CompareTag("Box"))
             {
-                other.GetComponent<Rigidbody>().useGravity = false;
-                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
+                interactingObjectRb = other.GetComponent<Rigidbody>();
+                interactingObjectRb.useGravity = false;
+                interactingObjectRb.velocity = Vector3.zero;
+                interactingObjectRb.freezeRotation = true;
 
-            interactingObject.position = new Vector3(interactingObject.position.x,
-            visual.localScale.y + Mathf.Round(interactingObject.position.y),
-            interactingObject.position.z);
+                interactingObject.position = new Vector3(interactingObject.position.x,
+                visualFilter.mesh.bounds.extents.normalized.y - visual.localPosition.y,
+                interactingObject.position.z);
+
+                interactingObjectStayPosition = interactingObject.position;
+            }
 
             visual.position = waypoint.position;
 
@@ -60,8 +64,9 @@ public class InteractButton : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Box"))
         {
+            interactingObject.position = new Vector3(interactingObject.position.x, interactingObjectStayPosition.y, interactingObject.position.z);
         }
     }
 
@@ -74,7 +79,9 @@ public class InteractButton : MonoBehaviour
 
             if (other.gameObject.CompareTag("Box"))
             {
-                other.GetComponent<Rigidbody>().useGravity = true;
+                interactingObjectRb.useGravity = true;
+
+                interactingObjectRb.freezeRotation = false;
             }
 
             if (!button.holdButton && !button.onButton)

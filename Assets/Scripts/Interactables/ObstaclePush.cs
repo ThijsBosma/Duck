@@ -34,10 +34,10 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
                 rb.mass = 1.2f;
                 grabbedObject = hit.collider.gameObject;
-                grabbedObjectCollider = grabbedObject.GetComponentsInChildren<BoxCollider>()[1];
+                grabbedObjectCollider = grabbedObject.GetComponentInChildren<BoxCollider>();
                 grabbedObjectCollider.isTrigger = true;
 
-                grabbedObjectRb = grabbedObject.GetComponent<Rigidbody>();
+                grabbedObjectRb = grabbedObject.GetComponentInParent<Rigidbody>();
 
                 grabbedObjectRb.isKinematic = true;
                 grabbedObjectRb.useGravity = false;
