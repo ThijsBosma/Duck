@@ -7,18 +7,18 @@ public class InteractButton : MonoBehaviour
     [SerializeField] protected Transform visual;
     [SerializeField] protected Transform waypoint;
 
-    public Transform interactingObject;
+    public List<Transform> interactingObjects = new List<Transform>();
 
     private Rigidbody interactingObjectRb;
 
     private PressButton button;
 
     private MeshFilter visualFilter;
-    
+
+    private Box box;
+
     private Vector3 origin;
     private Vector3 interactingObjectStayPosition;
-
-    private float time;
 
     private void Start()
     {
@@ -31,34 +31,47 @@ public class InteractButton : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            interactingObject = other.transform;
+            interactingObjects.Add(other.transform);
 
-            if (other.gameObject.CompareTag("Box"))
+            if (!button.onButton)
             {
-                interactingObjectRb = other.GetComponent<Rigidbody>();
-                interactingObjectRb.useGravity = false;
-                interactingObjectRb.velocity = Vector3.zero;
-                interactingObjectRb.freezeRotation = true;
+                visual.position = waypoint.position;
 
-                interactingObject.position = new Vector3(interactingObject.position.x,
-                visualFilter.mesh.bounds.extents.normalized.y - visual.localPosition.y,
-                interactingObject.position.z);
+                button.onButton = true;
 
-                interactingObjectStayPosition = interactingObject.position;
+                button.OnClick.Invoke();
             }
+        }
+
+        if (other.gameObject.CompareTag("Box"))
+        {
+            interactingObjects.Add(other.transform);
+
+            box = other.GetComponent<Box>();
+
+            interactingObjectRb = other.GetComponent<Rigidbody>();
+            interactingObjectRb.useGravity = false;
+            interactingObjectRb.velocity = Vector3.zero;
+            interactingObjectRb.freezeRotation = true;
+
+            other.transform.position = new Vector3(other.transform.position.x,
+            visualFilter.mesh.bounds.extents.normalized.y - visual.localPosition.y,
+            other.transform.position.z);
+
+            interactingObjectStayPosition = other.transform.position;
 
             visual.position = waypoint.position;
 
             button.onButton = true;
 
-            button.OnClick.Invoke();
+            button.OnClick.Invoke(); ;
         }
     }
 
@@ -66,23 +79,44 @@ public class InteractButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Box"))
         {
-            interactingObject.position = new Vector3(interactingObject.position.x, interactingObjectStayPosition.y, interactingObject.position.z);
+            other.transform.position = new Vector3(other.transform.position.x, interactingObjectStayPosition.y, other.transform.position.z);
+
+            button.onButton = true;
+
+            if (!box.grabbed && button.onButton)
+            {
+                interactingObjectRb.constraints = RigidbodyConstraints.FreezeAll;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            interactingObject = null;
+            if (interactingObjects.Count == 1)
+            {
+                button.onButton = false;
+            }
+
+            interactingObjects.Remove(other.transform);
+
+            if (!button.holdButton && !button.onButton)
+            {
+                visual.position = origin;
+
+                button.OnUnClick.Invoke();
+            }
+        }
+
+        if (other.gameObject.CompareTag("Box"))
+        {
+            interactingObjects.Remove(other.transform);
             button.onButton = false;
 
-            if (other.gameObject.CompareTag("Box"))
-            {
-                interactingObjectRb.useGravity = true;
+            interactingObjectRb.useGravity = true;
 
-                interactingObjectRb.freezeRotation = false;
-            }
+            interactingObjectRb.constraints = RigidbodyConstraints.None;
 
             if (!button.holdButton && !button.onButton)
             {

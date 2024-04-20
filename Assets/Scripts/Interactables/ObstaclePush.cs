@@ -7,12 +7,16 @@ public class ObstaclePush : MonoBehaviour, IInteractable
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform raycastPosition;
 
+    [SerializeField] private float forceMagnitude;
+
     [SerializeField] private LayerMask boxLayer;
 
     private Rigidbody rb;
     private Rigidbody grabbedObjectRb;
 
     private BoxCollider grabbedObjectCollider;
+
+    private Box box;
 
     private GameObject grabbedObject;
 
@@ -31,6 +35,10 @@ public class ObstaclePush : MonoBehaviour, IInteractable
             if (Physics.Raycast(raycastPosition.position, orientation.forward, out hit, 2, boxLayer))
             {
                 Debug.Log(hit.collider.name);
+
+                box = hit.collider.GetComponent<Box>();
+
+                box.grabbed = true;
 
                 rb.mass = 1.2f;
                 grabbedObject = hit.collider.gameObject;
@@ -52,6 +60,8 @@ public class ObstaclePush : MonoBehaviour, IInteractable
             rb.mass = 1;
             grabbedObjectCollider.isTrigger = false;
 
+            box.grabbed = false;
+
             grabbedObjectRb.isKinematic = false;
             grabbedObjectRb.useGravity = true;
             grabbedObjectRb.mass = 10;
@@ -70,6 +80,12 @@ public class ObstaclePush : MonoBehaviour, IInteractable
     {
         if (collision.gameObject.CompareTag("Box"))
         {
+            /*Vector3 forceDirection = collision.transform.position - transform.position;
+            forceDirection.y = 0;
+            forceDirection.Normalize();
+
+            rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);*/
+
             Interact();
         }
     }
