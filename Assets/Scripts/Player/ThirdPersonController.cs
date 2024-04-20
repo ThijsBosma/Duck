@@ -15,6 +15,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private Vector3 _movementInputs;
 
+    protected Vector3 _moveDirection;
+
     [Header("RaycastVariables")]
     [SerializeField] private TextMeshProUGUI _InteractableText;
     [SerializeField] private float _MaxRaycastLength;
@@ -36,9 +38,9 @@ public class ThirdPersonController : MonoBehaviour
 
     private void MoveCharacter()
     {
-        Vector3 moveDirection = _Orientation.forward * _movementInputs.z + _Orientation.right * _movementInputs.x;
+        _moveDirection = _Orientation.forward * _movementInputs.z + _Orientation.right * _movementInputs.x;
 
-        _RigidBody.AddForce(moveDirection * _Speed * 10f, ForceMode.Force);
+        _RigidBody.AddForce(_moveDirection * _Speed * 10f, ForceMode.Force);
     }
 
     private void GetMovementInputs()
