@@ -32,7 +32,24 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (inputDir != Vector3.zero)
-            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        {
+            if (horizontalInput > 0)
+            {
+                player.forward = Vector3.Slerp(player.forward, camT.right.normalized, Time.deltaTime * rotationSpeed);
+            }
+            else if (horizontalInput < 0)
+            {
+                player.forward = Vector3.Slerp(player.forward, -camT.right.normalized, Time.deltaTime * rotationSpeed);
+            }
+            else if (verticalInput > 0)
+            {
+                player.forward = Vector3.Slerp(player.forward, new Vector3(camT.forward.x, player.forward.y, camT.forward.z), Time.deltaTime * rotationSpeed);
+            }
+            else if (verticalInput < 0)
+            {
+                player.forward = Vector3.Slerp(player.forward, -new Vector3(camT.forward.x, player.forward.y, camT.forward.z), Time.deltaTime * rotationSpeed);
+            }
+        }
     }
 
     private void OnDrawGizmos()
