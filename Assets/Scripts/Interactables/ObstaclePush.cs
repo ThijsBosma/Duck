@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ObstaclePush : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Transform orientation;
-    [SerializeField] private Transform raycastPosition;
+    [SerializeField] private Transform _Orientaion;
+    [SerializeField] private Transform _RaycastPosition;
+    [SerializeField] private Transform _HoldPosition;
 
-    [SerializeField] private float forceMagnitude;
+    [SerializeField] private float _ForceMagnitude;
 
-    [SerializeField] private LayerMask boxLayer;
+    [SerializeField] private LayerMask _BoxLayer;
 
     private Rigidbody rb;
     private Rigidbody grabbedObjectRb;
@@ -18,7 +19,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
     private Box box;
 
-    private GameObject grabbedObject;
+    public GameObject grabbedObject;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
         // grab object
         if (Input.GetKeyDown(KeyCode.F) && grabbedObject == null)
         {
-            if (Physics.Raycast(raycastPosition.position, orientation.forward, out hit, 2, boxLayer))
+            if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 2, _BoxLayer))
             {
                 Debug.Log(hit.collider.name);
 
@@ -44,6 +45,8 @@ public class ObstaclePush : MonoBehaviour, IInteractable
                 grabbedObject = hit.collider.gameObject;
                 grabbedObjectCollider = grabbedObject.GetComponentInChildren<BoxCollider>();
                 grabbedObjectCollider.isTrigger = true;
+
+                grabbedObject.transform.localPosition = _HoldPosition.position;
 
                 grabbedObjectRb = grabbedObject.GetComponentInParent<Rigidbody>();
 
@@ -73,7 +76,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
             grabbedObject = null;
         }
 
-        Debug.DrawRay(raycastPosition.position, orientation.forward.normalized * 2, Color.green);
+        Debug.DrawRay(_RaycastPosition.position, _Orientaion.forward.normalized * 2, Color.green);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -90,8 +93,16 @@ public class ObstaclePush : MonoBehaviour, IInteractable
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            InteractText.instance.ResetText();
+        }
+    }
+
     public void Interact()
     {
-        Debug.Log("Press F to grab");
+        InteractText.instance.SetText("Press F to pick up");
     }
 }

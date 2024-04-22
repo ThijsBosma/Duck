@@ -10,6 +10,8 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform camT;
 
+    [SerializeField] private ObstaclePush pushPull;
+
     [SerializeField] private float rotationSpeed;
 
     [HideInInspector]
@@ -31,24 +33,13 @@ public class ThirdPersonCam : MonoBehaviour
 
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (inputDir != Vector3.zero)
+        Vector3 camForward = Vector3.Scale(camT.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 walkDir = verticalInput * camForward + horizontalInput * camT.right;
+
+        if (inputDir != Vector3.zero && pushPull.grabbedObject == null)
         {
-            if (horizontalInput > 0)
-            {
-                player.forward = Vector3.Slerp(player.forward, camT.right.normalized, Time.deltaTime * rotationSpeed);
-            }
-            else if (horizontalInput < 0)
-            {
-                player.forward = Vector3.Slerp(player.forward, -camT.right.normalized, Time.deltaTime * rotationSpeed);
-            }
-            else if (verticalInput > 0)
-            {
-                player.forward = Vector3.Slerp(player.forward, new Vector3(camT.forward.x, player.forward.y, camT.forward.z), Time.deltaTime * rotationSpeed);
-            }
-            else if (verticalInput < 0)
-            {
-                player.forward = Vector3.Slerp(player.forward, -new Vector3(camT.forward.x, player.forward.y, camT.forward.z), Time.deltaTime * rotationSpeed);
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(walkDir);
+            player.rotation = Quaternion.Slerp(player.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 

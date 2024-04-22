@@ -62,6 +62,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1879546677239287457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3781575941250853393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6158935692093251446}
+  m_Layer: 0
+  m_Name: ObjectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6158935692093251446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3781575941250853393}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.33, z: 1.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4058647871130437723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6454602585343978873
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,10 +212,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 4058647871130437723}
   raycastPosition: {fileID: 1451708280816223679}
+  holdPosition: {fileID: 6158935692093251446}
   forceMagnitude: 1
   boxLayer:
     serializedVersion: 2
     m_Bits: 64
+  grabbedObject: {fileID: 0}
 --- !u!1 &6787727880273650965
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,5 +461,6 @@ Transform:
   m_Children:
   - {fileID: 7998072468649505756}
   - {fileID: 8953107985717462038}
+  - {fileID: 6158935692093251446}
   m_Father: {fileID: 1879546677239287457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

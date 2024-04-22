@@ -65,7 +65,7 @@ public class ThirdPersonController : MonoBehaviour
 
         if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
         {
-            _InteractableText.gameObject.SetActive(true);
+            InteractText.instance.SetText("Press F to interact");
 
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -74,7 +74,7 @@ public class ThirdPersonController : MonoBehaviour
         }
         else
         {
-            _InteractableText.gameObject.SetActive(false);
+            InteractText.instance.ResetText();
         }
     }
 
