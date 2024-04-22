@@ -12,7 +12,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
     [SerializeField] private LayerMask _BoxLayer;
 
-    private Rigidbody rb;
+    private Rigidbody _Rb;
     private Rigidbody grabbedObjectRb;
 
     private BoxCollider grabbedObjectCollider;
@@ -23,7 +23,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _Rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -41,7 +41,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
                 box.grabbed = true;
 
-                rb.mass = 1.2f;
+                _Rb.mass = 1.2f;
                 grabbedObject = hit.collider.gameObject;
                 grabbedObjectCollider = grabbedObject.GetComponentInChildren<BoxCollider>();
                 grabbedObjectCollider.isTrigger = true;
@@ -60,7 +60,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
         // release object
         else if (Input.GetKeyUp(KeyCode.F) && grabbedObject != null)
         {
-            rb.mass = 1;
+            _Rb.mass = 1;
             grabbedObjectCollider.isTrigger = false;
 
             box.grabbed = false;
