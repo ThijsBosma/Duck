@@ -30,10 +30,15 @@ public class ObstaclePush : MonoBehaviour, IInteractable
     {
         RaycastHit hit;
 
+        if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer) && grabbedObject == null)
+        {
+            Interact();
+        }
+
         // grab object
         if (Input.GetKeyDown(KeyCode.F) && grabbedObject == null)
         {
-            if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 2, _BoxLayer))
+            if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer))
             {
                 Debug.Log(hit.collider.name);
 
@@ -89,13 +94,12 @@ public class ObstaclePush : MonoBehaviour, IInteractable
 
             rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);*/
 
-            Interact();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Box"))
         {
             InteractText.instance.ResetText();
         }
