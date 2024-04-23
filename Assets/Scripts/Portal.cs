@@ -29,8 +29,6 @@ public class Portal : MonoBehaviour
     {
         IsIndexOutOfBounds();
 
-        Debug.Log(_currentIndex);
-
         if (RaycastHasHit() && _coroutine == null && _controller != null)
         {
             _coroutine = StartCoroutine(TeleportPlayer());
