@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclePush : MonoBehaviour, IInteractable
+public class ObstaclePush : InputHandler, IInteractable
 {
     [SerializeField] private Transform _Orientaion;
     [SerializeField] private Transform _RaycastPosition;
@@ -79,6 +79,8 @@ public class ObstaclePush : MonoBehaviour, IInteractable
             grabbedObjectCollider = null;
             grabbedObjectRb = null;
             grabbedObject = null;
+
+            InteractText.instance.ResetText();
         }
 
         Debug.DrawRay(_RaycastPosition.position, _Orientaion.forward.normalized * 2, Color.green);
@@ -97,7 +99,7 @@ public class ObstaclePush : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Box"))
         {

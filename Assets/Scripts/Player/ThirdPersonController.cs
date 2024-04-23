@@ -12,6 +12,7 @@ public class ThirdPersonController : InputHandler
     [SerializeField] private float _Speed;
 
     [SerializeField] private Transform _Orientation;
+    [SerializeField] private Transform _PlayerObj;
 
     private Vector2 _movementInputs;
 
@@ -22,6 +23,8 @@ public class ThirdPersonController : InputHandler
     [SerializeField] private float _MaxRaycastLength;
 
     private bool _raycastHasHit;
+    private bool setText;
+
     private RaycastHit _hit;
 
     void Update()
@@ -45,7 +48,7 @@ public class ThirdPersonController : InputHandler
 
     private void GetMovementInputs()
     {
-        _movementInputs = move.ReadValue<Vector2>();
+        _movementInputs = _Move.ReadValue<Vector2>();
     }
 
     private void SpeedControl()
@@ -61,20 +64,23 @@ public class ThirdPersonController : InputHandler
 
     private void ShootRayCast()
     {
-        _raycastHasHit = Physics.Raycast(transform.position, transform.forward, out _hit, _MaxRaycastLength);
+        _raycastHasHit = Physics.Raycast(transform.position, _PlayerObj.forward, out _hit, _MaxRaycastLength);
 
         if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
         {
+            setText = true;
+            _Interact.Enable();
             InteractText.instance.SetText("Press F to interact");
 
-            if (Input.GetKeyDown(KeyCode.F))
+            if (_Interact.IsPressed())
             {
                 _hit.collider.GetComponent<IInteractable>().Interact();
             }
         }
-        else
+        else if (setText)
         {
             InteractText.instance.ResetText();
+            setText = false;
         }
     }
 

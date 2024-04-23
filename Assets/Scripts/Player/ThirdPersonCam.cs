@@ -32,7 +32,7 @@ public class ThirdPersonCam : InputHandler
         viewDir = player.position - new Vector3(camT.position.x, player.position.y, camT.position.z);
         orientation.forward = viewDir.normalized;
 
-        walkDirection = move.ReadValue<Vector2>();
+        walkDirection = _Move.ReadValue<Vector2>();
 
         Vector3 inputDir = orientation.forward * walkDirection.y + orientation.right * walkDirection.x;
 

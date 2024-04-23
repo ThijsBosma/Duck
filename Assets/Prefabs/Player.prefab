@@ -226,8 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _RigidBody: {fileID: 5789226709662257355}
-  _Speed: 4
+  _Speed: 6
   _Orientation: {fileID: 4457297060851687852}
+  _PlayerObj: {fileID: 4058647871130437723}
   _InteractableText: {fileID: 0}
   _MaxRaycastLength: 3
 --- !u!114 &4790717904476149456
@@ -261,7 +262,6 @@ GameObject:
   - component: {fileID: 7998072468649505756}
   - component: {fileID: 1513504556583010968}
   - component: {fileID: 941892438333973955}
-  - component: {fileID: 3925624708605517450}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -334,27 +334,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3925624708605517450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6787727880273650965}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7471871286336049731
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +345,6 @@ GameObject:
   - component: {fileID: 8953107985717462038}
   - component: {fileID: 7557115394890469756}
   - component: {fileID: 939687945536897846}
-  - component: {fileID: 6618121555239054987}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -439,29 +417,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6618121555239054987
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471871286336049731}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8314722020556869222
 GameObject:
   m_ObjectHideFlags: 0
