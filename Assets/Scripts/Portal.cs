@@ -30,21 +30,12 @@ public class Portal : MonoBehaviour
         IsIndexOutOfBounds();
 
         Debug.Log(_currentIndex);
-        //Debug.DrawLine(_PortalWalls[_currentIndex].transform.position - new Vector3(0, _RaycastDownOffset, 0), new Vector3(_PortalWalls[_currentIndex].transform.forward.x, _PortalWalls[_currentIndex].transform.position.y, _PortalWalls[_currentIndex].transform.forward.z) - new Vector3(0, _RaycastDownOffset, 0));
 
-        if (RaycastHasHit() && _coroutine == null)
+        if (RaycastHasHit() && _coroutine == null && _controller != null)
         {
             _coroutine = StartCoroutine(TeleportPlayer());
         }
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(_controller != null)
-    //    {
-    //        StartCoroutine(TeleportPlayer());
-    //    }
-    //}
 
     private IEnumerator TeleportPlayer()
     {
@@ -61,7 +52,7 @@ public class Portal : MonoBehaviour
 
         Transform tempStartPosVar = _StartPoint;
 
-        _StartPoint = _EndPoint;
+        _StartPoint = _EndPoint;  
         _EndPoint = tempStartPosVar;
 
         _currentIndex += 1;
