@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdPersonCam : MonoBehaviour
+public class ThirdPersonCam : InputHandler
 {
     public static ThirdPersonCam instance;
 
@@ -17,8 +17,12 @@ public class ThirdPersonCam : MonoBehaviour
     [HideInInspector]
     public Vector3 viewDir;
 
-    private void Awake()
+    private Vector2 rotateDirection;
+    private Vector2 walkDirection;
+
+    protected override void Awake()
     {
+        base.Awake();
         instance = this;
     }
 
@@ -28,13 +32,12 @@ public class ThirdPersonCam : MonoBehaviour
         viewDir = player.position - new Vector3(camT.position.x, player.position.y, camT.position.z);
         orientation.forward = viewDir.normalized;
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        walkDirection = move.ReadValue<Vector2>();
 
-        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 inputDir = orientation.forward * walkDirection.y + orientation.right * walkDirection.x;
 
         Vector3 camForward = Vector3.Scale(camT.forward, new Vector3(1, 0, 1)).normalized;
-        Vector3 walkDir = verticalInput * camForward + horizontalInput * camT.right;
+        Vector3 walkDir = walkDirection.y * camForward + walkDirection.x * camT.right;
 
         if (inputDir != Vector3.zero && pushPull.grabbedObject == null)
         {

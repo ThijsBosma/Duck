@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ThirdPersonController : MonoBehaviour
+public class ThirdPersonController : InputHandler
 {
     [Header("GeneralPlayerVariables")]
     private PlayerData _playerData = new PlayerData();
@@ -13,7 +13,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private Transform _Orientation;
 
-    private Vector3 _movementInputs;
+    private Vector2 _movementInputs;
 
     protected Vector3 _moveDirection;
 
@@ -38,14 +38,14 @@ public class ThirdPersonController : MonoBehaviour
 
     private void MoveCharacter()
     {
-        _moveDirection = _Orientation.forward * _movementInputs.z + _Orientation.right * _movementInputs.x;
+        _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
         _RigidBody.AddForce(_moveDirection * _Speed * 10f, ForceMode.Force);
     }
 
     private void GetMovementInputs()
     {
-        _movementInputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _movementInputs = move.ReadValue<Vector2>();
     }
 
     private void SpeedControl()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateCamera : MonoBehaviour
+public class RotateCamera : InputHandler
 {
     [SerializeField] private Transform focusPoint;
     [SerializeField] private Transform camPos;
@@ -11,33 +11,40 @@ public class RotateCamera : MonoBehaviour
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
 
+    [SerializeField] private float minYRotation;
+    [SerializeField] private float maxYRotation;
+
+    [SerializeField] private bool invertCameraAxis;
+
     private float xRotation;
     private float yRotation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private Vector2 lookDir;
+    private Vector3 rotateDir;
 
+    private void Start()
+    {
+        camPos.LookAt(focusPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        lookDir = look.ReadValue<Vector2>();
+
+        Debug.Log(lookDir);
+
+        if (lookDir.x > 0.5f || lookDir.x < -0.5f)
         {
-            xRotation += Time.deltaTime * sensX * 10;
+            if (invertCameraAxis)
+                xRotation += Time.deltaTime * sensX * 10 * (lookDir.x * -1);
+            else
+                xRotation += Time.deltaTime * sensX * 10 * lookDir.x;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (lookDir.y > 0.5f || lookDir.y < -0.5f)
         {
-            xRotation -= Time.deltaTime * sensX * 10;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            yRotation -= Time.deltaTime * sensY * 10;
-        }
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            yRotation += Time.deltaTime * sensY * 10;
+            yRotation += Time.deltaTime * sensY * 10 * lookDir.y;
+            yRotation = Mathf.Clamp(yRotation, minYRotation, maxYRotation);
         }
 
         transform.rotation = Quaternion.Euler(yRotation, xRotation, transform.rotation.eulerAngles.z);

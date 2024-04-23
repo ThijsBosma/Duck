@@ -289,11 +289,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e709eeac3419a254fb768ba0e820fbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusPoint: {fileID: 0}
+  focusPoint: {fileID: 839659678}
   camPos: {fileID: 1436762500}
   orientation: {fileID: 305438168}
   sensX: 12
   sensY: 10
+  minYRotation: -15
+  maxYRotation: 60
+  invertCameraAxis: 1
 --- !u!4 &62314914
 Transform:
   m_ObjectHideFlags: 0
@@ -1873,16 +1876,11 @@ PrefabInstance:
       propertyPath: _InteractableText
       value: 
       objectReference: {fileID: 1177126170}
-    - target: {fileID: 6158935692093251446, guid: defd73102389cf445bca76888565d117,
+    - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6158935692093251446, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.035
-      objectReference: {fileID: 0}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1436762503}
     - target: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_Name
