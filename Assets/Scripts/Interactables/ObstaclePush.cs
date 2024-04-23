@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class ObstaclePush : InputHandler, IInteractable
 {
@@ -32,11 +34,12 @@ public class ObstaclePush : InputHandler, IInteractable
 
         if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer) && grabbedObject == null)
         {
+            _Interact.Enable();
             Interact();
         }
 
         // grab object
-        if (Input.GetKeyDown(KeyCode.F) && grabbedObject == null)
+        if (_Interact.WasPressedThisFrame() && grabbedObject == null)
         {
             if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer))
             {
@@ -63,8 +66,10 @@ public class ObstaclePush : InputHandler, IInteractable
             }
         }
         // release object
-        else if (Input.GetKeyUp(KeyCode.F) && grabbedObject != null)
+        else if (_Interact.WasReleasedThisFrame() && grabbedObject != null)
         {
+            _Interact.Disable();
+
             _Rb.mass = 1;
             grabbedObjectCollider.isTrigger = false;
 
@@ -109,6 +114,56 @@ public class ObstaclePush : InputHandler, IInteractable
 
     public void Interact()
     {
-        InteractText.instance.SetText("Press F to pick up");
+        InteractText.instance.SetText($"Press {FindInputBinding()} to pick up");
+    }
+
+    private string FindInputBinding()
+    {
+        InputAction interactAction = playerInput.actions.FindAction("Interact");
+
+        if (interactAction != null)
+        {
+            string controlScheme = playerInput.currentControlScheme;
+
+            InputBinding? bindingForControlScheme = null;
+
+            foreach (var binding in interactAction.bindings)
+            {
+                if (binding.groups.Contains(controlScheme))
+                {
+                    bindingForControlScheme = binding;
+                    break;
+                }
+            }
+
+            if (bindingForControlScheme != null)
+            {
+                string buttonName = ExtractButtonName(bindingForControlScheme.Value.path);
+                return buttonName;
+            }
+            else
+            {
+                return "No binding for current control scheme";
+            }
+        }
+        else
+        {
+            Debug.LogError("Player input not found");
+            return "";
+        }
+    }
+
+    private string ExtractButtonName(string bindingPath)
+    {
+        string[] splitPath = bindingPath.Split('/');
+        if (splitPath.Length > 1)
+        {
+
+            return splitPath[splitPath.Length - 1].ToUpperInvariant();
+        }
+        else
+        {
+            return "Unknown Button";
+        }
     }
 }

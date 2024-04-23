@@ -7,6 +7,8 @@ public class InputHandler : MonoBehaviour
 {
     [SerializeField] private PlayerControls _Input;
 
+    protected PlayerInput playerInput;
+
     protected InputAction _Move;
     protected InputAction _Look;
     protected InputAction _Interact;
@@ -15,6 +17,7 @@ public class InputHandler : MonoBehaviour
     protected virtual void Awake()
     {
         _Input = new PlayerControls();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
