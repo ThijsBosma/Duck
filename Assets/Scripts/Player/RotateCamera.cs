@@ -30,9 +30,7 @@ public class RotateCamera : InputHandler
     // Update is called once per frame
     void Update()
     {
-        lookDir = look.ReadValue<Vector2>();
-
-        Debug.Log(lookDir);
+        lookDir = _Look.ReadValue<Vector2>();
 
         if (lookDir.x > 0.5f || lookDir.x < -0.5f)
         {
