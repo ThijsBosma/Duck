@@ -8,11 +8,26 @@ public class GrowPlant : InputHandler, IInteractable
 
     [SerializeField] private Transform spawnPoint;
 
+    private bool canInteract;
+    private bool treePlanted;
+
+    private void Update()
+    {
+        if (canInteract && !treePlanted && _Interact.IsPressed())
+        {
+            InstantiatePlant();
+
+            canInteract = false;
+            treePlanted = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !treePlanted)
         {
-            _GrowPlant.Enable();
+            _Interact.Enable();
+            canInteract = true;
             Interact();
         }
     }
@@ -21,7 +36,7 @@ public class GrowPlant : InputHandler, IInteractable
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _GrowPlant.Disable();
+            _Interact.Disable();
             InteractText.instance.ResetText();
         }
     }
