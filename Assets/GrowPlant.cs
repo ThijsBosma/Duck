@@ -7,6 +7,7 @@ public class GrowPlant : InputHandler, IInteractable
     [SerializeField] private GameObject plantToGrow;
 
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform _BridgePosition;
 
     private bool canInteract;
     private bool treePlanted;
@@ -56,8 +57,12 @@ public class GrowPlant : InputHandler, IInteractable
         InteractText.instance.SetText($"Growing {plantToGrow.name}");
         yield return new WaitForSeconds(1.5f);
 
-        Instantiate(plantToGrow, spawnPoint.position, Quaternion.identity);
+        GameObject plant = Instantiate(plantToGrow, spawnPoint.position, Quaternion.identity);
+
+        plant.GetComponent<PushTree>()._BridgePosition = _BridgePosition;
+
         InteractText.instance.ResetText();
+        this.enabled = false;
 
     }
 }
