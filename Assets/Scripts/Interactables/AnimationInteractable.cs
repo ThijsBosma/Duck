@@ -13,7 +13,7 @@ public class AnimationInteractable : MonoBehaviour, IInteractable
         _InteractAnimation.SetBool("IsPressed", true);
     }
 
-    public void SpawnDuck()
+    public void SpawnObject()
     {
         Instantiate(_DuckPrefab, _DuckSpawnPoint.position, _DuckSpawnPoint.rotation);
     }
