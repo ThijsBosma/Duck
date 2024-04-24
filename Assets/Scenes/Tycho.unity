@@ -2162,7 +2162,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1854360018}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2126368356}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1b3e46a5fb95f24f97462ce391a7d84, type: 3}
@@ -3379,7 +3379,7 @@ PrefabInstance:
     - target: {fileID: 1879546677239287457, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 14.82
       objectReference: {fileID: 0}
     - target: {fileID: 1879546677239287457, guid: defd73102389cf445bca76888565d117,
         type: 3}
@@ -3423,9 +3423,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
         type: 3}
+      propertyPath: _Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
+        type: 3}
       propertyPath: _RigidBody
       value: 
-      objectReference: {fileID: 1854360019}
+      objectReference: {fileID: 0}
     - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: _MaxSlopeAngle
@@ -3452,17 +3457,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5789226709662257355, guid: defd73102389cf445bca76888565d117, type: 3}
+    - {fileID: 3072533232928034554, guid: defd73102389cf445bca76888565d117, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2126368358}
   m_SourcePrefab: {fileID: 100100000, guid: defd73102389cf445bca76888565d117, type: 3}
---- !u!54 &1854360019 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 5789226709662257355, guid: defd73102389cf445bca76888565d117,
-    type: 3}
-  m_PrefabInstance: {fileID: 1854360018}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1925348090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3815749898826553435, guid: 0f9c89f7293e4fb4ea884f99e58c4d2a,
@@ -3574,6 +3579,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093733113}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2126368356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
+    type: 3}
+  m_PrefabInstance: {fileID: 1854360018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &2126368358
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126368356}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2143380136
 GameObject:
   m_ObjectHideFlags: 0
