@@ -50,6 +50,7 @@ public class ThirdPersonController : InputHandler
     {
         GetMovementInputs();
         MoveCharacter();
+        ShootRayCast();
         AddDownForce();
 
         Debug.Log(controller.isGrounded);
