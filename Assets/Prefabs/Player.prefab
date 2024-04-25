@@ -103,7 +103,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1879546677239287457}
   - component: {fileID: 5252060811740535455}
-  - component: {fileID: 3072533232928034554}
   - component: {fileID: 5789226709662257355}
   - component: {fileID: 2678815009702539151}
   - component: {fileID: 4790717904476149456}
@@ -219,29 +218,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!136 &3072533232928034554
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454602585343978873}
-  m_Material: {fileID: 13400000, guid: c59fff82856e6f249897327ad0eb17e7, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5789226709662257355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -281,12 +257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7089c0e67ee5d594382904c915cade5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RigidBody: {fileID: 5789226709662257355}
   _Speed: 6
   _GravityStrength: 1
   _Orientation: {fileID: 4457297060851687852}
   _PlayerObj: {fileID: 4058647871130437723}
-  _GroundDrag: 5
   _PlayerHeight: 2
   _WhatIsGround:
     serializedVersion: 2
@@ -308,7 +282,6 @@ MonoBehaviour:
   _Orientaion: {fileID: 4058647871130437723}
   _RaycastPosition: {fileID: 1451708280816223679}
   _HoldPosition: {fileID: 6158935692093251446}
-  _ForceMagnitude: 1
   _BoxLayer:
     serializedVersion: 2
     m_Bits: 64
