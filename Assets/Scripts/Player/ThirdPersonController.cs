@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ThirdPersonController : InputHandler
 {
-    private CharacterController controller;
-
     [Header("GeneralPlayerVariables")]
     private PlayerData _playerData = new PlayerData();
     [SerializeField] private Rigidbody _RigidBody;
@@ -44,39 +42,34 @@ public class ThirdPersonController : InputHandler
     private RaycastHit _hit;
 
     private float _airTime;
-    private float _downForce;
 
     void Update()
     {
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
+
+        _onSlope = OnSlope();
+
+        Debug.DrawRay(transform.position, _PlayerObj.forward.normalized * (0.5f + 0.3f));
+
         GetMovementInputs();
-        MoveCharacter();
-        ShootRayCast();
-        AddDownForce();
 
-        Debug.Log(controller.isGrounded);
-
-        /*if (_grounded)
+        if (_grounded)
             _RigidBody.drag = _GroundDrag;
         else
-            _RigidBody.drag = 0;*/
+            _RigidBody.drag = 0;
 
-        //SpeedControl();
-        //ShootRayCast();
-
+        SpeedControl();
+        ShootRayCast();
     }
 
     private void FixedUpdate()
     {
+        MoveCharacter();
     }
 
     private void MoveCharacter()
     {
-        //_RigidBody.AddForce(_moveDirection * _Speed * 10f, ForceMode.Force);
-        _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
-
-        controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
-
-        /*if (!_grounded)
+        if (!_grounded)
         {
             _airTime += Time.deltaTime;
             if (_airTime > 0.15f && !OnSlope())
@@ -87,10 +80,11 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
+            _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
             _airTime = 0;
-        }*/
+        }
 
-        /*if (OnSlope())
+        if (OnSlope())
         {
             _RigidBody.AddForce(GetSlopeMoveDirection() * _Speed * 10f, ForceMode.Force);
 
@@ -103,28 +97,17 @@ public class ThirdPersonController : InputHandler
             {
                 _RigidBody.velocity = Vector3.zero;
             }
-        }*/
+        }
 
+        _RigidBody.AddForce(_moveDirection * _Speed * 10f, ForceMode.Force);
 
-        /*if (!_grounded && !OnSlope())
+        if (!_grounded && !OnSlope())
             //_RigidBody.AddForce(Vector3.down * -Physics.gravity.y * _GravityStrength, ForceMode.Force);
 
             if (_movementInputs != Vector2.zero)
                 _RigidBody.useGravity = !OnSlope();
             else
-                _RigidBody.useGravity = !_grounded;*/
-    }
-
-    private void AddDownForce()
-    {
-        if (!controller.isGrounded)
-        {
-            _downForce += Physics.gravity.y * _GravityStrength * Time.deltaTime;
-        }
-        else
-        {
-            _downForce = 0;
-        }
+                _RigidBody.useGravity = !_grounded;
     }
 
     private void GetMovementInputs()
@@ -134,7 +117,7 @@ public class ThirdPersonController : InputHandler
 
     private void SpeedControl()
     {
-        /*if (OnSlope())
+        if (OnSlope())
         {
             if (_RigidBody.velocity.magnitude > _Speed)
                 _RigidBody.velocity = _RigidBody.velocity.normalized * _Speed;
@@ -146,7 +129,7 @@ public class ThirdPersonController : InputHandler
         {
             Vector3 limitedVel = flatVel.normalized * _Speed;
             _RigidBody.velocity = new Vector3(limitedVel.x, _RigidBody.velocity.y, limitedVel.z);
-        }*/
+        }
     }
 
     private void ShootRayCast()
@@ -204,7 +187,6 @@ public class ThirdPersonController : InputHandler
     private void OnValidate()
     {
         _RigidBody = GetComponent<Rigidbody>();
-        controller = GetComponent<CharacterController>();
     }
 
     private void OnDestroy()
