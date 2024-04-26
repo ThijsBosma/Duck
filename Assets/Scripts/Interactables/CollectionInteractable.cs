@@ -9,10 +9,4 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
         playerData._DucksCollectedInStage += 1;
         Debug.Log(playerData._DucksCollectedInStage);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        CollectDuck(other.GetComponent<ThirdPersonController>()._playerData);
-        Destroy(gameObject);
-    }
 }

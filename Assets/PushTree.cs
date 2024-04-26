@@ -32,9 +32,9 @@ public class PushTree : InputHandler, IInteractable
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") && !_hasInteracted)
+        if (other.gameObject.CompareTag("Player") && !_hasInteracted)
         {
             _Interact.Enable();
             Interact();
@@ -42,9 +42,9 @@ public class PushTree : InputHandler, IInteractable
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") && !_hasInteracted)
+        if (other.gameObject.CompareTag("Player") && !_hasInteracted)
         {
             _Interact.Enable();
             InteractText.instance.ResetText();
