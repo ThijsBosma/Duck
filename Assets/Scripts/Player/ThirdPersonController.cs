@@ -8,7 +8,8 @@ public class ThirdPersonController : InputHandler
     private CharacterController controller;
 
     [Header("GeneralPlayerVariables")]
-    private PlayerData _playerData = new PlayerData();
+    [HideInInspector]
+    public PlayerData _playerData = new PlayerData();
     [SerializeField] private float _Speed;
 
     [SerializeField] private float _GravityStrength;
@@ -89,15 +90,6 @@ public class ThirdPersonController : InputHandler
         {
             InteractText.instance.ResetText();
             setText = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<IPlayerData>() != null)
-        {
-            other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);
-            Destroy(other.gameObject);
         }
     }
 
