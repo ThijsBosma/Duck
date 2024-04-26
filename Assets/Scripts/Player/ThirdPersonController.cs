@@ -31,6 +31,7 @@ public class ThirdPersonController : InputHandler
 
     private bool _raycastHasHit;
     private bool setText;
+    private bool _inAir;
 
     private RaycastHit _hit;
 
@@ -39,22 +40,43 @@ public class ThirdPersonController : InputHandler
 
     void Update()
     {
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
+
+        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
+
+        _inAir = !_grounded;
+
         GetMovementInputs();
         MoveCharacter();
         ShootRayCast();
         AddDownForce();
+
+        if (!_grounded)
+        {
+            _airTime += Time.deltaTime;
+            if (_airTime > 0.1f)
+                _inAir = _grounded;
+        }
     }
 
     private void MoveCharacter()
     {
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
-        controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        if (_inAir)
+        {
+            controller.Move(new Vector3(0, _downForce, 0) * Time.deltaTime);
+        }
+        else if (_grounded)
+        {
+            _inAir = false;
+            controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        }
     }
 
     private void AddDownForce()
     {
-        if (!controller.isGrounded)
+        if (!_grounded)
         {
             _downForce += Physics.gravity.y * _GravityStrength * Time.deltaTime;
         }
@@ -94,6 +116,7 @@ public class ThirdPersonController : InputHandler
 
     private void OnTriggerEnter(Collider other)
     {
+        _airTime = 0;
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);
