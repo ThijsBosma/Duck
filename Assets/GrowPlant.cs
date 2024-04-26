@@ -23,9 +23,9 @@ public class GrowPlant : InputHandler, IInteractable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player") && !treePlanted)
+        if (collision.gameObject.CompareTag("Player") && !treePlanted)
         {
             _Interact.Enable();
             canInteract = true;
@@ -33,12 +33,13 @@ public class GrowPlant : InputHandler, IInteractable
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             _Interact.Disable();
-            InteractText.instance.ResetText();
+            if (!treePlanted)
+                InteractText.instance.ResetText();
         }
     }
 
