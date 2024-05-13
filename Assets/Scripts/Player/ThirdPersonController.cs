@@ -25,15 +25,6 @@ public class ThirdPersonController : InputHandler
 
     protected Vector3 _moveDirection;
 
-    [Header("RaycastVariables")]
-    [SerializeField] private TextMeshProUGUI _InteractableText;
-    [SerializeField] private float _MaxRaycastLength;
-
-    private bool _raycastHasHit;
-    private bool setText;
-
-    private RaycastHit _hit;
-
     private float _airTime;
     private float _downForce;
 
@@ -41,7 +32,6 @@ public class ThirdPersonController : InputHandler
     {
         GetMovementInputs();
         MoveCharacter();
-        ShootRayCast();
         AddDownForce();
     }
 
@@ -69,28 +59,6 @@ public class ThirdPersonController : InputHandler
         _movementInputs = _Move.ReadValue<Vector2>();
     }
 
-
-    private void ShootRayCast()
-    {
-        _raycastHasHit = Physics.Raycast(transform.position, _PlayerObj.forward, out _hit, _MaxRaycastLength);
-
-        if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
-        {
-            setText = true;
-            _Interact.Enable();
-            InteractText.instance.SetText("Press F to interact");
-
-            if (_Interact.IsPressed())
-            {
-                _hit.collider.GetComponent<IInteractable>().Interact();
-            }
-        }
-        else if (setText)
-        {
-            InteractText.instance.ResetText();
-            setText = false;
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {

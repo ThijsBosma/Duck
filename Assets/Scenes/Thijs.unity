@@ -1880,6 +1880,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: _InteractableText
+      value: 
+      objectReference: {fileID: 90145894}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3207,6 +3212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duck
       objectReference: {fileID: 0}
+    - target: {fileID: 2462062783591395421, guid: 95c6c180e29c9bb409c034bacacaaafd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3381,10 +3391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cd93af1c6c2e54b8c88c9ded74eac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnLeverPull:
+    m_PersistentCalls:
+      m_Calls: []
   _InteractAnimation: {fileID: 2098028064}
-  _DuckPrefab: {fileID: 3335466857938593424, guid: 89019e25c07263b4fafadb8532fb4d35,
-    type: 3}
-  _DuckSpawnPoint: {fileID: 1795504107}
 --- !u!65 &2098028063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3712,10 +3722,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cd93af1c6c2e54b8c88c9ded74eac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnLeverPull:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1669530340}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _InteractAnimation: {fileID: 8707273953189125059}
-  _DuckPrefab: {fileID: 2462062783591395421, guid: 95c6c180e29c9bb409c034bacacaaafd,
-    type: 3}
-  _DuckSpawnPoint: {fileID: 1371563068}
 --- !u!65 &8707273953189125061
 BoxCollider:
   m_ObjectHideFlags: 0
