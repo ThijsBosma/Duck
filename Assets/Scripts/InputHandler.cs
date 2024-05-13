@@ -17,7 +17,7 @@ public class InputHandler : MonoBehaviour
     protected virtual void Awake()
     {
         _Input = new PlayerControls();
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     private void OnEnable()

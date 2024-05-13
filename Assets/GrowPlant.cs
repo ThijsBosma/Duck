@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowPlant : InputHandler, IInteractable
+public class GrowPlant : FindInputBinding, IInteractable
 {
     [SerializeField] private GameObject _PlantToGrow;
     [SerializeField] private GameObject _BridgeToSpawn;
@@ -47,7 +47,7 @@ public class GrowPlant : InputHandler, IInteractable
 
     public void Interact()
     {
-        InteractText.instance.SetText("Press F to grow plant");
+        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 
     public void InstantiatePlant()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ThirdPersonController : InputHandler
+public class ThirdPersonController : FindInputBinding
 {
     private CharacterController controller;
 
@@ -44,8 +44,6 @@ public class ThirdPersonController : InputHandler
 
         Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
 
-        _inAir = !_grounded;
-
         GetMovementInputs();
         MoveCharacter();
         ShootRayCast();
@@ -54,8 +52,19 @@ public class ThirdPersonController : InputHandler
         if (!_grounded)
         {
             _airTime += Time.deltaTime;
-            if (_airTime > 0.1f)
-                _inAir = _grounded;
+            if (_airTime > 0.2f)
+                _inAir = true;
+        }
+        else
+            _inAir = false;
+
+        if (playerInput.currentControlScheme.Equals("PlaystationController"))
+        {
+            Debug.Log("Playerstation");
+        }
+        else if (playerInput.currentControlScheme.Equals("XboxController"))
+        {
+            Debug.Log("Xbox");
         }
     }
 
@@ -63,14 +72,14 @@ public class ThirdPersonController : InputHandler
     {
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
-        if (_inAir)
+        controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+
+        if (!_inAir)
         {
-            controller.Move(new Vector3(0, _downForce, 0) * Time.deltaTime);
         }
-        else if (_grounded)
+        else if (_inAir)
         {
-            _inAir = false;
-            controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+            //controller.Move(new Vector3(0, _downForce, 0) * Time.deltaTime);
         }
     }
 
@@ -100,7 +109,7 @@ public class ThirdPersonController : InputHandler
         {
             setText = true;
             _Interact.Enable();
-            InteractText.instance.SetText("Press F to interact");
+            InteractText.instance.SetText($"Press {FindBinding()} to pick up");
 
             if (_Interact.IsPressed())
             {
