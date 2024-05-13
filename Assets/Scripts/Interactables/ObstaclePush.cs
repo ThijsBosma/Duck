@@ -10,6 +10,8 @@ public class ObstaclePush : InputHandler, IInteractable
     [SerializeField] private Transform _RaycastPosition;
     [SerializeField] private Transform _HoldPosition;
 
+    [SerializeField] private float _ForceMagnitude;
+
     [SerializeField] private LayerMask _BoxLayer;
 
     private Rigidbody _Rb;
@@ -17,11 +19,9 @@ public class ObstaclePush : InputHandler, IInteractable
 
     private BoxCollider grabbedObjectCollider;
 
-    private Box box = null;
+    private Box box;
 
     public GameObject grabbedObject;
-
-    private bool resetText;
 
     private void Start()
     {
@@ -37,27 +37,24 @@ public class ObstaclePush : InputHandler, IInteractable
             _Interact.Enable();
             Interact();
         }
-        else if (grabbedObject == null && !resetText)
-        {
-            InteractText.instance.ResetText();
-            resetText = true;
-        }
-
 
         // grab object
         if (_Interact.WasPressedThisFrame() && grabbedObject == null)
         {
             if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer))
             {
+                Debug.Log(hit.collider.name);
+
                 box = hit.collider.GetComponent<Box>();
 
                 box.grabbed = true;
 
+                _Rb.mass = 1.2f;
                 grabbedObject = hit.collider.gameObject;
                 grabbedObjectCollider = grabbedObject.GetComponentInChildren<BoxCollider>();
                 grabbedObjectCollider.isTrigger = true;
 
-                grabbedObject.transform.position = _HoldPosition.position;
+                grabbedObject.transform.localPosition = _HoldPosition.position;
 
                 grabbedObjectRb = grabbedObject.GetComponentInParent<Rigidbody>();
 
@@ -65,7 +62,7 @@ public class ObstaclePush : InputHandler, IInteractable
                 grabbedObjectRb.useGravity = false;
                 grabbedObjectRb.mass = 0;
 
-                grabbedObject.transform.SetParent(_HoldPosition);
+                grabbedObject.transform.SetParent(transform);
             }
         }
         // release object
@@ -73,6 +70,7 @@ public class ObstaclePush : InputHandler, IInteractable
         {
             _Interact.Disable();
 
+            _Rb.mass = 1;
             grabbedObjectCollider.isTrigger = false;
 
             box.grabbed = false;
@@ -87,11 +85,7 @@ public class ObstaclePush : InputHandler, IInteractable
             grabbedObjectRb = null;
             grabbedObject = null;
 
-        }
-
-        if (_Interact.IsInProgress() && grabbedObject != null)
-        {
-            grabbedObject.transform.position = _HoldPosition.position;
+            InteractText.instance.ResetText();
         }
 
         Debug.DrawRay(_RaycastPosition.position, _Orientaion.forward.normalized * 2, Color.green);
@@ -120,7 +114,6 @@ public class ObstaclePush : InputHandler, IInteractable
 
     public void Interact()
     {
-        resetText = false;
         InteractText.instance.SetText($"Press {FindInputBinding()} to pick up");
     }
 
