@@ -25,6 +25,7 @@ public class ThirdPersonController : InputHandler
 
     protected Vector3 _moveDirection;
 
+
     private float _airTime;
     private float _downForce;
 
