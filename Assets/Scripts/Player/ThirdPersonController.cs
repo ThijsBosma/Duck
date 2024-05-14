@@ -30,15 +30,20 @@ public class ThirdPersonController : InputHandler
 
     private bool _inAir;
 
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
     void Update()
     {
         _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
 
         Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
 
+        AddDownForce();
         GetMovementInputs();
         MoveCharacter();
-        AddDownForce();
 
         if (!_grounded)
         {
