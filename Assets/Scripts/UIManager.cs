@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIManager : InputHandler
 {
     [SerializeField] private GameObject _PauseAssets;
     [SerializeField] private GameObject _GUIAssets;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_PauseAssets.activeInHierarchy)
+        if (_Pause.WasPressedThisFrame() && !_PauseAssets.activeInHierarchy)
         {
             Time.timeScale = 0f;
 
             _PauseAssets.SetActive(true);
             _GUIAssets.SetActive(false);
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && _PauseAssets.activeInHierarchy)
+        else if(_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
         {
-            Time.timeScale = 1f;
-
-            _PauseAssets.SetActive(false);
-            _GUIAssets.SetActive(true);
+            Continue();
         }
     }
 
