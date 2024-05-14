@@ -16,6 +16,8 @@ public class PlayerInteract : FindInputBinding
 
     private IInteractable _Interactable;
 
+    public GameObject ja;
+
     private bool _raycastHasHit;
     private bool setText;
 
@@ -29,10 +31,11 @@ public class PlayerInteract : FindInputBinding
     {
         //ShootRaycast();
 
-        if (_Interact.IsPressed())
+        if (_Interact.WasPressedThisFrame())
         {
             foreach (RaycastHit hit in colliders)
             {
+                ja = hit.collider.gameObject;
                 _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
 
                 if (_Interactable == null)
@@ -74,7 +77,7 @@ public class PlayerInteract : FindInputBinding
 
             _interactableInRange = true;
 
-            InteractText.instance.SetText($"Press {FindBinding()} to pick up");
+            InteractText.instance.SetText($"Press {FindBinding()} to Interact");
             _textHasReseted = false;
         }
         else if (!hasColliders && _interactableInRange)

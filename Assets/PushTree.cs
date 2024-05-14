@@ -16,46 +16,16 @@ public class PushTree : FindInputBinding, IInteractable
     private bool _canInteract;
     public bool _hasInteracted;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Interact()
     {
-        
-    }
+        Debug.Log("GAY");
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_Interact.IsPressed() && _canInteract && !_hasInteracted)
+        if (!_hasInteracted)
         {
             Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);
             _hasInteracted = true;
             Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !_hasInteracted)
-        {
-            _Interact.Enable();
-            Interact();
-            _canInteract = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !_hasInteracted)
-        {
-            _Interact.Enable();
-            InteractText.instance.ResetText();
-            _canInteract = false;
-        }
-    }
-
-    public void Interact()
-    {
-        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 
     public void UnInteract()

@@ -13,41 +13,15 @@ public class GrowPlant : FindInputBinding, IInteractable
     private bool canInteract;
     private bool treePlanted;
 
-    private void Update()
+    public void Interact()
     {
-        if (canInteract && !treePlanted && _Interact.IsPressed())
+        if (!treePlanted)
         {
             InstantiatePlant();
 
             canInteract = false;
             treePlanted = true;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !treePlanted)
-        {
-            _Interact.Enable();
-            canInteract = true;
-            Interact();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _Interact.Disable();
-
-            if(!treePlanted)
-                InteractText.instance.ResetText();
-        }
-    }
-
-    public void Interact()
-    {
-        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 
     public void InstantiatePlant()
@@ -67,10 +41,10 @@ public class GrowPlant : FindInputBinding, IInteractable
 
         InteractText.instance.ResetText();
         this.enabled = false;
-
     }
 
     public void UnInteract()
     {
+
     }
 }
