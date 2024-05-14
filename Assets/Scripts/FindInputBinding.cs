@@ -13,14 +13,7 @@ public class FindInputBinding : InputHandler
 
     private void Update()
     {
-        if (playerInput.currentControlScheme.Equals("Gamepad"))
-        {
-            Debug.Log("Playerstation");
-        }
-        else if (playerInput.currentControlScheme.Equals("Gamepad"))
-        {
-            Debug.Log("Xbox");
-        }
+        
     }
 
     protected string FindBinding()
