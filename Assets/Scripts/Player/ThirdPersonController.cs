@@ -76,7 +76,7 @@ public class ThirdPersonController : InputHandler
 
     private void AddDownForce()
     {
-        if (!controller.isGrounded)
+        if (!_grounded)
         {
             _downForce += Physics.gravity.y * _GravityStrength * Time.deltaTime;
         }
