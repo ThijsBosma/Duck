@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -37,5 +38,10 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("it has quit the game but it no work outside of build");
         Application.Quit();
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
