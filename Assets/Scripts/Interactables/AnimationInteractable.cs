@@ -18,4 +18,9 @@ public class AnimationInteractable : MonoBehaviour, IInteractable
     {
         _OnLeverPull.Invoke();
     }
+
+    public void UnInteract()
+    {
+
+    }
 }

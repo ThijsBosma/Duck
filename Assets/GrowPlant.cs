@@ -69,4 +69,8 @@ public class GrowPlant : FindInputBinding, IInteractable
         this.enabled = false;
 
     }
+
+    public void UnInteract()
+    {
+    }
 }

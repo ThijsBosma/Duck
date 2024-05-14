@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerInteract : InputHandler
+public class PlayerInteract : FindInputBinding
 {
     [SerializeField] private Transform _Orientation;
 
@@ -20,8 +20,10 @@ public class PlayerInteract : InputHandler
     private bool setText;
 
     private RaycastHit _hit;
+
     private bool _interactableInRange;
     private bool _isInteracting;
+    private bool _textHasReseted;
 
     private void Update()
     {
@@ -53,9 +55,9 @@ public class PlayerInteract : InputHandler
         if (_Interact.WasReleasedThisFrame())
         {
             _isInteracting = false;
-            _Interactable = null;
 
-            _Interact.Disable();
+            _Interactable.UnInteract();
+            _Interactable = null;
         }
     }
 
@@ -64,17 +66,28 @@ public class PlayerInteract : InputHandler
         if (!_isInteracting)
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
 
-        if (!_interactableInRange)
+        bool hasColliders = colliders.Length > 0;
+
+        if (hasColliders && !_interactableInRange)
         {
-            if (colliders.Length > 0)
+            _Interact.Enable();
+
+            _interactableInRange = true;
+
+            InteractText.instance.SetText($"Press {FindBinding()} to pick up");
+            _textHasReseted = false;
+        }
+        else if (!hasColliders && _interactableInRange)
+        {
+            _Interact.Disable();
+            _interactableInRange = false;
+
+            if (!_textHasReseted)
             {
-                _Interact.Enable();
-                _interactableInRange = true;
+                InteractText.instance.ResetText();
+                _textHasReseted = true;
             }
         }
-
-        if (colliders.Length == 0)
-            _interactableInRange = false;
     }
 
     private void OnDrawGizmos()

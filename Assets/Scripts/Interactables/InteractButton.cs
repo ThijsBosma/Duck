@@ -74,7 +74,7 @@ public class InteractButton : MonoBehaviour
         {
             button.onButton = true;
 
-            if (!box.grabbed && button.onButton)
+            if (!box._grabbed && button.onButton)
             {
                 interactingObjectRb.constraints = RigidbodyConstraints.FreezeAll;
             }
