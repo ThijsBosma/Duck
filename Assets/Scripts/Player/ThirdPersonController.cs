@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ThirdPersonController : FindInputBinding
+public class ThirdPersonController : InputHandler
 {
     private CharacterController controller;
 
@@ -25,47 +25,15 @@ public class ThirdPersonController : FindInputBinding
 
     protected Vector3 _moveDirection;
 
-    [Header("RaycastVariables")]
-    [SerializeField] private TextMeshProUGUI _InteractableText;
-    [SerializeField] private float _MaxRaycastLength;
-
-    private bool _raycastHasHit;
-    private bool setText;
-    private bool _inAir;
-
-    private RaycastHit _hit;
 
     private float _airTime;
     private float _downForce;
 
     void Update()
     {
-        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
-
-        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
-
         GetMovementInputs();
         MoveCharacter();
-        ShootRayCast();
         AddDownForce();
-
-        if (!_grounded)
-        {
-            _airTime += Time.deltaTime;
-            if (_airTime > 0.2f)
-                _inAir = true;
-        }
-        else
-            _inAir = false;
-
-        if (playerInput.currentControlScheme.Equals("PlaystationController"))
-        {
-            Debug.Log("Playerstation");
-        }
-        else if (playerInput.currentControlScheme.Equals("XboxController"))
-        {
-            Debug.Log("Xbox");
-        }
     }
 
     private void MoveCharacter()
@@ -73,19 +41,11 @@ public class ThirdPersonController : FindInputBinding
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
         controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
-
-        if (!_inAir)
-        {
-        }
-        else if (_inAir)
-        {
-            //controller.Move(new Vector3(0, _downForce, 0) * Time.deltaTime);
-        }
     }
 
     private void AddDownForce()
     {
-        if (!_grounded)
+        if (!controller.isGrounded)
         {
             _downForce += Physics.gravity.y * _GravityStrength * Time.deltaTime;
         }
@@ -101,31 +61,8 @@ public class ThirdPersonController : FindInputBinding
     }
 
 
-    private void ShootRayCast()
-    {
-        _raycastHasHit = Physics.Raycast(transform.position, _PlayerObj.forward, out _hit, _MaxRaycastLength);
-
-        if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
-        {
-            setText = true;
-            _Interact.Enable();
-            InteractText.instance.SetText($"Press {FindBinding()} to pick up");
-
-            if (_Interact.IsPressed())
-            {
-                _hit.collider.GetComponent<IInteractable>().Interact();
-            }
-        }
-        else if (setText)
-        {
-            InteractText.instance.ResetText();
-            setText = false;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        _airTime = 0;
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);

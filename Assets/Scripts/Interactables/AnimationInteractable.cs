@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimationInteractable : MonoBehaviour, IInteractable
 {
+    [SerializeField] private UnityEvent _OnLeverPull;
+
     [SerializeField] private Animator _InteractAnimation;
-    [SerializeField] private GameObject _DuckPrefab;
-    [SerializeField] private Transform _DuckSpawnPoint;
     
     public void Interact()
     {
@@ -15,6 +16,6 @@ public class AnimationInteractable : MonoBehaviour, IInteractable
 
     public void SpawnObject()
     {
-        Instantiate(_DuckPrefab, _DuckSpawnPoint.position, _DuckSpawnPoint.rotation);
+        _OnLeverPull.Invoke();
     }
 }
