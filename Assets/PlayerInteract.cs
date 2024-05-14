@@ -3,25 +3,102 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerInteract : InputHandler
+public class PlayerInteract : FindInputBinding
 {
+    [SerializeField] private Transform _Orientation;
+
     [Header("RaycastVariables")]
     [SerializeField] private TextMeshProUGUI _InteractableText;
-    [SerializeField] private float _MaxRaycastLength;
+    [SerializeField] private float _radius;
+    [SerializeField] private LayerMask interactLayer;
+
+    private RaycastHit[] colliders;
+
+    private IInteractable _Interactable;
 
     private bool _raycastHasHit;
     private bool setText;
 
     private RaycastHit _hit;
 
+    private bool _interactableInRange;
+    private bool _isInteracting;
+    private bool _textHasReseted;
+
     private void Update()
     {
-        ShootRaycast();
+        //ShootRaycast();
+
+        if (_Interact.IsPressed())
+        {
+            foreach (RaycastHit hit in colliders)
+            {
+                _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+
+                if (_Interactable == null)
+                {
+                    Debug.LogError($"Object {hit.collider.name} does contain an IInteractable component");
+                }
+                else
+                {
+                    if (_isInteracting == false)
+                    {
+                        _isInteracting = true;
+                        _Interactable.Interact();
+                    }
+
+                    Debug.Log($"Interacted with {hit.collider.name}");
+                }
+            }
+        }
+
+        if (_Interact.WasReleasedThisFrame())
+        {
+            _isInteracting = false;
+
+            _Interactable.UnInteract();
+            _Interactable = null;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_isInteracting)
+            colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
+
+        bool hasColliders = colliders.Length > 0;
+
+        if (hasColliders && !_interactableInRange)
+        {
+            _Interact.Enable();
+
+            _interactableInRange = true;
+
+            InteractText.instance.SetText($"Press {FindBinding()} to pick up");
+            _textHasReseted = false;
+        }
+        else if (!hasColliders && _interactableInRange)
+        {
+            _Interact.Disable();
+            _interactableInRange = false;
+
+            if (!_textHasReseted)
+            {
+                InteractText.instance.ResetText();
+                _textHasReseted = true;
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!_isInteracting)
+            Gizmos.DrawWireSphere(transform.position, _radius);
     }
 
     private void ShootRaycast()
     {
-        _raycastHasHit = Physics.Raycast(transform.position, transform.forward, out _hit, _MaxRaycastLength);
+        _raycastHasHit = Physics.Raycast(transform.position, transform.forward, out _hit, _radius);
 
         if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
         {
@@ -43,6 +120,6 @@ public class PlayerInteract : InputHandler
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        
+
     }
 }

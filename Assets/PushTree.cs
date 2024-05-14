@@ -57,4 +57,8 @@ public class PushTree : FindInputBinding, IInteractable
     {
         InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
+
+    public void UnInteract()
+    {
+    }
 }

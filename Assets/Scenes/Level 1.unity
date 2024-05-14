@@ -241,6 +241,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &26556849 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6158935692093251446, guid: defd73102389cf445bca76888565d117,
+    type: 3}
+  m_PrefabInstance: {fileID: 1854360018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &32415514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8479093750491339263, guid: 2813e90d00fcd7844be984b77fc9da6d,
@@ -1240,7 +1246,7 @@ GameObject:
   - component: {fileID: 345767260}
   - component: {fileID: 345767259}
   - component: {fileID: 345767258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrowPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,7 +1538,7 @@ GameObject:
   - component: {fileID: 428548725}
   - component: {fileID: 428548727}
   - component: {fileID: 428548726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TreePlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3216,7 +3222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1854360018}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1b3e46a5fb95f24f97462ce391a7d84, type: 3}
   m_Name: 
@@ -3296,8 +3302,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3355,8 +3361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 82.7584, y: -481.40002}
-  m_SizeDelta: {x: 493.7168, y: 50}
+  m_AnchoredPosition: {x: 0, y: -444}
+  m_SizeDelta: {x: 1068.8977, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1177126173
 MonoBehaviour:
@@ -3570,7 +3576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354968621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BridgPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4938,6 +4944,11 @@ PrefabInstance:
       propertyPath: m_StepOffset
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4790717904476149456, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_Camera
@@ -4950,9 +4961,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
+      propertyPath: _radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: _Orientation
+      value: 
+      objectReference: {fileID: 682462917}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
       propertyPath: _InteractableText
       value: 
       objectReference: {fileID: 1177126170}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: interactLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5518,7 +5544,7 @@ GameObject:
   - component: {fileID: 2143380137}
   - component: {fileID: 2143380139}
   - component: {fileID: 2143380138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5602,7 +5628,7 @@ GameObject:
   - component: {fileID: 7485125536382534708}
   - component: {fileID: 6252465390881497248}
   - component: {fileID: 7485125536382534709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5637,7 +5663,7 @@ GameObject:
   - component: {fileID: 5479835961361045150}
   - component: {fileID: 5479835961361045149}
   - component: {fileID: 5479835961361045151}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BoxReady
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -5686,7 +5712,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5704,7 +5730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dc4b9542aeae7448d0adf41307f883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbed: 0
+  _grabbed: 0
+  _HoldPosition: {fileID: 26556849}
 --- !u!4 &5708221646929362302
 Transform:
   m_ObjectHideFlags: 0
@@ -5987,7 +6014,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.915032, y: 2.261283, z: 2.0005488}
   m_Center: {x: 0.009146988, y: 1.1311765, z: -0.0002425313}

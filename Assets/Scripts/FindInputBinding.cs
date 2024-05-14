@@ -37,7 +37,7 @@ public class FindInputBinding : InputHandler
 
             if (bindingForControlScheme != null)
             {
-                
+                Debug.Log(bindingForControlScheme.Value.path);
                 string buttonName = ExtractButtonName(bindingForControlScheme.Value.path);
                 return buttonName;
             }

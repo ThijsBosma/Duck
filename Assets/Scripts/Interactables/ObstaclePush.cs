@@ -17,7 +17,7 @@ public class ObstaclePush : FindInputBinding, IInteractable
 
     private BoxCollider grabbedObjectCollider;
 
-    private Box box = null;
+    private GrabBox box = null;
 
     public GameObject grabbedObject;
 
@@ -49,9 +49,9 @@ public class ObstaclePush : FindInputBinding, IInteractable
         {
             if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer))
             {
-                box = hit.collider.GetComponent<Box>();
+                box = hit.collider.GetComponent<GrabBox>();
 
-                box.grabbed = true;
+                box._grabbed = true;
 
                 grabbedObject = hit.collider.gameObject;
                 grabbedObjectCollider = grabbedObject.GetComponentInChildren<BoxCollider>();
@@ -75,7 +75,7 @@ public class ObstaclePush : FindInputBinding, IInteractable
 
             grabbedObjectCollider.isTrigger = false;
 
-            box.grabbed = false;
+            box._grabbed = false;
 
             grabbedObjectRb.isKinematic = false;
             grabbedObjectRb.useGravity = true;
@@ -93,8 +93,6 @@ public class ObstaclePush : FindInputBinding, IInteractable
         {
             grabbedObject.transform.position = _HoldPosition.position;
         }
-
-        Debug.DrawRay(_RaycastPosition.position, _Orientaion.forward.normalized * 2, Color.green);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -124,5 +122,7 @@ public class ObstaclePush : FindInputBinding, IInteractable
         InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 
-    
+    public void UnInteract()
+    {
+    }
 }

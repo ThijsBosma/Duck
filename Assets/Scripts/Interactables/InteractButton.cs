@@ -15,7 +15,7 @@ public class InteractButton : MonoBehaviour
 
     private MeshFilter visualFilter;
 
-    private Box box;
+    private GrabBox box;
 
     private Vector3 origin;
 
@@ -53,7 +53,7 @@ public class InteractButton : MonoBehaviour
         {
             interactingObjects.Add(other.transform);
 
-            box = other.GetComponent<Box>();
+            box = other.GetComponent<GrabBox>();
 
             interactingObjectRb = other.GetComponent<Rigidbody>();
             interactingObjectRb.useGravity = false;
@@ -74,7 +74,7 @@ public class InteractButton : MonoBehaviour
         {
             button.onButton = true;
 
-            if (!box.grabbed && button.onButton)
+            if (!box._grabbed && button.onButton)
             {
                 interactingObjectRb.constraints = RigidbodyConstraints.FreezeAll;
             }

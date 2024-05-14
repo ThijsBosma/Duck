@@ -54,14 +54,14 @@ public class ThirdPersonController : InputHandler
         else
             _inAir = false;
 
-        if (playerInput.currentControlScheme.Equals("PlaystationController"))
+        /*if (playerInput.currentControlScheme.Equals("PlaystationController"))
         {
             Debug.Log("Playerstation");
         }
         else if (playerInput.currentControlScheme.Equals("XboxController"))
         {
             Debug.Log("Xbox");
-        }
+        }*/
     }
 
     private void MoveCharacter()
