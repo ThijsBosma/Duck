@@ -17,7 +17,7 @@ public class ObstaclePush : FindInputBinding, IInteractable
 
     private BoxCollider grabbedObjectCollider;
 
-    private Box box = null;
+    private GrabBox box = null;
 
     public GameObject grabbedObject;
 
@@ -49,7 +49,7 @@ public class ObstaclePush : FindInputBinding, IInteractable
         {
             if (Physics.Raycast(_RaycastPosition.position, _Orientaion.forward, out hit, 1f, _BoxLayer))
             {
-                box = hit.collider.GetComponent<Box>();
+                box = hit.collider.GetComponent<GrabBox>();
 
                 box.grabbed = true;
 
