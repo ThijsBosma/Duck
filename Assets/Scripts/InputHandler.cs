@@ -13,6 +13,7 @@ public class InputHandler : MonoBehaviour
     protected InputAction _Look;
     protected InputAction _Interact;
     protected InputAction _GrowPlant;
+    protected InputAction _Pause;
 
     protected virtual void Awake()
     {
@@ -31,13 +32,14 @@ public class InputHandler : MonoBehaviour
         _Interact = _Input.Player.Interact;
 
         _GrowPlant = _Input.Player.GrowPlant;
+
+        _Pause = _Input.UI.Pause;
+        _Pause.Enable();
     }
 
     private void OnDisable()
     {
-        _Move.Disable();
-        _Look.Disable();
-        _Interact.Disable();
+        DisableInput();
     }
 
     protected void DisableInput()
@@ -45,5 +47,6 @@ public class InputHandler : MonoBehaviour
         _Move.Disable();
         _Look.Disable();
         _Interact.Disable();
+        _Pause.Disable();
     }
 }
