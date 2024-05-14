@@ -25,15 +25,38 @@ public class ThirdPersonController : InputHandler
 
     protected Vector3 _moveDirection;
 
-
     private float _airTime;
     private float _downForce;
 
+    private bool _inAir;
+
     void Update()
     {
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
+
+        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
+
         GetMovementInputs();
         MoveCharacter();
         AddDownForce();
+
+        if (!_grounded)
+        {
+            _airTime += Time.deltaTime;
+            if (_airTime > 0.2f)
+                _inAir = true;
+        }
+        else
+            _inAir = false;
+
+        if (playerInput.currentControlScheme.Equals("PlaystationController"))
+        {
+            Debug.Log("Playerstation");
+        }
+        else if (playerInput.currentControlScheme.Equals("XboxController"))
+        {
+            Debug.Log("Xbox");
+        }
     }
 
     private void MoveCharacter()
@@ -41,6 +64,14 @@ public class ThirdPersonController : InputHandler
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
         controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+
+        if (!_inAir)
+        {
+        }
+        else if (_inAir)
+        {
+            //controller.Move(new Vector3(0, _downForce, 0) * Time.deltaTime);
+        }
     }
 
     private void AddDownForce()
