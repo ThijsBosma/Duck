@@ -11,6 +11,8 @@ public class GrabBox : MonoBehaviour, IInteractable
     private BoxCollider _Collider;
     private Rigidbody _Rb;
 
+    private bool _hasInteracted;
+
     private void Start()
     {
         _Collider = GetComponent<BoxCollider>();
@@ -38,6 +40,8 @@ public class GrabBox : MonoBehaviour, IInteractable
 
         _Collider.isTrigger = true;
 
+        _hasInteracted = true;
+
         _Rb.isKinematic = true;
         _Rb.useGravity = false;
         _Rb.mass = 0;
@@ -49,6 +53,8 @@ public class GrabBox : MonoBehaviour, IInteractable
     {
         _grabbed = false;
 
+        _hasInteracted = false;
+
         _Collider.isTrigger = false;
 
         _Rb.isKinematic = false;
@@ -56,5 +62,11 @@ public class GrabBox : MonoBehaviour, IInteractable
         _Rb.mass = 10;
 
         transform.SetParent(null);
+    }
+
+    public bool HasInteracted()
+    {
+        InteractText.instance.ResetText();
+        return _hasInteracted;
     }
 }
