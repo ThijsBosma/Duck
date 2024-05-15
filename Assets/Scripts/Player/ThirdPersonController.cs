@@ -106,11 +106,6 @@ public class ThirdPersonController : InputHandler
         }
     }
 
-    private void OnValidate()
-    {
-        controller = GetComponent<CharacterController>();
-    }
-
     private void OnDestroy()
     {
         SavePlayerDataToJSON();
