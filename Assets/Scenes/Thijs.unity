@@ -6444,6 +6444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
+      propertyPath: _radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -6457,6 +6462,11 @@ PrefabInstance:
       propertyPath: _InteractableText
       value: 
       objectReference: {fileID: 1177126170}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: interactLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7122,7 +7132,7 @@ GameObject:
   - component: {fileID: 2133574156}
   - component: {fileID: 2133574155}
   - component: {fileID: 2133574159}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KeyDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
