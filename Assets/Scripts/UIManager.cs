@@ -8,7 +8,19 @@ public class UIManager : InputHandler
     [SerializeField] private GameObject _PauseAssets;
     [SerializeField] private GameObject _GUIAssets;
 
+    [SerializeField] private GameObject[] _ControlText;
+
+    private void Start()
+    {
+        StartCoroutine(DeactivateControlIcons());
+    }
+
     void Update()
+    {
+        OpenPauseMenu();
+    }
+
+    private void OpenPauseMenu()
     {
         if (_Pause.WasPressedThisFrame() && !_PauseAssets.activeInHierarchy)
         {
@@ -17,7 +29,7 @@ public class UIManager : InputHandler
             _PauseAssets.SetActive(true);
             _GUIAssets.SetActive(false);
         }
-        else if(_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
+        else if (_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
         {
             Continue();
         }
@@ -40,5 +52,15 @@ public class UIManager : InputHandler
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator DeactivateControlIcons()
+    {
+        yield return new WaitForSeconds(5f);
+
+        for (int i = 0; i < _ControlText.Length; i++)
+        {
+            _ControlText[i].SetActive(false);
+        }
     }
 }
