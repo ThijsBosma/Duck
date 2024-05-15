@@ -125,4 +125,10 @@ public class ObstaclePush : FindInputBinding, IInteractable
     public void UnInteract()
     {
     }
+
+    public bool HasInteracted()
+    {
+        InteractText.instance.ResetText();
+        return true;
+    }
 }

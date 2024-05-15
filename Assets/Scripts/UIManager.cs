@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : InputHandler
+public class UIManager : FindInputBinding
 {
     [SerializeField] private GameObject _PauseAssets;
     [SerializeField] private GameObject _GUIAssets;
 
     [SerializeField] private GameObject[] _ControlText;
 
+    private string _controlScheme;
+
     private void Start()
     {
-        StartCoroutine(DeactivateControlIcons());
+        _controlScheme = playerInput.currentControlScheme;
+
+        Debug.Log(_controlScheme);
+
+        StartCoroutine(ShowControlIcons());
     }
 
     void Update()
@@ -54,13 +60,27 @@ public class UIManager : InputHandler
         SceneManager.LoadScene(sceneName);
     }
 
-    private IEnumerator DeactivateControlIcons()
+    private IEnumerator ShowControlIcons()
     {
-        yield return new WaitForSeconds(5f);
-
-        for (int i = 0; i < _ControlText.Length; i++)
+        if (_controlScheme == "Keyboard&Mouse")
         {
-            _ControlText[i].SetActive(false);
+            _ControlText[0].SetActive(true);
         }
+        else
+        {
+            _ControlText[1].SetActive(true);
+        }
+
+        yield return new WaitForSeconds(10);
+
+        if (_controlScheme == "Keyboard&Mouse")
+        {
+            _ControlText[0].SetActive(false);
+        }
+        else
+        {
+            _ControlText[1].SetActive(false);
+        }
+
     }
 }

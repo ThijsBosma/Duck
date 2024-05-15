@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2860518023759885217}
   - component: {fileID: 4658992780947397976}
   - component: {fileID: 2681297605569376296}
-  - component: {fileID: 540331267717197610}
   m_Layer: 0
   m_Name: TreeObject
   m_TagString: Untagged
@@ -106,18 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &540331267717197610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511662744850191288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1bdab922cea5354299000523769fb93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8219013622842828665
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9bd539f220c8840998aa5b31fdd9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputIcon: {fileID: 0}
+  ps4Icons: {fileID: 0}
+  xboxIcons: {fileID: 0}
   _BridgePosition: {fileID: 0}
+  _BridgToSpawn: {fileID: 0}
   _MoveTime: 1
   _Curve:
     serializedVersion: 2

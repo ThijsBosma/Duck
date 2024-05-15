@@ -9,11 +9,20 @@ public class AnimationInteractable : MonoBehaviour, IInteractable
 
     [SerializeField] private Animator _InteractAnimation;
 
+    private bool _hasInteracted;
+
+    public bool HasInteracted()
+    {
+        InteractText.instance.ResetText();
+        return _hasInteracted;
+    }
+
     public void Interact()
     {
         _InteractAnimation.SetBool("IsPressed", true);
+        _hasInteracted = true;
     }
-     
+
     public void SpawnObject()
     {
         _OnLeverPull.Invoke();
