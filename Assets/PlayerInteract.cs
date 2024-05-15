@@ -16,8 +16,6 @@ public class PlayerInteract : FindInputBinding
 
     private IInteractable _Interactable;
 
-    public GameObject ja;
-
     private bool _raycastHasHit;
     private bool setText;
 
@@ -35,14 +33,11 @@ public class PlayerInteract : FindInputBinding
         {
             foreach (RaycastHit hit in colliders)
             {
-                ja = hit.collider.gameObject;
-                _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-
                 if (_Interactable == null)
                 {
-                    Debug.LogError($"Object {hit.collider.name} does contain an IInteractable component");
+                    Debug.LogError($"Object {hit.collider.name} does not contain an IInteractable component");
                 }
-                else
+                else if (!_Interactable.HasInteracted())
                 {
                     if (_isInteracting == false)
                     {
@@ -60,14 +55,23 @@ public class PlayerInteract : FindInputBinding
             _isInteracting = false;
 
             _Interactable.UnInteract();
-            _Interactable = null;
         }
     }
 
     private void FixedUpdate()
     {
         if (!_isInteracting)
+        {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
+            if(_Interactable == null && !_interactableInRange)
+            {
+                foreach (RaycastHit hit in colliders)
+                {
+                    _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+                    break;
+                }
+            }
+        }
 
         bool hasColliders = colliders.Length > 0;
 
@@ -77,13 +81,21 @@ public class PlayerInteract : FindInputBinding
 
             _interactableInRange = true;
 
-            InteractText.instance.SetText($"Press {FindBinding()} to Interact");
-            _textHasReseted = false;
+            Debug.Log(_interactableInRange);
+            Debug.Log(_Interactable.HasInteracted());
+
+            if (_Interactable.HasInteracted() ^_interactableInRange)
+            {
+                InteractText.instance.SetText($"Press {FindBinding()} to Interact");
+                _textHasReseted = false;
+            }
         }
         else if (!hasColliders && _interactableInRange)
         {
             _Interact.Disable();
             _interactableInRange = false;
+
+            _Interactable = null;
 
             if (!_textHasReseted)
             {

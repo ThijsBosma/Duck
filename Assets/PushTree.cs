@@ -13,22 +13,22 @@ public class PushTree : FindInputBinding, IInteractable
 
     private float _time;
 
-    private bool _canInteract;
-    public bool _hasInteracted;
+    private bool _hasInteracted;
 
     public void Interact()
     {
-        Debug.Log("GAY");
-
-        if (!_hasInteracted)
-        {
-            Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);
-            _hasInteracted = true;
-            Destroy(gameObject);
-        }
+        Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);
+        _hasInteracted = true;
+        Destroy(gameObject);
     }
 
     public void UnInteract()
     {
+    }
+
+    public bool HasInteracted()
+    {
+        InteractText.instance.ResetText();
+        return _hasInteracted;
     }
 }

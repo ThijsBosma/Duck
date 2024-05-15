@@ -10,16 +10,23 @@ public class GrowPlant : FindInputBinding, IInteractable
     [SerializeField] private Transform _SpawnPoint;
     [SerializeField] private Transform _BridgePosition;
 
-    private bool canInteract;
     private bool treePlanted;
+    private bool _hasInteracted;
+
+    private PushTree pushTree;
 
     public void Interact()
     {
+        if (treePlanted)
+        {
+            pushTree.Interact();
+            _hasInteracted = true;
+        }
+
         if (!treePlanted)
         {
             InstantiatePlant();
 
-            canInteract = false;
             treePlanted = true;
         }
     }
@@ -36,15 +43,24 @@ public class GrowPlant : FindInputBinding, IInteractable
 
         GameObject plant = Instantiate(_PlantToGrow, _SpawnPoint.position, Quaternion.identity);
 
-        plant.GetComponent<PushTree>()._BridgePosition = _BridgePosition;
-        plant.GetComponent<PushTree>()._BridgToSpawn = _BridgeToSpawn;
+        plant.transform.SetParent(transform);
+
+        pushTree = GetComponentInChildren<PushTree>();
+
+        pushTree._BridgePosition = _BridgePosition;
+        pushTree._BridgToSpawn = _BridgeToSpawn;
 
         InteractText.instance.ResetText();
-        this.enabled = false;
     }
 
     public void UnInteract()
     {
 
+    }
+
+    public bool HasInteracted()
+    {
+        InteractText.instance.ResetText();
+        return _hasInteracted;
     }
 }

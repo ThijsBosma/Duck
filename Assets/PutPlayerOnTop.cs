@@ -21,7 +21,7 @@ public class PutPlayerOnTop : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && tree._hasInteracted && !playerOnTop)
+        if (collision.gameObject.CompareTag("Player") && !playerOnTop)
         {
             playerOnTop = true;
             _playerTransform = collision.transform;
