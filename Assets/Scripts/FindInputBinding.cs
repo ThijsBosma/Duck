@@ -11,11 +11,6 @@ public class FindInputBinding : InputHandler
     [SerializeField] private GamepadIcons ps4Icons;
     [SerializeField] private GamepadIcons xboxIcons;
 
-    private void Update()
-    {
-        
-    }
-
     protected string FindBinding()
     {
         InputAction interactAction = playerInput.actions.FindAction("Interact");
