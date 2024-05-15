@@ -81,9 +81,6 @@ public class PlayerInteract : FindInputBinding
 
             _interactableInRange = true;
 
-            Debug.Log(_interactableInRange);
-            Debug.Log(_Interactable.HasInteracted());
-
             if (_Interactable.HasInteracted() ^_interactableInRange)
             {
                 InteractText.instance.SetText($"Press {FindBinding()} to Interact");
