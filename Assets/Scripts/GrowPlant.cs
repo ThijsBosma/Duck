@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowPlant : FindInputBinding, IInteractable
+public class GrowPlant : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _PlantToGrow;
     [SerializeField] private GameObject _BridgeToSpawn;
