@@ -28,11 +28,6 @@ public class InteractButton : MonoBehaviour
         origin = visual.position;
     }
 
-    private void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -1694,16 +1694,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1796969535742346418, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796969535742346418, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1879546677239287457, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1754,45 +1744,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: _PlayerHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: _InteractableText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277298523792978522, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277298523792978522, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_StepOffset
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4790717904476149456, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: _radius
-      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
@@ -1801,21 +1756,10 @@ PrefabInstance:
       objectReference: {fileID: 347893853}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
-      propertyPath: _Orientation
-      value: 
-      objectReference: {fileID: 322468414}
-    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
-        type: 3}
       propertyPath: _InteractableText
       value: 
       objectReference: {fileID: 1177126170}
-    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: interactLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1796969535742346418, guid: defd73102389cf445bca76888565d117, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1823,12 +1767,6 @@ PrefabInstance:
 --- !u!4 &322468413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6158935692093251446, guid: defd73102389cf445bca76888565d117,
-    type: 3}
-  m_PrefabInstance: {fileID: 322468412}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &322468414 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4058647871130437723, guid: defd73102389cf445bca76888565d117,
     type: 3}
   m_PrefabInstance: {fileID: 322468412}
   m_PrefabAsset: {fileID: 0}
@@ -3273,7 +3211,7 @@ Transform:
   m_GameObject: {fileID: 600814682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.07, y: 2, z: -5.2890897}
+  m_LocalPosition: {x: 7.07, y: 2, z: -5.502519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
