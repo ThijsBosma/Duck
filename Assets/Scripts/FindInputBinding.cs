@@ -11,8 +11,6 @@ public class FindInputBinding : InputHandler
     [SerializeField] private GamepadIcons ps4Icons;
     [SerializeField] private GamepadIcons xboxIcons;
 
-    private InputBinding? bindingForControlScheme = null;
-
     protected string FindBinding()
     {
         InputAction interactAction = playerInput.actions.FindAction("Interact");
@@ -21,11 +19,13 @@ public class FindInputBinding : InputHandler
         {
             string controlScheme = playerInput.currentControlScheme;
 
+            InputBinding? bindingForControlScheme = null;
+
             foreach (var binding in interactAction.bindings)
             {
                 if (binding.groups.Contains(controlScheme))
                 {
-                    InputBinding? bindingForControlScheme = binding;
+                    bindingForControlScheme = binding;
                     break;
                 }
             }
@@ -50,20 +50,41 @@ public class FindInputBinding : InputHandler
 
     protected Sprite FindIconBinding()
     {
-        string[] splitPath = bindingForControlScheme.Value.path.Split('/');
-        string path = splitPath[1];
-        string controlScheme = playerInput.currentControlScheme;
+        InputAction interactAction = playerInput.actions.FindAction("Interact");
 
-        Debug.Log(controlScheme);
+        if (interactAction != null)
+        {
+            string controlScheme = playerInput.currentControlScheme;
 
-        if (controlScheme == "PlaystationController")
-        {
-            return ps4Icons.GetSprite(path);
+            InputBinding? bindingForControlScheme = null;
+
+            foreach (var binding in interactAction.bindings)
+            {
+                if (binding.groups.Contains(controlScheme))
+                {
+                    bindingForControlScheme = binding;
+                    break;
+                }
+            }
+
+            if (bindingForControlScheme != null)
+            {
+                string[] splitPath = bindingForControlScheme.Value.path.Split('/');
+                string path = splitPath[1];
+
+                Debug.Log(controlScheme);
+
+                if (controlScheme == "PlaystationController")
+                {
+                    return ps4Icons.GetSprite(path);
+                }
+                else if (controlScheme == "XboxController")
+                {
+                    return xboxIcons.GetSprite(path);
+                }
+            }
         }
-        else if(controlScheme == "XboxController")
-        {
-            return xboxIcons.GetSprite(path);
-        }
+
         return null;
     }
 
