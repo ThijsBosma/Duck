@@ -41,8 +41,13 @@ public class GrowPlant : MonoBehaviour, IInteractable
         InteractText.instance.SetText($"Growing {_PlantToGrow.name}");
         yield return new WaitForSeconds(1.5f);
 
+        //Spawns in direction of local green arrow of spawnpoint
         GameObject plant = Instantiate(_PlantToGrow, _SpawnPoint.position, Quaternion.identity);
 
+        //Falls over in local blue arrow of parent
+        plant.GetComponentInChildren<Animator>().Play("Grow");
+
+        plant.transform.rotation = transform.rotation;
         plant.transform.SetParent(transform);
 
         pushTree = GetComponentInChildren<PushTree>();
