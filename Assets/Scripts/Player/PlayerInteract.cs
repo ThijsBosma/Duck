@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerInteract : FindInputBinding
 {
+    [Header("References")]
     [SerializeField] private Transform _Orientation;
+    [SerializeField] private Image _InputIcon;
 
-    [Header("RaycastVariables")]
+    [Header("Interact Options")]
     [SerializeField] private TextMeshProUGUI _InteractableText;
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask interactLayer;
 
-    [SerializeField] private Image _InputIcon;
 
     private RaycastHit[] colliders;
 

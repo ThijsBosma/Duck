@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class FindInputBinding : InputHandler
 {
-    [SerializeField] private Image inputIcon;
-
+    [Header("Input Icons")]
     [SerializeField] private GamepadIcons ps4Icons;
     [SerializeField] private GamepadIcons xboxIcons;
 

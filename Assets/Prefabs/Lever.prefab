@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5340945383043648020}
   - component: {fileID: 4097397077324751402}
   - component: {fileID: 7909529831021471807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lever_Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4050564264064225399}
   - component: {fileID: 7450687247930049615}
   - component: {fileID: 1346306091471586123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,9 +110,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3713307204856417289}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -6.002988, y: 2.437, z: -5.696}
-  m_LocalScale: {x: 1.23, y: 1.23, z: 1.23}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5340945383043648020}
@@ -173,10 +173,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cd93af1c6c2e54b8c88c9ded74eac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnLeverPull:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _InteractAnimation: {fileID: 4050564264064225399}
-  _DuckPrefab: {fileID: 2462062783591395421, guid: 95c6c180e29c9bb409c034bacacaaafd,
-    type: 3}
-  _DuckSpawnPoint: {fileID: 0}
 --- !u!1 &5865853361879658937
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2057642724915222166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeverPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +232,7 @@ GameObject:
   - component: {fileID: 3353299527261317830}
   - component: {fileID: 4306634020081115184}
   - component: {fileID: 315353603121591678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
