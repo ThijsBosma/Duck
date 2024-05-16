@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1617185182}
+  _InputIcon: {fileID: 1408244166}
 --- !u!4 &47280996
 Transform:
   m_ObjectHideFlags: 0
@@ -755,6 +756,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
+      propertyPath: ps4Icons
+      value: 
+      objectReference: {fileID: 11400000, guid: 02690aa65e751bf4fbcd1ed2afdc691c,
+        type: 2}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: inputIcon
+      value: 
+      objectReference: {fileID: 1408244166}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: _InputIcon
+      value: 
+      objectReference: {fileID: 1408244166}
+    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+        type: 3}
       propertyPath: _Orientation
       value: 
       objectReference: {fileID: 447923857}
@@ -762,7 +779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _InteractableText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1617185182}
     - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: interactLayer.m_Bits
@@ -1245,14 +1262,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725167560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.3301849, z: -0, w: -0.94391626}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.34, y: -4.43, z: 3.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1947338497}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 321.44, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &838651308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1727,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -2080,7 +2097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1408244165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2097,8 +2114,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -34.7, y: -469}
+  m_SizeDelta: {x: 46.5287, y: 46.529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1408244166
 MonoBehaviour:

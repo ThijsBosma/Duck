@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : FindInputBinding
 {
@@ -11,6 +12,8 @@ public class PlayerInteract : FindInputBinding
     [SerializeField] private TextMeshProUGUI _InteractableText;
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask interactLayer;
+
+    [SerializeField] private Image _InputIcon;
 
     private RaycastHit[] colliders;
 
@@ -63,7 +66,7 @@ public class PlayerInteract : FindInputBinding
         if (!_isInteracting)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
-            if(_Interactable == null && !_interactableInRange)
+            if (_Interactable == null && !_interactableInRange)
             {
                 foreach (RaycastHit hit in colliders)
                 {
@@ -81,9 +84,22 @@ public class PlayerInteract : FindInputBinding
 
             _interactableInRange = true;
 
-            if (_Interactable.HasInteracted() ^_interactableInRange)
+            if (_Interactable.HasInteracted() ^ _interactableInRange)
             {
-                InteractText.instance.SetText($"Press {FindBinding()} to Interact");
+                if (playerInput.currentControlScheme == "PlaystationController")
+                {
+                    _InputIcon.sprite = FindIconBinding();
+
+                    Color iconColor = _InputIcon.color;
+                    iconColor.a = 255;
+                    _InputIcon.color = iconColor;
+
+                    InteractText.instance.SetText($"Press       to Interact");
+                }
+                else if (playerInput.currentControlScheme == "Keyboard&Mouse")
+                {
+                    InteractText.instance.SetText($"Press {FindBinding()} to Interact");
+                }
                 _textHasReseted = false;
             }
         }

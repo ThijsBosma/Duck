@@ -25,7 +25,7 @@ public class FindInputBinding : InputHandler
             {
                 if (binding.groups.Contains(controlScheme))
                 {
-                    bindingForControlScheme = binding;
+                    InputBinding? bindingForControlScheme = binding;
                     break;
                 }
             }
@@ -54,29 +54,16 @@ public class FindInputBinding : InputHandler
         string path = splitPath[1];
         string controlScheme = playerInput.currentControlScheme;
 
-        switch (path)
-        {
-            case "buttonSouth": return buttonSouth;
-            case "buttonNorth": return buttonNorth;
-            case "buttonEast": return buttonEast;
-            case "buttonWest": return buttonWest;
-            case "start": return startButton;
-            case "select": return selectButton;
-            case "leftTrigger": return leftTrigger;
-            case "rightTrigger": return rightTrigger;
-            case "leftShoulder": return leftShoulder;
-            case "rightShoulder": return rightShoulder;
-            case "dpad": return dpad;
-            case "dpad/up": return dpadUp;
-            case "dpad/down": return dpadDown;
-            case "dpad/left": return dpadLeft;
-            case "dpad/right": return dpadRight;
-            case "leftStick": return leftStick;
-            case "rightStick": return rightStick;
-            case "leftStickPress": return leftStickPress;
-            case "rightStickPress": return rightStickPress;
-        }
+        Debug.Log(controlScheme);
 
+        if (controlScheme == "PlaystationController")
+        {
+            return ps4Icons.GetSprite(path);
+        }
+        else if(controlScheme == "XboxController")
+        {
+            return xboxIcons.GetSprite(path);
+        }
         return null;
     }
 
