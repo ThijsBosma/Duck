@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabBox : MonoBehaviour, IInteractable
+public class GrabBox : MonoBehaviour, IPickupable
 {
     public bool _grabbed;
 
     [SerializeField] private Transform _HoldPosition;
+    [SerializeField] private Transform _PickupPosition;
 
     private BoxCollider _Collider;
     private Rigidbody _Rb;
@@ -34,7 +35,7 @@ public class GrabBox : MonoBehaviour, IInteractable
         _Rb = GetComponent<Rigidbody>();
     }
 
-    public void Interact()
+    public void PickUp()
     {
         _grabbed = true;
 
@@ -49,7 +50,7 @@ public class GrabBox : MonoBehaviour, IInteractable
         transform.SetParent(_HoldPosition);
     }
 
-    public void UnInteract()
+    public void LetGo()
     {
         _grabbed = false;
 
@@ -61,12 +62,7 @@ public class GrabBox : MonoBehaviour, IInteractable
         _Rb.useGravity = true;
         _Rb.mass = 10;
 
+        transform.position = _PickupPosition.position;
         transform.SetParent(null);
-    }
-
-    public bool HasInteracted()
-    {
-        InteractText.instance.ResetText();
-        return _hasInteracted;
     }
 }

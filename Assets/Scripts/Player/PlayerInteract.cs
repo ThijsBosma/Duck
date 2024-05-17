@@ -64,18 +64,12 @@ public class PlayerInteract : FindInputBinding
         if (!_isInteracting)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
-            if (_interactableInRange)
+            if (_Interactable == null && !_interactableInRange)
             {
                 foreach (RaycastHit hit in colliders)
                 {
-                    IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-
-                    if (!interactable.HasInteracted())
-                    {
-                        _Interactable = interactable;
-                        Debug.Log(_Interactable);
-                        break;
-                    }
+                    _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+                    break;
                 }
             }
         }
@@ -88,7 +82,7 @@ public class PlayerInteract : FindInputBinding
 
             _interactableInRange = true;
 
-            if (_Interactable != null && (_Interactable.HasInteracted() ^ _interactableInRange))
+            if (_Interactable.HasInteracted() ^ _interactableInRange)
             {
                 if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
                 {
