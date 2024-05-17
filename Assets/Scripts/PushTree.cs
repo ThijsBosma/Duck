@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushTree : FindInputBinding, IInteractable
+public class PushTree : MonoBehaviour, IInteractable
 {
     [SerializeField] public Transform _BridgePosition;
     [SerializeField] public GameObject _BridgToSpawn;
@@ -11,7 +11,9 @@ public class PushTree : FindInputBinding, IInteractable
 
     [SerializeField] private AnimationCurve _Curve;
 
+    private AnimationEvent animationEvent; 
     private Animator animator;
+    public AnimationClip animationClip;
 
     private float _time;
 
@@ -19,7 +21,7 @@ public class PushTree : FindInputBinding, IInteractable
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void Interact()
@@ -28,7 +30,9 @@ public class PushTree : FindInputBinding, IInteractable
         _hasInteracted = true;
     }
 
-    //Called by animator
+    /// <summary>
+    /// Called by animation even
+    /// </summary>
     public void SpawnBridge()
     {
         Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);

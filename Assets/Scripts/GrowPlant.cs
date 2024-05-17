@@ -5,24 +5,14 @@ using UnityEngine;
 public class GrowPlant : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _PlantToGrow;
-    [SerializeField] private GameObject _BridgeToSpawn;
 
     [SerializeField] private Transform _SpawnPoint;
-    [SerializeField] private Transform _BridgePosition;
 
     private bool treePlanted;
     private bool _hasInteracted;
 
-    private PushTree pushTree;
-
     public void Interact()
     {
-        if (treePlanted)
-        {
-            pushTree.Interact();
-            _hasInteracted = true;
-        }
-
         if (!treePlanted)
         {
             InstantiatePlant();
@@ -38,24 +28,26 @@ public class GrowPlant : MonoBehaviour, IInteractable
 
     private IEnumerator PlantGrowth()
     {
-        InteractText.instance.SetText($"Growing {_PlantToGrow.name}");
-        yield return new WaitForSeconds(1.5f);
+        if (_PlantToGrow != null)
+        {
+            InteractText.instance.SetText($"Growing {_PlantToGrow.name}");
+            yield return new WaitForSeconds(1.5f);
 
-        //Spawns in direction of local green arrow of spawnpoint
-        GameObject plant = Instantiate(_PlantToGrow, _SpawnPoint.position, Quaternion.identity);
+            _PlantToGrow.SetActive(true);
 
-        //Falls over in local blue arrow of parent
-        plant.GetComponentInChildren<Animator>().Play("Grow");
+            //Spawns in direction of local green arrow of spawnpoint
+            _PlantToGrow.GetComponentInChildren<Animator>().Play("Grow");
 
-        plant.transform.rotation = transform.rotation;
-        plant.transform.SetParent(transform);
+            _PlantToGrow.transform.rotation = transform.rotation;
+            _PlantToGrow.transform.SetParent(transform);
 
-        pushTree = GetComponentInChildren<PushTree>();
-
-        pushTree._BridgePosition = _BridgePosition;
-        pushTree._BridgToSpawn = _BridgeToSpawn;
-
-        InteractText.instance.ResetText();
+            InteractText.instance.ResetText();
+            _hasInteracted = true;
+        }
+        else
+        {
+            Debug.LogWarning("Plant to grow field can't be null");
+        }
     }
 
     public void UnInteract()
