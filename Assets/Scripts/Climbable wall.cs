@@ -6,6 +6,13 @@ public class Climbablewall : MonoBehaviour, IInteractable
 {
     private ThirdPersonController _controller;
 
+    private bool _yes;
+
+    void Start()
+    {
+        _controller = FindObjectOfType<ThirdPersonController>();
+    }
+
     public void Interact()
     {
         _controller._IsClimbing = true;
@@ -13,17 +20,11 @@ public class Climbablewall : MonoBehaviour, IInteractable
 
     public void UnInteract()
     {
-        throw new System.NotImplementedException();
+        _controller._IsClimbing = false;
     }
 
     public bool HasInteracted()
     {
-        throw new System.NotImplementedException();
+        return _yes;
     }
-
-    void Start()
-    {
-        _controller = FindObjectOfType<ThirdPersonController>();
-    }
-
 }
