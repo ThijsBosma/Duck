@@ -14,6 +14,7 @@ public class InputHandler : MonoBehaviour
     protected InputAction _Interact;
     protected InputAction _GrowPlant;
     protected InputAction _Pause;
+    protected InputAction _Climb;
 
     protected virtual void Awake()
     {
@@ -35,6 +36,9 @@ public class InputHandler : MonoBehaviour
 
         _Pause = _Input.UI.Pause;
         _Pause.Enable();
+
+        _Climb = _Input.Player.Climb;
+
     }
 
     private void OnDisable()
