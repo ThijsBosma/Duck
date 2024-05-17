@@ -8,7 +8,6 @@ public class ThirdPersonController : InputHandler
     private CharacterController controller;
 
     [Header("GeneralPlayerVariables")]
-    private PlayerData _playerData = new PlayerData();
     [SerializeField] private float _Speed;
 
     [SerializeField] private float _GravityStrength;
@@ -35,7 +34,6 @@ public class ThirdPersonController : InputHandler
     public Vector3 _ForwardWall;
     public Vector3 _WallUp;
 
-
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -59,15 +57,6 @@ public class ThirdPersonController : InputHandler
         }
         else
             _inAir = false;
-
-        /*if (playerInput.currentControlScheme.Equals("PlaystationController"))
-        {
-            Debug.Log("Playerstation");
-        }
-        else if (playerInput.currentControlScheme.Equals("XboxController"))
-        {
-            Debug.Log("Xbox");
-        }*/
     }
 
     private void MoveCharacter()
@@ -114,7 +103,7 @@ public class ThirdPersonController : InputHandler
     {
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
-            other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);
+            other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
             Destroy(other.gameObject);
         }
     }
@@ -126,7 +115,7 @@ public class ThirdPersonController : InputHandler
 
     private void SavePlayerDataToJSON()
     {
-        string playerdata = JsonUtility.ToJson(_playerData, true);
+        string playerdata = JsonUtility.ToJson(PlayerData._Instance, true);
         string filePath = Application.persistentDataPath + "/PlayerData.json";
 
         Debug.Log($"Saved at {filePath}");
