@@ -30,6 +30,10 @@ public class ThirdPersonController : InputHandler
 
     private bool _inAir;
 
+    [Header("Climbing")]
+    public bool _IsClimbing;
+
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -68,7 +72,14 @@ public class ThirdPersonController : InputHandler
     {
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
-        controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        if (!_IsClimbing)
+        {
+            controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(new Vector3(_moveDirection.x * _Speed / 2, _moveDirection.y * _Speed / 2, 0) * Time.deltaTime);
+        }
 
         if (!_inAir)
         {
@@ -95,7 +106,6 @@ public class ThirdPersonController : InputHandler
     {
         _movementInputs = _Move.ReadValue<Vector2>();
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

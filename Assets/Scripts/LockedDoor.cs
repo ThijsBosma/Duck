@@ -17,7 +17,6 @@ public class LockedDoor : MonoBehaviour, IInteractable
 
         if (_keyCollector != null)
         {
-
             if (_keyCollector._Key > 0)
             {
                 _keyCollector._Key -= 1;
