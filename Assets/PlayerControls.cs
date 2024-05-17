@@ -137,7 +137,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -148,7 +148,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -159,7 +159,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -170,7 +170,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -192,7 +192,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -203,7 +203,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -214,7 +214,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -225,7 +225,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -302,7 +302,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -313,7 +313,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -324,7 +324,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -335,7 +335,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -357,7 +357,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -368,7 +368,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -379,7 +379,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -390,7 +390,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -412,7 +412,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -423,7 +423,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -445,7 +445,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""GrowPlant"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -456,7 +456,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""GrowPlant"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1003,7 +1003,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1014,7 +1014,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""XboxController;Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

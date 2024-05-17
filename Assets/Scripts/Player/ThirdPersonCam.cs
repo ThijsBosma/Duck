@@ -39,7 +39,8 @@ public class ThirdPersonCam : InputHandler
         Vector3 camForward = Vector3.Scale(camT.forward, new Vector3(1, 0, 1)).normalized;
         Vector3 walkDir = walkDirection.y * camForward + walkDirection.x * camT.right;
 
-        if (inputDir != Vector3.zero && pushPull.grabbedObject == null)
+        //Rotate character towards walk direction
+        if (inputDir != Vector3.zero /*&& pushPull.grabbedObject == null*/) //pushPull.grabbedObject is for making player not rotate when holding object. Needs rework cause its from older script
         {
             Quaternion targetRotation = Quaternion.LookRotation(walkDir);
             player.rotation = Quaternion.Slerp(player.rotation, targetRotation, rotationSpeed * Time.deltaTime);

@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class FindInputBinding : InputHandler
 {
-    [SerializeField] private Image inputIcon;
-
+    [Header("Input Icons")]
     [SerializeField] private GamepadIcons ps4Icons;
     [SerializeField] private GamepadIcons xboxIcons;
 
@@ -48,9 +47,43 @@ public class FindInputBinding : InputHandler
         }
     }
 
-    protected Image FindIconBinding()
+    protected Sprite FindIconBinding()
     {
-        string buttonName = FindBinding();
+        InputAction interactAction = playerInput.actions.FindAction("Interact");
+
+        if (interactAction != null)
+        {
+            string controlScheme = playerInput.currentControlScheme;
+
+            InputBinding? bindingForControlScheme = null;
+
+            foreach (var binding in interactAction.bindings)
+            {
+                if (binding.groups.Contains(controlScheme))
+                {
+                    bindingForControlScheme = binding;
+                    break;
+                }
+            }
+
+            if (bindingForControlScheme != null)
+            {
+                string[] splitPath = bindingForControlScheme.Value.path.Split('/');
+                string path = splitPath[1];
+
+                Debug.Log(controlScheme);
+
+                if (controlScheme == "PlaystationController")
+                {
+                    return ps4Icons.GetSprite(path);
+                }
+                else if (controlScheme == "XboxController")
+                {
+                    return xboxIcons.GetSprite(path);
+                }
+            }
+        }
+
         return null;
     }
 
@@ -58,13 +91,8 @@ public class FindInputBinding : InputHandler
     {
         string[] splitPath = bindingPath.Split('/');
         if (splitPath.Length > 1)
-        {
-
-            return splitPath[splitPath.Length - 1].ToUpperInvariant();
-        }
+            return splitPath[splitPath.Length - 1].ToUpperInvariant(); 
         else
-        {
             return "Unknown Button";
-        }
     }
 }
