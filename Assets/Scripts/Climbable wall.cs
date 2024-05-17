@@ -2,29 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Climbablewall : MonoBehaviour, IInteractable
+public class Climbablewall : InputHandler
 {
     private ThirdPersonController _controller;
+    private int _buttonPresses;
 
-    private bool _yes;
-
-    void Start()
+    private void Start()
     {
         _controller = FindObjectOfType<ThirdPersonController>();
     }
 
-    public void Interact()
+    private void Update()
     {
-        _controller._IsClimbing = true;
+        if(_Climb.WasPressedThisFrame())
+        {
+            _controller._IsClimbing = true;
+            _controller._ForwardWall = transform.forward;
+            _controller._WallUp = transform.up;
+            _buttonPresses += 1;
+        }
+        else if(_buttonPresses > 1)
+        {
+            _buttonPresses = 0;
+            _controller._IsClimbing = false;
+        }
+
     }
 
-    public void UnInteract()
+    private void OnTriggerEnter(Collider other)
     {
-        _controller._IsClimbing = false;
-    }
-
-    public bool HasInteracted()
-    {
-        return _yes;
+        if (other.gameObject.GetComponent<ThirdPersonController>() != null)
+        {
+            _Climb.Enable();
+        }
     }
 }
