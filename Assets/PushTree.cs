@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushTree : InputHandler, IInteractable
+public class PushTree : FindInputBinding, IInteractable
 {
     [SerializeField] public Transform _BridgePosition;
+    [SerializeField] public GameObject _BridgToSpawn;
 
     [SerializeField] private float _MoveTime;
 
@@ -26,9 +27,9 @@ public class PushTree : InputHandler, IInteractable
     {
         if (_Interact.IsPressed() && _canInteract && !_hasInteracted)
         {
-            transform.position = _BridgePosition.position;
-            transform.rotation = _BridgePosition.rotation;
+            Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);
             _hasInteracted = true;
+            Destroy(gameObject);
         }
     }
 
@@ -54,6 +55,6 @@ public class PushTree : InputHandler, IInteractable
 
     public void Interact()
     {
-        InteractText.instance.SetText("Press F to push tree");
+        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 }

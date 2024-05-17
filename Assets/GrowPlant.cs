@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowPlant : InputHandler, IInteractable
+public class GrowPlant : FindInputBinding, IInteractable
 {
-    [SerializeField] private GameObject plantToGrow;
+    [SerializeField] private GameObject _PlantToGrow;
+    [SerializeField] private GameObject _BridgeToSpawn;
 
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform _SpawnPoint;
     [SerializeField] private Transform _BridgePosition;
 
     private bool canInteract;
@@ -38,13 +39,15 @@ public class GrowPlant : InputHandler, IInteractable
         if (other.gameObject.CompareTag("Player"))
         {
             _Interact.Disable();
-            InteractText.instance.ResetText();
+
+            if(!treePlanted)
+                InteractText.instance.ResetText();
         }
     }
 
     public void Interact()
     {
-        InteractText.instance.SetText("Press F to grow plant");
+        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
     }
 
     public void InstantiatePlant()
@@ -54,12 +57,13 @@ public class GrowPlant : InputHandler, IInteractable
 
     private IEnumerator PlantGrowth()
     {
-        InteractText.instance.SetText($"Growing {plantToGrow.name}");
+        InteractText.instance.SetText($"Growing {_PlantToGrow.name}");
         yield return new WaitForSeconds(1.5f);
 
-        GameObject plant = Instantiate(plantToGrow, spawnPoint.position, Quaternion.identity);
+        GameObject plant = Instantiate(_PlantToGrow, _SpawnPoint.position, Quaternion.identity);
 
         plant.GetComponent<PushTree>()._BridgePosition = _BridgePosition;
+        plant.GetComponent<PushTree>()._BridgToSpawn = _BridgeToSpawn;
 
         InteractText.instance.ResetText();
         this.enabled = false;

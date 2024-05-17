@@ -18,7 +18,6 @@ public class InteractButton : MonoBehaviour
     private Box box;
 
     private Vector3 origin;
-    private Vector3 interactingObjectStayPosition;
 
     private void Start()
     {
@@ -61,12 +60,6 @@ public class InteractButton : MonoBehaviour
             interactingObjectRb.velocity = Vector3.zero;
             interactingObjectRb.freezeRotation = true;
 
-            other.transform.position = new Vector3(other.transform.position.x,
-            visualFilter.mesh.bounds.extents.normalized.y - visual.localPosition.y,
-            other.transform.position.z);
-
-            interactingObjectStayPosition = other.transform.position;
-
             visual.position = waypoint.position;
 
             button.onButton = true;
@@ -79,8 +72,6 @@ public class InteractButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Box"))
         {
-            other.transform.position = new Vector3(other.transform.position.x, interactingObjectStayPosition.y, other.transform.position.z);
-
             button.onButton = true;
 
             if (!box.grabbed && button.onButton)
