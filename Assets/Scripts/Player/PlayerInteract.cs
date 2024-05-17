@@ -31,8 +31,6 @@ public class PlayerInteract : FindInputBinding
 
     private void Update()
     {
-        //ShootRaycast();
-
         if (_Interact.WasPressedThisFrame())
         {
             foreach (RaycastHit hit in colliders)
@@ -87,7 +85,7 @@ public class PlayerInteract : FindInputBinding
 
             if (_Interactable.HasInteracted() ^ _interactableInRange)
             {
-                if (playerInput.currentControlScheme == "PlaystationController")
+                if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
                 {
                     _InputIcon.sprite = FindIconBinding();
 

@@ -16,8 +16,6 @@ public class UIManager : FindInputBinding
     {
         _controlScheme = playerInput.currentControlScheme;
 
-        Debug.Log(_controlScheme);
-
         StartCoroutine(ShowControlIcons());
     }
 

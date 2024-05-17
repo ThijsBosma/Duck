@@ -14,6 +14,8 @@ public class FindInputBinding : InputHandler
     {
         InputAction interactAction = playerInput.actions.FindAction("Interact");
 
+        Debug.Log(interactAction);
+
         if (interactAction != null)
         {
             string controlScheme = playerInput.currentControlScheme;
@@ -77,7 +79,7 @@ public class FindInputBinding : InputHandler
                 {
                     return ps4Icons.GetSprite(path);
                 }
-                else if (controlScheme == "XboxController")
+                else if (controlScheme == "XboxController" || controlScheme == "Gamepad")
                 {
                     return xboxIcons.GetSprite(path);
                 }
