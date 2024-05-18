@@ -15,11 +15,16 @@ public class GrowPlant : MonoBehaviour, IInteractable
     {
         if (!treePlanted)
         {
-            if (PlayerData._Instance._WaterinCanPickedup == 1)
+            if (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 1)
             {
                 InstantiatePlant();
 
                 treePlanted = true;
+            }
+            else if(PlayerData._Instance._WateringCanHasWater == 0)
+            {
+                InteractText.instance.SetText("Wateringcan needs water ");
+                Debug.LogError("Watering can has no water");
             }
             else
             {

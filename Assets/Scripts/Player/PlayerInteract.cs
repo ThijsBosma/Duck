@@ -18,10 +18,7 @@ public class PlayerInteract : FindInputBinding
 
     private IInteractable _Interactable;
 
-    private bool _raycastHasHit;
-    private bool setText;
-
-    private RaycastHit _hit;
+    private string _interactableName;
 
     private bool _interactableInRange;
     private bool _isInteracting;
@@ -68,6 +65,7 @@ public class PlayerInteract : FindInputBinding
                 foreach (RaycastHit hit in colliders)
                 {
                     _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+                    _interactableName = hit.collider.name;
                     break;
                 }
             }
@@ -83,7 +81,16 @@ public class PlayerInteract : FindInputBinding
 
             if (_Interactable.HasInteracted() ^ _interactableInRange)
             {
-                if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
+                if (_interactableName == "GrowPlant")
+                {
+                    if ((PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 0) ||
+                        (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 0) ||
+                        (PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 1))
+                    {
+                        InteractText.instance.SetText("Needs water");
+                    }
+                }
+                else if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
                 {
                     _InputIcon.sprite = FindIconBinding();
 
@@ -95,7 +102,6 @@ public class PlayerInteract : FindInputBinding
                 }
                 else if (playerInput.currentControlScheme == "Keyboard&Mouse")
                 {
-                    Debug.Log(FindBinding("Interact") + "Gay");
                     InteractText.instance.SetText($"Press {FindBinding("Interact")} to Interact");
                 }
                 _textHasReseted = false;
@@ -120,32 +126,5 @@ public class PlayerInteract : FindInputBinding
     {
         if (!_isInteracting)
             Gizmos.DrawWireSphere(transform.position, _radius);
-    }
-
-    private void ShootRaycast()
-    {
-        _raycastHasHit = Physics.Raycast(transform.position, transform.forward, out _hit, _radius);
-
-        if (_raycastHasHit && _hit.collider.GetComponent<AnimationInteractable>() != null)
-        {
-            setText = true;
-            _Interact.Enable();
-            InteractText.instance.SetText("Press F to interact");
-
-            if (_Interact.IsPressed())
-            {
-                _hit.collider.GetComponent<IInteractable>().Interact();
-            }
-        }
-        else if (setText)
-        {
-            InteractText.instance.ResetText();
-            setText = false;
-        }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
     }
 }
