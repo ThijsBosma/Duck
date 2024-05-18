@@ -42,8 +42,6 @@ public class PlayerPickUp : FindInputBinding
                     _buttonPresses++;
 
                     InteractText.instance.ResetText();
-
-                    Debug.Log($"Picked up {hit.collider.name}");
                 }
                 else if (PlayerData._Instance._ObjectPicedkUp == 1)
                 {
@@ -108,7 +106,6 @@ public class PlayerPickUp : FindInputBinding
                     }
                     else if (playerInput.currentControlScheme == "Keyboard&Mouse")
                     {
-                        Debug.Log(FindBinding("Pickup"));
                         InteractText.instance.SetText($"Press {FindBinding("Pickup")} to pick up");
                     }
                     _textHasReseted = false;

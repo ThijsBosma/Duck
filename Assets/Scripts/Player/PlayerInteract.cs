@@ -51,7 +51,10 @@ public class PlayerInteract : FindInputBinding
         {
             _isInteracting = false;
 
+            _interactableName = "";
+
             _Interactable.UnInteract();
+            _Interactable = null;
         }
     }
 
@@ -65,8 +68,13 @@ public class PlayerInteract : FindInputBinding
                 foreach (RaycastHit hit in colliders)
                 {
                     _Interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                    _interactableName = hit.collider.name;
-                    break;
+                    if (_Interactable.HasInteracted())
+                    {
+                        _Interactable = colliders[0].collider.gameObject.GetComponent<IInteractable>();
+                        _interactableName = colliders[0].collider.name;
+                    }
+                    else
+                        _interactableName = hit.collider.name;
                 }
             }
         }
@@ -81,14 +89,15 @@ public class PlayerInteract : FindInputBinding
 
             if (_Interactable.HasInteracted() ^ _interactableInRange)
             {
-                if (_interactableName == "GrowPlant")
-                {
-                    if ((PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 0) ||
+                if (_interactableName == "GrowPlant" && ((PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 0) ||
                         (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 0) ||
-                        (PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 1))
-                    {
-                        InteractText.instance.SetText("Needs water");
-                    }
+                        (PlayerData._Instance._WateringCanPickedup == 0 && PlayerData._Instance._WateringCanHasWater == 1)))
+                {
+                    InteractText.instance.SetText("Needs water");
+                }
+                else if (_interactableName == "WaterPlace" && PlayerData._Instance._WateringCanPickedup == 0)
+                {
+                    InteractText.instance.SetText("Player needs to hold a watering can");
                 }
                 else if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
                 {

@@ -19,6 +19,8 @@ public class GrowPlant : MonoBehaviour, IInteractable
             {
                 InstantiatePlant();
 
+                PlayerData._Instance._WateringCanHasWater = 0;
+
                 treePlanted = true;
             }
             else if(PlayerData._Instance._WateringCanHasWater == 0)
