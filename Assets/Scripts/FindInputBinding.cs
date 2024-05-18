@@ -10,17 +10,22 @@ public class FindInputBinding : InputHandler
     [SerializeField] private GamepadIcons ps4Icons;
     [SerializeField] private GamepadIcons xboxIcons;
 
-    protected string FindBinding()
-    {
-        InputAction interactAction = playerInput.actions.FindAction("Interact");
+    InputAction _action;
 
-        if (interactAction != null)
+    protected string FindBinding(string typeOfAction)
+    {
+        if (typeOfAction == "Interact")
+            _action = playerInput.actions.FindAction("Interact");
+        else if(typeOfAction == "Pickup")
+            _action = playerInput.actions.FindAction("Pickup");
+
+        if (_action != null)
         {
             string controlScheme = playerInput.currentControlScheme;
 
             InputBinding? bindingForControlScheme = null;
 
-            foreach (var binding in interactAction.bindings)
+            foreach (var binding in _action.bindings)
             {
                 if (binding.groups.Contains(controlScheme))
                 {
@@ -90,7 +95,7 @@ public class FindInputBinding : InputHandler
     {
         string[] splitPath = bindingPath.Split('/');
         if (splitPath.Length > 1)
-            return splitPath[splitPath.Length - 1].ToUpperInvariant(); 
+            return splitPath[splitPath.Length - 1].ToUpperInvariant();
         else
             return "Unknown Button";
     }

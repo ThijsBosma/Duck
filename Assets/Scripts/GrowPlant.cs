@@ -15,9 +15,17 @@ public class GrowPlant : MonoBehaviour, IInteractable
     {
         if (!treePlanted)
         {
-            InstantiatePlant();
+            if (PlayerData._Instance._WaterinCanPickedup == 1)
+            {
+                InstantiatePlant();
 
-            treePlanted = true;
+                treePlanted = true;
+            }
+            else
+            {
+                InteractText.instance.SetText("Needs water");
+                Debug.LogError("Player is not holding a watering can");
+            }
         }
     }
 

@@ -11,7 +11,6 @@ public class PlayerInteract : FindInputBinding
     [SerializeField] private Image _InputIcon;
 
     [Header("Interact Options")]
-    [SerializeField] private TextMeshProUGUI _InteractableText;
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask interactLayer;
 
@@ -96,7 +95,8 @@ public class PlayerInteract : FindInputBinding
                 }
                 else if (playerInput.currentControlScheme == "Keyboard&Mouse")
                 {
-                    InteractText.instance.SetText($"Press {FindBinding()} to Interact");
+                    Debug.Log(FindBinding("Interact") + "Gay");
+                    InteractText.instance.SetText($"Press {FindBinding("Interact")} to Interact");
                 }
                 _textHasReseted = false;
             }

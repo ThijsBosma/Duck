@@ -108,7 +108,8 @@ public class PlayerPickUp : FindInputBinding
                     }
                     else if (playerInput.currentControlScheme == "Keyboard&Mouse")
                     {
-                        InteractText.instance.SetText($"Press {FindBinding()} to pick up");
+                        Debug.Log(FindBinding("Pickup"));
+                        InteractText.instance.SetText($"Press {FindBinding("Pickup")} to pick up");
                     }
                     _textHasReseted = false;
                 }

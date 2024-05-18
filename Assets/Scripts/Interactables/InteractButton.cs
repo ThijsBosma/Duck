@@ -15,7 +15,7 @@ public class InteractButton : MonoBehaviour
 
     private MeshFilter visualFilter;
 
-    private GrabBox box;
+    private PickUpObject box;
 
     private Vector3 origin;
 
@@ -48,7 +48,7 @@ public class InteractButton : MonoBehaviour
         {
             interactingObjects.Add(other.transform);
 
-            box = other.GetComponent<GrabBox>();
+            box = other.GetComponent<PickUpObject>();
 
             interactingObjectRb = other.GetComponent<Rigidbody>();
             interactingObjectRb.useGravity = false;
