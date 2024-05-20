@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AnimationInteractable : MonoBehaviour, IInteractable
+public class Lever : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent _OnLeverPull;
 

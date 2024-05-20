@@ -22,16 +22,7 @@ public class GrowPlant : MonoBehaviour, IInteractable
                 PlayerData._Instance._WateringCanHasWater = 0;
 
                 treePlanted = true;
-            }
-            else if(PlayerData._Instance._WateringCanHasWater == 0)
-            {
-                InteractText.instance.SetText("Wateringcan needs water ");
-                Debug.LogError("Watering can has no water");
-            }
-            else
-            {
-                InteractText.instance.SetText("Needs water");
-                Debug.LogError("Player is not holding a watering can");
+                _hasInteracted = true;
             }
         }
     }
@@ -45,7 +36,6 @@ public class GrowPlant : MonoBehaviour, IInteractable
     {
         if (_PlantToGrow != null)
         {
-            InteractText.instance.SetText($"Growing {_PlantToGrow.name}");
             yield return new WaitForSeconds(1.5f);
 
             _PlantToGrow.SetActive(true);
@@ -55,9 +45,6 @@ public class GrowPlant : MonoBehaviour, IInteractable
 
             _PlantToGrow.transform.rotation = transform.rotation;
             _PlantToGrow.transform.SetParent(transform);
-
-            InteractText.instance.ResetText();
-            _hasInteracted = true;
         }
         else
         {

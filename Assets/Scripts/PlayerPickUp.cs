@@ -94,15 +94,10 @@ public class PlayerPickUp : FindInputBinding
 
                 if (_Pickup.WasPressedThisFrame() ^ _pickupableInRange)
                 {
-                    if (playerInput.currentControlScheme == "PlaystationController" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "XboxController")
+                    string controlScheme = playerInput.currentControlScheme;
+                    if (controlScheme == "PlaystationController" || controlScheme == "Gamepad" || controlScheme == "XboxController")
                     {
-                        _InputIcon.sprite = FindIconBinding();
-
-                        Color iconColor = _InputIcon.color;
-                        iconColor.a = 255;
-                        _InputIcon.color = iconColor;
-
-                        InteractText.instance.SetText($"Press       to pick up");
+                        InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} to pick up");
                     }
                     else if (playerInput.currentControlScheme == "Keyboard&Mouse")
                     {

@@ -36,7 +36,7 @@ public class FindInputBinding : InputHandler
 
             if (bindingForControlScheme != null)
             {
-                string buttonName = ExtractButtonName(bindingForControlScheme.Value.path);
+                string buttonName = ExtractInputName(bindingForControlScheme.Value.path);
                 return buttonName;
             }
             else
@@ -51,17 +51,20 @@ public class FindInputBinding : InputHandler
         }
     }
 
-    protected Sprite FindIconBinding()
+    protected string FindIconBinding(string typeOfAction)
     {
-        InputAction interactAction = playerInput.actions.FindAction("Interact");
+        if (typeOfAction == "Interact")
+            _action = playerInput.actions.FindAction("Interact");
+        else if (typeOfAction == "Pickup")
+            _action = playerInput.actions.FindAction("Pickup");
 
-        if (interactAction != null)
+        if (_action != null)
         {
             string controlScheme = playerInput.currentControlScheme;
 
             InputBinding? bindingForControlScheme = null;
 
-            foreach (var binding in interactAction.bindings)
+            foreach (var binding in _action.bindings)
             {
                 if (binding.groups.Contains(controlScheme))
                 {
@@ -72,18 +75,13 @@ public class FindInputBinding : InputHandler
 
             if (bindingForControlScheme != null)
             {
-                string[] splitPath = bindingForControlScheme.Value.path.Split('/');
-                string path = splitPath[1];
-
-                Debug.Log(controlScheme);
-
                 if (controlScheme == "PlaystationController")
                 {
-                    return ps4Icons.GetSprite(path);
+                    return ExtractIconName(bindingForControlScheme.Value.path, "IconFilled");
                 }
                 else if (controlScheme == "XboxController" || controlScheme == "Gamepad")
                 {
-                    return xboxIcons.GetSprite(path);
+                    return ExtractIconName(bindingForControlScheme.Value.path, "IconFilled");
                 }
             }
         }
@@ -91,11 +89,31 @@ public class FindInputBinding : InputHandler
         return null;
     }
 
-    protected string ExtractButtonName(string bindingPath)
+    private string ExtractInputName(string bindingPath)
     {
         string[] splitPath = bindingPath.Split('/');
         if (splitPath.Length > 1)
             return splitPath[splitPath.Length - 1].ToUpperInvariant();
+        else
+            return "Unknown Button";
+    }
+
+    /// <summary>
+    /// Extracts the name of the icon
+    /// </summary>
+    /// <param name="bindingPath">The path of the input</param>
+    /// <param name="iconType">Type of icon that needs to be shown. iconType can have a different types per icon:
+    /// Icon, IconFilled, Color, ColorFilled. iconTypes are case sensitive.
+    /// </param>
+    /// <returns></returns>
+    private string ExtractIconName(string bindingPath, string iconType)
+    {
+        string[] splitPath = bindingPath.Split('/');
+        if (splitPath.Length > 1)
+        {
+
+            return "<sprite name=" + '"' + splitPath[splitPath.Length - 1] + iconType +'"' + ">";
+        }
         else
             return "Unknown Button";
     }
