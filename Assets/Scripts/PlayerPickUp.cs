@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class PlayerPickUp : FindInputBinding
     private RaycastHit[] colliders;
 
     private IPickupable _Pickupable;
+    private IPickupable _boxPickupable;
+    private IPickupable _wateringCanPickupable;
 
     private int _buttonPresses;
 
@@ -26,6 +29,42 @@ public class PlayerPickUp : FindInputBinding
     private void Update()
     {
         if (_Pickup.WasPressedThisFrame())
+        {
+            _buttonPresses++;
+
+            if (_buttonPresses == 1)
+            {
+                _isPickingUp = true;
+                if (_boxPickupable != null)
+                {
+                    PlayerData._Instance._ObjectPicedkUp = 1;
+                    _boxPickupable.PickUp();
+                }
+                else if (_wateringCanPickupable != null)
+                {
+                    PlayerData._Instance._WateringCanPickedup = 1;
+                    _wateringCanPickupable.PickUp();
+                }
+
+                InteractText.instance.ResetText();
+            }
+            else if (_buttonPresses > 1)
+            {
+                PlayerData._Instance._ObjectPicedkUp = 1;
+
+                if (_boxPickupable != null)
+                {
+                    _boxPickupable.LetGo();
+                }
+                else if (_wateringCanPickupable != null)
+                {
+                    _wateringCanPickupable.LetGo();
+                }
+                _isPickingUp = false;
+            }
+        }
+
+        /*if (_Pickup.WasPressedThisFrame())
         {
             foreach (RaycastHit hit in colliders)
             {
@@ -50,7 +89,7 @@ public class PlayerPickUp : FindInputBinding
                     _isPickingUp = false;
                 }
             }
-        }
+        }*/
 
         if (_buttonPresses > 1)
         {
@@ -58,8 +97,21 @@ public class PlayerPickUp : FindInputBinding
 
             _buttonPresses = 0;
 
-            if(_pickupableInRange == false)
+            ResetPickup();
+
+            if (_pickupableInRange == false)
                 _Pickup.Disable();
+        }
+
+        bool hasColliders = colliders.Length > 0;
+
+        if (hasColliders)
+        {
+            HandlePickup();
+        }
+        else if (!_isPickingUp)
+        {
+            ResetPickup();
         }
     }
 
@@ -68,18 +120,90 @@ public class PlayerPickUp : FindInputBinding
         if (PlayerData._Instance._ObjectPicedkUp == 0)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, _pickupLayer);
-            CheckPickupInRange();
 
-            if (_Pickupable == null)
+            foreach (RaycastHit hit in colliders)
             {
-                foreach (RaycastHit hit in colliders)
+                IPickupable pickupable = hit.collider.gameObject.GetComponent<IPickupable>();
+
+                if (pickupable != null)
                 {
-                    _Pickupable = hit.collider.gameObject.GetComponent<IPickupable>();
-                    _Pickup.Enable();
-                    break;
+                    if (pickupable is BoxPickup)
+                        _boxPickupable = pickupable;
+                    else if (pickupable is WateringCan)
+                        _wateringCanPickupable = pickupable;
                 }
+
             }
         }
+    }
+
+    private void HandlePickup()
+    {
+        if (!_isPickingUp)
+        {
+            if (_boxPickupable != null)
+                HandleBoxPickup();
+            else if (_wateringCanPickupable != null)
+                HandleWateringCanPickup();
+        }
+    }
+
+    private void HandleBoxPickup()
+    {
+
+        _Pickup.Enable();
+        _pickupableInRange = true;
+
+        SetText("to lift the box", true);
+    }
+
+    private void HandleWateringCanPickup()
+    {
+        _Pickup.Enable();
+        _pickupableInRange = true;
+
+        SetText("to lift the watering can", true);
+    }
+
+    private void SetText(string text, bool needsBindingReference)
+    {
+        string controlScheme = playerInput.currentControlScheme;
+
+        if (needsBindingReference)
+        {
+            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
+            {
+                InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} {text}");
+            }
+            else
+                InteractText.instance.SetText($"Press {FindBinding("Pickup")} {text}");
+        }
+        else
+        {
+            InteractText.instance.SetText($"{text}");
+        }
+
+        _textHasReseted = false;
+    }
+
+    private void ResetPickup()
+    {
+        //Disavle pickup
+        _Pickup.Disable();
+        _pickupableInRange = false;
+
+        Debug.Log("gay");
+
+        //Reset interaction text only once
+        if (!_textHasReseted)
+        {
+            InteractText.instance.ResetText();
+            _textHasReseted = true;
+        }
+
+        //Reset pickupables to null
+        _boxPickupable = null;
+        _wateringCanPickupable = null;
     }
 
     private void CheckPickupInRange()

@@ -111,7 +111,6 @@ public class FindInputBinding : InputHandler
         string[] splitPath = bindingPath.Split('/');
         if (splitPath.Length > 1)
         {
-
             return "<sprite name=" + '"' + splitPath[splitPath.Length - 1] + iconType +'"' + ">";
         }
         else

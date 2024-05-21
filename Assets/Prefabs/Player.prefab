@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 1796969535742346418}
   - component: {fileID: 2678815009702539151}
   - component: {fileID: 7393431176431124137}
+  - component: {fileID: 3577017090560107472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -250,8 +251,16 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2b1e1e79-0a8e-4498-8cc5-9041ad398d90
     m_ActionName: UI/Pause[/Keyboard/escape,/DualShock4GamepadHID/start,/DualShock4GamepadHID1/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36dddc60-0d91-4f40-8864-71a08a73b132
+    m_ActionName: Player/Climb[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 434eb317-73b5-436b-b507-8d2c04cfb6e3
+    m_ActionName: Player/Pickup[/Keyboard/e,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -351,6 +360,9 @@ MonoBehaviour:
   _WhatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  _IsClimbing: 0
+  _ForwardWall: {x: 0, y: 0, z: 0}
+  _WallUp: {x: 0, y: 0, z: 0}
 --- !u!114 &7393431176431124137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,11 +379,30 @@ MonoBehaviour:
   xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
   _Orientation: {fileID: 4058647871130437723}
   _InputIcon: {fileID: 0}
-  _InteractableText: {fileID: 0}
   _radius: 0.6
   interactLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &3577017090560107472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454602585343978873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2511924e06a4bee4dabf8924db044807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps4Icons: {fileID: 11400000, guid: 02690aa65e751bf4fbcd1ed2afdc691c, type: 2}
+  xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
+  _Orientation: {fileID: 4457297060851687852}
+  _InputIcon: {fileID: 0}
+  _radius: 0.5
+  _pickupLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &6787727880273650965
 GameObject:
   m_ObjectHideFlags: 0

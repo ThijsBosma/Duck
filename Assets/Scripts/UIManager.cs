@@ -16,7 +16,10 @@ public class UIManager : FindInputBinding
     {
         _controlScheme = playerInput.currentControlScheme;
 
-        StartCoroutine(ShowControlIcons());
+        if (GameManager._Instance._showInputs)
+        {
+            StartCoroutine(ShowControlIcons());
+        }
     }
 
     void Update()

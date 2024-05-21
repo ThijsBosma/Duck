@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class TotalAmountOfDucksShower : MonoBehaviour
 {
-    private PlayerData _playerData;
     [SerializeField] private TextMeshProUGUI _TotalDuckText;
 
     private void Start()
     {
-        LoadJSONFile();
     }
 
     private void Update()
@@ -20,16 +18,6 @@ public class TotalAmountOfDucksShower : MonoBehaviour
 
     private void UpdateUI()
     {
-        _TotalDuckText.text = "You have collected " + _playerData._DucksCollectedInStage.ToString() + " ducks";
-    }
-
-    private void LoadJSONFile()
-    {
-        string filePath = Application.persistentDataPath + "/PlayerData.json";
-
-        string playerData = System.IO.File.ReadAllText(filePath);
-
-        _playerData = JsonUtility.FromJson<PlayerData>(playerData);
-        Debug.Log("Loaded files");
+        _TotalDuckText.text = "You have collected " + PlayerData._Instance._TotalDucksCollected.ToString() + " ducks";
     }
 }
