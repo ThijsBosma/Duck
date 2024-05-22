@@ -29,6 +29,8 @@ public class ThirdPersonController : InputHandler
 
     private bool _inAir;
 
+    private RaycastHit _slopeHit;
+
     [Header("Climbing")]
     public bool _IsClimbing;
     public Vector3 _ForwardWall;
@@ -41,9 +43,18 @@ public class ThirdPersonController : InputHandler
 
     void Update()
     {
-        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
+        //Check if we are standing on a slope
+        if (OnSlope())
+        {
+            _grounded = true;
+            _inAir = false;
+        }
+        else
+        {
+            _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
+        }
 
-        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
+        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.3f));
 
         AddDownForce();
         GetMovementInputs();
@@ -106,6 +117,18 @@ public class ThirdPersonController : InputHandler
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
             Destroy(other.gameObject);
         }
+    }
+
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
+        {
+            float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
+            Debug.Log(angle < controller.slopeLimit && angle != 0);
+            return angle < controller.slopeLimit && angle != 0;
+        }
+
+        return false;
     }
 
     private void OnDestroy()
