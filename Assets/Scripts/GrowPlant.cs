@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowPlant : MonoBehaviour, IInteractable
+public class GrowPlant : Plant, IInteractable
 {
     [SerializeField] private GameObject _PlantToGrow;
 
@@ -11,19 +11,19 @@ public class GrowPlant : MonoBehaviour, IInteractable
     private CapsuleCollider _treeCollider;
     private Animator _animator;
 
-    private bool treePlanted;
+    private bool canGrow;
     private bool _hasInteracted;
 
     private void Start()
     {
         _treeCollider = GetComponentInChildren<CapsuleCollider>();
 
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void Interact()
     {
-        if (!treePlanted)
+        if (_state == PlantState.planted)
         {
             if (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 1)
             {
@@ -31,7 +31,7 @@ public class GrowPlant : MonoBehaviour, IInteractable
 
                 PlayerData._Instance._WateringCanHasWater = 0;
 
-                treePlanted = true;
+                canGrow = true;
                 _hasInteracted = true;
             }
         }
@@ -46,12 +46,14 @@ public class GrowPlant : MonoBehaviour, IInteractable
     {
         if (_PlantToGrow != null)
         {
+            _state = PlantState.growing;
             _treeCollider.isTrigger = false;
-
-            yield return new WaitForSeconds(1.5f);
 
             //Spawns in direction of local green arrow of spawnpoint
             _animator.Play("Grow");
+            yield return new WaitForSeconds(1.5f);
+
+            _state = PlantState.grown;
         }
         else
         {

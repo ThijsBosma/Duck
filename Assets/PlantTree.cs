@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlantTree : FindInputBinding
 {
     [SerializeField] private GameObject tree;
+    public GameObject _Seed;
 
     [SerializeField] private Transform _ShootRayPos;
 
@@ -58,16 +59,6 @@ public class PlantTree : FindInputBinding
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            if (PlayerData._Instance._SeedPickedup == 1)
-            {
-
-            }
-        }
-    }
     private void SetText(string text, bool needsBindingReference)
     {
         string controlScheme = playerInput.currentControlScheme;
