@@ -38,4 +38,20 @@ public class WateringCan : PickUpObject, IPickupable
         transform.position = _PickupPosition.position;
         transform.SetParent(null);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
+        if(collision.gameObject.GetComponent<GetWater>() != null)
+        {
+            FillWateringCan();
+        }
+    }
+
+    private void FillWateringCan()
+    {
+        Debug.Log("InWaterFillFunction");
+        PlayerData._Instance._WateringCanHasWater = 1;
+        Debug.Log("Water is filled");
+    }
 }
