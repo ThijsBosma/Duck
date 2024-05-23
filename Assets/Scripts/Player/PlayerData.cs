@@ -23,8 +23,9 @@ public class PlayerData : MonoBehaviour
 
     public int _DucksCollectedInStage;
     public int _TotalDucksCollected;
-    public int _ObjectPicedkUp;
-    public int _KeyPickedUp;
+    public int _ObjectPicedkup;
+    public int _KeyPickedup;
     public int _WateringCanPickedup;
     public int _WateringCanHasWater;
+    public int _SeedPickedup;
 }

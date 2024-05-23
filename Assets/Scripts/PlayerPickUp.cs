@@ -19,6 +19,7 @@ public class PlayerPickUp : FindInputBinding
     private IPickupable _Pickupable;
     private IPickupable _boxPickupable;
     private IPickupable _wateringCanPickupable;
+    private IPickupable _seedPickupable;
 
     private int _buttonPresses;
 
@@ -37,7 +38,7 @@ public class PlayerPickUp : FindInputBinding
                 _isPickingUp = true;
                 if (_boxPickupable != null)
                 {
-                    PlayerData._Instance._ObjectPicedkUp = 1;
+                    PlayerData._Instance._ObjectPicedkup = 1;
                     _boxPickupable.PickUp();
                 }
                 else if (_wateringCanPickupable != null)
@@ -45,20 +46,34 @@ public class PlayerPickUp : FindInputBinding
                     PlayerData._Instance._WateringCanPickedup = 1;
                     _wateringCanPickupable.PickUp();
                 }
+                else if (_seedPickupable != null)
+                {
+                    PlayerData._Instance._SeedPickedup = 1;
+
+                    _Plant.Enable();
+
+                    _seedPickupable.PickUp();
+                }
 
                 InteractText.instance.ResetText();
             }
             else if (_buttonPresses > 1)
             {
-                PlayerData._Instance._ObjectPicedkUp = 1;
-
                 if (_boxPickupable != null)
                 {
+                    PlayerData._Instance._ObjectPicedkup = 0;
                     _boxPickupable.LetGo();
                 }
                 else if (_wateringCanPickupable != null)
                 {
+                    PlayerData._Instance._WateringCanPickedup = 0;
                     _wateringCanPickupable.LetGo();
+                }
+                else if (_seedPickupable != null)
+                {
+                    PlayerData._Instance._SeedPickedup = 0;
+                    _Plant.Disable();
+                    _seedPickupable.LetGo();
                 }
                 _isPickingUp = false;
             }
@@ -93,7 +108,7 @@ public class PlayerPickUp : FindInputBinding
 
         if (_buttonPresses > 1)
         {
-            PlayerData._Instance._ObjectPicedkUp = 0;
+            PlayerData._Instance._ObjectPicedkup = 0;
 
             _buttonPresses = 0;
 
@@ -117,7 +132,7 @@ public class PlayerPickUp : FindInputBinding
 
     private void FixedUpdate()
     {
-        if (PlayerData._Instance._ObjectPicedkUp == 0)
+        if (PlayerData._Instance._ObjectPicedkup == 0)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, _pickupLayer);
 
@@ -131,8 +146,9 @@ public class PlayerPickUp : FindInputBinding
                         _boxPickupable = pickupable;
                     else if (pickupable is WateringCan)
                         _wateringCanPickupable = pickupable;
+                    else if (pickupable is SeedPickup)
+                        _seedPickupable = pickupable;
                 }
-
             }
         }
     }
@@ -145,12 +161,13 @@ public class PlayerPickUp : FindInputBinding
                 HandleBoxPickup();
             else if (_wateringCanPickupable != null)
                 HandleWateringCanPickup();
+            else if (_seedPickupable != null)
+                HandleSeedPickUp();
         }
     }
 
     private void HandleBoxPickup()
     {
-
         _Pickup.Enable();
         _pickupableInRange = true;
 
@@ -165,6 +182,14 @@ public class PlayerPickUp : FindInputBinding
         SetText("to lift the watering can", true);
     }
 
+    private void HandleSeedPickUp()
+    {
+        _Pickup.Enable();
+        _pickupableInRange = true;
+
+        SetText("to lift the seed", true);
+    }
+
     private void SetText(string text, bool needsBindingReference)
     {
         string controlScheme = playerInput.currentControlScheme;
@@ -176,7 +201,9 @@ public class PlayerPickUp : FindInputBinding
                 InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} {text}");
             }
             else
+            {
                 InteractText.instance.SetText($"Press {FindBinding("Pickup")} {text}");
+            }
         }
         else
         {
@@ -188,7 +215,7 @@ public class PlayerPickUp : FindInputBinding
 
     private void ResetPickup()
     {
-        //Disavle pickup
+        //Disable pickup
         _Pickup.Disable();
         _pickupableInRange = false;
 
@@ -204,6 +231,7 @@ public class PlayerPickUp : FindInputBinding
         //Reset pickupables to null
         _boxPickupable = null;
         _wateringCanPickupable = null;
+        _seedPickupable = null;
     }
 
     private void CheckPickupInRange()

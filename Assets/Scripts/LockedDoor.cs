@@ -11,7 +11,7 @@ public class LockedDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (PlayerData._Instance._KeyPickedUp == 1)
+        if (PlayerData._Instance._KeyPickedup == 1)
         {
             OnOpenDoor.Invoke();
         }

@@ -11,14 +11,14 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] protected Vector3 _offsePosition;
     [SerializeField] protected Quaternion _offsetRotation;
 
-    protected BoxCollider _Collider;
+    protected Collider _Collider;
     protected Rigidbody _Rb;
 
     protected bool _hasInteracted;
 
     private void Start()
     {
-        _Collider = GetComponent<BoxCollider>();
+        _Collider = GetComponent<Collider>();
         _Rb = GetComponent<Rigidbody>();
     }
 
@@ -33,7 +33,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnValidate()
     {
-        _Collider = GetComponent<BoxCollider>();
+        _Collider = GetComponent<Collider>();
         _Rb = GetComponent<Rigidbody>();
     }
 }

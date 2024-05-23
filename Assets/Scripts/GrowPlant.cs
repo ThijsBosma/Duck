@@ -8,8 +8,18 @@ public class GrowPlant : MonoBehaviour, IInteractable
 
     [SerializeField] private Transform _SpawnPoint;
 
+    private CapsuleCollider _treeCollider;
+    private Animator _animator;
+
     private bool treePlanted;
     private bool _hasInteracted;
+
+    private void Start()
+    {
+        _treeCollider = GetComponentInChildren<CapsuleCollider>();
+
+        _animator = GetComponent<Animator>();
+    }
 
     public void Interact()
     {
@@ -36,15 +46,12 @@ public class GrowPlant : MonoBehaviour, IInteractable
     {
         if (_PlantToGrow != null)
         {
+            _treeCollider.isTrigger = false;
+
             yield return new WaitForSeconds(1.5f);
 
-            _PlantToGrow.SetActive(true);
-
             //Spawns in direction of local green arrow of spawnpoint
-            _PlantToGrow.GetComponentInChildren<Animator>().Play("Grow");
-
-            _PlantToGrow.transform.rotation = transform.rotation;
-            _PlantToGrow.transform.SetParent(transform);
+            _animator.Play("Grow");
         }
         else
         {

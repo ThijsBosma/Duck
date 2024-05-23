@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour
     protected InputAction _Pause;
     protected InputAction _Climb;
     protected InputAction _Pickup;
+    protected InputAction _Plant;
 
     protected virtual void Awake()
     {
@@ -41,6 +42,9 @@ public class InputHandler : MonoBehaviour
         _Climb = _Input.Player.Climb;
 
         _Pickup = _Input.Player.Pickup;
+
+        _Plant = _Input.Player.Plant;
+        _Plant.Enable();
     }
 
     private void OnDisable()
@@ -56,5 +60,6 @@ public class InputHandler : MonoBehaviour
         _Pause.Disable();
         _Climb.Disable();
         _Pickup.Disable();
+        _Plant.Disable();
     }
 }

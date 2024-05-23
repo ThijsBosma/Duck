@@ -124,7 +124,6 @@ public class ThirdPersonController : InputHandler
         if(Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
-            Debug.Log(angle < controller.slopeLimit && angle != 0);
             return angle < controller.slopeLimit && angle != 0;
         }
 
