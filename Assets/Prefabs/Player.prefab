@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6158935692093251446}
   m_Layer: 0
-  m_Name: ObjectHolder
+  m_Name: HoldPos
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,38 @@ Transform:
   m_GameObject: {fileID: 3781575941250853393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 1.035}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4058647871130437723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4798864696481101643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6434981121129229398}
+  m_Layer: 0
+  m_Name: PickupPos
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6434981121129229398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798864696481101643}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.5, z: 1.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,8 +138,8 @@ GameObject:
   - component: {fileID: 5789226709662257355}
   - component: {fileID: 1796969535742346418}
   - component: {fileID: 2678815009702539151}
-  - component: {fileID: 4790717904476149456}
   - component: {fileID: 7393431176431124137}
+  - component: {fileID: 3577017090560107472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,8 +247,20 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 96af7084-8228-4b7b-b4f9-dfaa2112c21d
     m_ActionName: Player/GrowPlant[/DualShock4GamepadHID/buttonSouth,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b1e1e79-0a8e-4498-8cc5-9041ad398d90
+    m_ActionName: UI/Pause[/Keyboard/escape,/DualShock4GamepadHID/start,/DualShock4GamepadHID1/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36dddc60-0d91-4f40-8864-71a08a73b132
+    m_ActionName: Player/Climb[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 434eb317-73b5-436b-b507-8d2c04cfb6e3
+    m_ActionName: Player/Pickup[/Keyboard/e,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -243,10 +286,10 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.5
+  m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.04, z: 0}
+  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!54 &5789226709662257355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,7 +332,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -313,30 +356,13 @@ MonoBehaviour:
   _GravityStrength: 1
   _Orientation: {fileID: 4457297060851687852}
   _PlayerObj: {fileID: 4058647871130437723}
-  _PlayerHeight: 2
+  _PlayerHeight: 1
   _WhatIsGround:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &4790717904476149456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454602585343978873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b3e46a5fb95f24f97462ce391a7d84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Orientaion: {fileID: 4058647871130437723}
-  _RaycastPosition: {fileID: 1451708280816223679}
-  _HoldPosition: {fileID: 6158935692093251446}
-  _ForceMagnitude: 0
-  _BoxLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  grabbedObject: {fileID: 0}
+  _IsClimbing: 0
+  _ForwardWall: {x: 0, y: 0, z: 0}
+  _WallUp: {x: 0, y: 0, z: 0}
 --- !u!114 &7393431176431124137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,8 +375,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ff2d01916d53f4bbcb9da3ef549649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _InteractableText: {fileID: 0}
-  _MaxRaycastLength: 3
+  ps4Icons: {fileID: 11400000, guid: 02690aa65e751bf4fbcd1ed2afdc691c, type: 2}
+  xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
+  _Orientation: {fileID: 4058647871130437723}
+  _InputIcon: {fileID: 0}
+  _radius: 0.6
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &3577017090560107472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454602585343978873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2511924e06a4bee4dabf8924db044807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps4Icons: {fileID: 11400000, guid: 02690aa65e751bf4fbcd1ed2afdc691c, type: 2}
+  xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
+  _Orientation: {fileID: 4457297060851687852}
+  _InputIcon: {fileID: 0}
+  _radius: 0.5
+  _pickupLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &6787727880273650965
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,5 +601,6 @@ Transform:
   - {fileID: 7998072468649505756}
   - {fileID: 8953107985717462038}
   - {fileID: 6158935692093251446}
+  - {fileID: 6434981121129229398}
   m_Father: {fileID: 1879546677239287457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

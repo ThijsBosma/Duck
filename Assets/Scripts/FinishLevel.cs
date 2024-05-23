@@ -7,6 +7,7 @@ public class FinishLevel : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        PlayerData._Instance._TotalDucksCollected += PlayerData._Instance._DucksCollectedInStage;
         SceneManager.LoadScene("LevelFinished");
     }
 

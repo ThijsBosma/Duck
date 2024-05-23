@@ -8,7 +8,6 @@ public class ThirdPersonController : InputHandler
     private CharacterController controller;
 
     [Header("GeneralPlayerVariables")]
-    private PlayerData _playerData = new PlayerData();
     [SerializeField] private float _Speed;
 
     [SerializeField] private float _GravityStrength;
@@ -30,6 +29,13 @@ public class ThirdPersonController : InputHandler
 
     private bool _inAir;
 
+    private RaycastHit _slopeHit;
+
+    [Header("Climbing")]
+    public bool _IsClimbing;
+    public Vector3 _ForwardWall;
+    public Vector3 _WallUp;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -37,9 +43,18 @@ public class ThirdPersonController : InputHandler
 
     void Update()
     {
-        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f + 0.2f, _WhatIsGround);
+        //Check if we are standing on a slope
+        if (OnSlope())
+        {
+            _grounded = true;
+            _inAir = false;
+        }
+        else
+        {
+            _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
+        }
 
-        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.2f));
+        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.3f));
 
         AddDownForce();
         GetMovementInputs();
@@ -53,22 +68,21 @@ public class ThirdPersonController : InputHandler
         }
         else
             _inAir = false;
-
-        if (playerInput.currentControlScheme.Equals("PlaystationController"))
-        {
-            Debug.Log("Playerstation");
-        }
-        else if (playerInput.currentControlScheme.Equals("XboxController"))
-        {
-            Debug.Log("Xbox");
-        }
     }
 
     private void MoveCharacter()
     {
         _moveDirection = _Orientation.forward * _movementInputs.y + _Orientation.right * _movementInputs.x;
 
-        controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        if (!_IsClimbing)
+        {
+            controller.Move(new Vector3(_moveDirection.x * _Speed, _downForce, _moveDirection.z * _Speed) * Time.deltaTime);
+        }
+        else
+        {
+            //controller.Move(new Vector3(0, _movementInputs.y * _Speed / 2, _movementInputs.x * _Speed / 2) * Time.deltaTime);
+            controller.Move((_ForwardWall * _movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+        }
 
         if (!_inAir)
         {
@@ -81,7 +95,7 @@ public class ThirdPersonController : InputHandler
 
     private void AddDownForce()
     {
-        if (!_grounded)
+        if (!_grounded && !_IsClimbing)
         {
             _downForce += Physics.gravity.y * _GravityStrength * Time.deltaTime;
         }
@@ -96,19 +110,25 @@ public class ThirdPersonController : InputHandler
         _movementInputs = _Move.ReadValue<Vector2>();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
-            other.gameObject.GetComponent<IPlayerData>().CollectDuck(_playerData);
+            other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
             Destroy(other.gameObject);
         }
     }
 
-    private void OnValidate()
+    private bool OnSlope()
     {
-        controller = GetComponent<CharacterController>();
+        if(Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
+        {
+            float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
+            Debug.Log(angle < controller.slopeLimit && angle != 0);
+            return angle < controller.slopeLimit && angle != 0;
+        }
+
+        return false;
     }
 
     private void OnDestroy()
@@ -118,7 +138,7 @@ public class ThirdPersonController : InputHandler
 
     private void SavePlayerDataToJSON()
     {
-        string playerdata = JsonUtility.ToJson(_playerData, true);
+        string playerdata = JsonUtility.ToJson(PlayerData._Instance, true);
         string filePath = Application.persistentDataPath + "/PlayerData.json";
 
         Debug.Log($"Saved at {filePath}");

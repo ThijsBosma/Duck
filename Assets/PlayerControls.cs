@@ -51,13 +51,31 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""98d11b45-66aa-46cd-9003-d90ff1791607"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""GrowPlant"",
                     ""type"": ""Button"",
                     ""id"": ""96af7084-8228-4b7b-b4f9-dfaa2112c21d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Climb"",
+                    ""type"": ""Button"",
+                    ""id"": ""36dddc60-0d91-4f40-8864-71a08a73b132"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pickup"",
+                    ""type"": ""Button"",
+                    ""id"": ""434eb317-73b5-436b-b507-8d2c04cfb6e3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -123,7 +141,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""XboxAnalog"",
                     ""id"": ""17710cfb-c394-4df4-8c8a-655c82de1d6f"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,10 +152,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""2c3c3908-b8bf-4b07-b149-4cfaa072d1d3"",
-                    ""path"": ""<XInputController>/leftStick/up"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -145,10 +163,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""2fd54864-2ff7-4068-a3e3-63bba4ba29d8"",
-                    ""path"": ""<XInputController>/leftStick/down"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -156,10 +174,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""55f94adb-b389-4f21-b237-7a09f9005d83"",
-                    ""path"": ""<XInputController>/leftStick/left"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -167,10 +185,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""a887e11a-a5ff-4b3c-a772-ab9ccdf0a7e2"",
-                    ""path"": ""<XInputController>/leftStick/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -178,7 +196,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""PS4Analog"",
                     ""id"": ""e2de0488-d3d5-4887-99e0-47a5d59eb5a6"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -192,7 +210,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -203,7 +221,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -214,7 +232,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -225,7 +243,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -288,7 +306,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""XboxAnalog"",
                     ""id"": ""7b16e231-548a-46d9-a4db-915ab852afdc"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -299,10 +317,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""0cae54e5-9241-4680-aae5-ccf821c2310d"",
-                    ""path"": ""<XInputController>/rightStick/up"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -310,10 +328,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""82e5aacd-9ae0-4dd6-bc8a-055ffecb5abf"",
-                    ""path"": ""<XInputController>/rightStick/down"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -321,10 +339,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""852de164-bbca-4eb5-ab89-5d7cd933cd98"",
-                    ""path"": ""<XInputController>/rightStick/left"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -332,10 +350,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""49ea9954-cc22-4ff2-a05b-4d58bcbe7940"",
-                    ""path"": ""<XInputController>/rightStick/right"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -343,7 +361,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""PS4Analog"",
                     ""id"": ""14101cf0-101c-48f5-bcda-fb58465e8322"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -357,7 +375,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -368,7 +386,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -379,7 +397,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -390,7 +408,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -409,10 +427,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""df4619c5-807f-4fb3-8f1d-c0fa319587d3"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -423,7 +441,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -442,10 +460,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b2c722a5-ce46-4aa7-8e23-5fb9c0143cf9"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad;XboxController"",
                     ""action"": ""GrowPlant"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -456,8 +474,74 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""GrowPlant"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9288b76b-fc47-47ba-8abc-14e1c8c859e3"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dff12a5-6507-4a42-8472-434a2b5c6bd3"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlaystationController"",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6926c8bc-3f0b-4de5-af65-02fff6b932b3"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XboxController;Gamepad"",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbfa20e1-0f75-4022-92d9-3b27f08a9fdb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e563d039-906c-46f5-8392-cf0db3e8c46d"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlaystationController"",
+                    ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9934e8c-8a82-42c4-8c93-e6b1c28b6d59"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;XboxController"",
+                    ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1003,7 +1087,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlaystationController"",
+                    ""groups"": ""PlaystationController;Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1011,10 +1095,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9e10e219-c68b-4cd0-a52f-cac661095071"",
-                    ""path"": ""<XInputController>/start"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XboxController"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1113,6 +1197,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_GrowPlant = m_Player.FindAction("GrowPlant", throwIfNotFound: true);
+        m_Player_Climb = m_Player.FindAction("Climb", throwIfNotFound: true);
+        m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1191,6 +1277,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_GrowPlant;
+    private readonly InputAction m_Player_Climb;
+    private readonly InputAction m_Player_Pickup;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1199,6 +1287,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @GrowPlant => m_Wrapper.m_Player_GrowPlant;
+        public InputAction @Climb => m_Wrapper.m_Player_Climb;
+        public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1220,6 +1310,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GrowPlant.started += instance.OnGrowPlant;
             @GrowPlant.performed += instance.OnGrowPlant;
             @GrowPlant.canceled += instance.OnGrowPlant;
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
+            @Pickup.started += instance.OnPickup;
+            @Pickup.performed += instance.OnPickup;
+            @Pickup.canceled += instance.OnPickup;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1236,6 +1332,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GrowPlant.started -= instance.OnGrowPlant;
             @GrowPlant.performed -= instance.OnGrowPlant;
             @GrowPlant.canceled -= instance.OnGrowPlant;
+            @Climb.started -= instance.OnClimb;
+            @Climb.performed -= instance.OnClimb;
+            @Climb.canceled -= instance.OnClimb;
+            @Pickup.started -= instance.OnPickup;
+            @Pickup.performed -= instance.OnPickup;
+            @Pickup.canceled -= instance.OnPickup;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1448,6 +1550,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnGrowPlant(InputAction.CallbackContext context);
+        void OnClimb(InputAction.CallbackContext context);
+        void OnPickup(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

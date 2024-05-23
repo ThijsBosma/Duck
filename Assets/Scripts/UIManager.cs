@@ -3,12 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : InputHandler
+public class UIManager : FindInputBinding
 {
     [SerializeField] private GameObject _PauseAssets;
     [SerializeField] private GameObject _GUIAssets;
 
+    [SerializeField] private GameObject[] _ControlText;
+
+    private string _controlScheme;
+
+    private void Start()
+    {
+        _controlScheme = playerInput.currentControlScheme;
+
+        if (GameManager._Instance._showInputs)
+        {
+            StartCoroutine(ShowControlIcons());
+        }
+    }
+
     void Update()
+    {
+        OpenPauseMenu();
+    }
+
+    private void OpenPauseMenu()
     {
         if (_Pause.WasPressedThisFrame() && !_PauseAssets.activeInHierarchy)
         {
@@ -17,7 +36,7 @@ public class UIManager : InputHandler
             _PauseAssets.SetActive(true);
             _GUIAssets.SetActive(false);
         }
-        else if(_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
+        else if (_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
         {
             Continue();
         }
@@ -40,5 +59,29 @@ public class UIManager : InputHandler
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator ShowControlIcons()
+    {
+        if (_controlScheme == "Keyboard&Mouse")
+        {
+            _ControlText[0].SetActive(true);
+        }
+        else
+        {
+            _ControlText[1].SetActive(true);
+        }
+
+        yield return new WaitForSeconds(10);
+
+        if (_controlScheme == "Keyboard&Mouse")
+        {
+            _ControlText[0].SetActive(false);
+        }
+        else
+        {
+            _ControlText[1].SetActive(false);
+        }
+
     }
 }

@@ -15,7 +15,7 @@ public class InteractButton : MonoBehaviour
 
     private MeshFilter visualFilter;
 
-    private Box box;
+    private PickUpObject box;
 
     private Vector3 origin;
 
@@ -26,11 +26,6 @@ public class InteractButton : MonoBehaviour
         visualFilter = visual.GetComponent<MeshFilter>();
 
         origin = visual.position;
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +48,7 @@ public class InteractButton : MonoBehaviour
         {
             interactingObjects.Add(other.transform);
 
-            box = other.GetComponent<Box>();
+            box = other.GetComponent<PickUpObject>();
 
             interactingObjectRb = other.GetComponent<Rigidbody>();
             interactingObjectRb.useGravity = false;
@@ -74,7 +69,7 @@ public class InteractButton : MonoBehaviour
         {
             button.onButton = true;
 
-            if (!box.grabbed && button.onButton)
+            if (!box._grabbed && button.onButton)
             {
                 interactingObjectRb.constraints = RigidbodyConstraints.FreezeAll;
             }
