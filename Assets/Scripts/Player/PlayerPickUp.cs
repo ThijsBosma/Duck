@@ -9,6 +9,9 @@ public class PlayerPickUp : FindInputBinding
     [Header("References")]
     [SerializeField] private Transform _Orientation;
     [SerializeField] private Image _InputIcon;
+
+    [SerializeField] private Transform _HoldPosition;
+    [SerializeField] private Transform _PickupPosition;
     private PlantTree _PlantTree;
 
     [Header("Pick Options")]
@@ -22,13 +25,16 @@ public class PlayerPickUp : FindInputBinding
     private IPickupable _boxPickupable;
     private IPickupable _wateringCanPickupable;
     private IPickupable _seedPickupable;
-    private IPickupable _getSeedPickupable;
+    private IPickupable _digUpSprout;
 
-    private int _buttonPresses;
+    public int _buttonPresses;
 
     private bool _pickupableInRange;
     private bool _textHasReseted;
-    private bool _isPickingUp;
+
+    public bool _isPickingUp;
+
+    private string _pickupObject;
 
     private void Start()
     {
@@ -43,7 +49,7 @@ public class PlayerPickUp : FindInputBinding
 
             if (_buttonPresses == 1)
             {
-                PlayerData._Instance._ObjectPicedkup = 1;
+                PlayerData._Instance._ObjectPickedup = 1;
 
                 _isPickingUp = true;
                 if (_boxPickupable != null)
@@ -63,9 +69,11 @@ public class PlayerPickUp : FindInputBinding
 
                     _seedPickupable.PickUp();
                 }
-                else if (_getSeedPickupable != null)
+                else if (_digUpSprout != null)
                 {
-                    _getSeedPickupable.PickUp();
+                    _digUpSprout.PickUp();
+                    _isPickingUp = false;
+                    ResetPickup();
                 }
 
                 InteractText.instance.ResetText();
@@ -88,14 +96,14 @@ public class PlayerPickUp : FindInputBinding
                     _seedPickupable.LetGo();
                 }
 
-                PlayerData._Instance._ObjectPicedkup = 0;
+                PlayerData._Instance._ObjectPickedup = 0;
                 _isPickingUp = false;
             }
         }
 
         if (_buttonPresses > 1)
         {
-            PlayerData._Instance._ObjectPicedkup = 0;
+            PlayerData._Instance._ObjectPickedup = 0;
 
             _buttonPresses = 0;
 
@@ -111,7 +119,7 @@ public class PlayerPickUp : FindInputBinding
         {
             HandlePickup();
         }
-        else if (!_isPickingUp)
+        else if (!_isPickingUp && !_textHasReseted)
         {
             ResetPickup();
         }
@@ -119,7 +127,7 @@ public class PlayerPickUp : FindInputBinding
 
     private void FixedUpdate()
     {
-        if (PlayerData._Instance._ObjectPicedkup == 0)
+        if (PlayerData._Instance._ObjectPickedup == 0)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, _pickupLayer);
 
@@ -129,6 +137,7 @@ public class PlayerPickUp : FindInputBinding
 
                 if (pickupable != null)
                 {
+                    _pickupObject = pickupable.ToString();
                     if (pickupable is BoxPickup)
                         _boxPickupable = pickupable;
                     else if (pickupable is WateringCan)
@@ -138,10 +147,13 @@ public class PlayerPickUp : FindInputBinding
                         _seedPickupable = pickupable;
                         _PlantTree._Seed = hit.collider.gameObject;
                     }
-                    else if (pickupable is GetSeedBack)
+                    else if (pickupable is SproutPickup)
                     {
-                        Debug.Log("Mega gay");
-                        _getSeedPickupable = pickupable;
+                        SproutPickup sprout = hit.collider.gameObject.GetComponent<SproutPickup>();
+                        sprout._HoldPosition = _HoldPosition;
+                        sprout._PickupPosition = _PickupPosition;
+
+                        _digUpSprout = pickupable;
                     }
                 }
             }
@@ -156,9 +168,9 @@ public class PlayerPickUp : FindInputBinding
                 HandleBoxPickup();
             else if (_wateringCanPickupable != null)
                 HandleWateringCanPickup();
-            else if (_seedPickupable != null)
+            else if (_seedPickupable != null && _PlantTree._Seed != null)
                 HandleSeedPickUp();
-            else if (_getSeedPickupable != null)
+            else if (_digUpSprout != null)
                 HandleGetSeedPickUp();
         }
     }
@@ -189,15 +201,16 @@ public class PlayerPickUp : FindInputBinding
 
     private void HandleGetSeedPickUp()
     {
-        bool playerIsHoldingObject = PlayerData._Instance._ObjectPicedkup == 0;
+        bool playerIsHoldingObject = PlayerData._Instance._ObjectPickedup == 0;
 
-        if (playerIsHoldingObject)
+        if (!playerIsHoldingObject)
         {
             SetText("Hands full", false);
             _pickupableInRange = true;
         }
         else
         {
+            Debug.Log("Pick seed");
             _Pickup.Enable();
             _pickupableInRange = true;
 
@@ -228,18 +241,23 @@ public class PlayerPickUp : FindInputBinding
         _textHasReseted = false;
     }
 
-    private void ResetPickup()
+    public void ResetPickup()
     {
         //Disable pickup
         _Pickup.Disable();
-        _pickupableInRange = false;
 
-        Debug.Log("gay");
+        _pickupableInRange = false;
+        _isPickingUp = false;
+
+        _buttonPresses = 0;
+
+        Debug.Log("Pickup reset");
 
         //Reset interaction text only once
         if (!_textHasReseted)
         {
             InteractText.instance.ResetText();
+            _pickupObject = "";
             _textHasReseted = true;
         }
 
@@ -247,7 +265,7 @@ public class PlayerPickUp : FindInputBinding
         _boxPickupable = null;
         _wateringCanPickupable = null;
         _seedPickupable = null;
-        _getSeedPickupable = null;
+        _digUpSprout = null;
     }
 
     private void CheckPickupInRange()

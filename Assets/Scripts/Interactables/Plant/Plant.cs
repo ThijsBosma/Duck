@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Plant : FindInputBinding
 {
-    protected PlantState _state;
+    public PlantState _state;
 }

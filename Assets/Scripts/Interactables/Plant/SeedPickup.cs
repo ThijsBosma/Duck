@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class SeedPickup : PickUpObject, IPickupable
 {
+    private void Start()
+    {
+        Debug.Log("Spawned");
+        _HoldPosition = GameObject.Find("HoldPos").transform;
+        _PickupPosition = GameObject.Find("PickupPos").transform;
+    }
+
     public void PickUp()
     {
+        PlayerData._Instance._SeedPickedup = 1;
+
         _grabbed = true;
 
         _Collider.isTrigger = true;
@@ -21,6 +30,8 @@ public class SeedPickup : PickUpObject, IPickupable
 
     public void LetGo()
     {
+        PlayerData._Instance._SeedPickedup = 0;
+
         _grabbed = false;
 
         _hasInteracted = false;
@@ -33,5 +44,10 @@ public class SeedPickup : PickUpObject, IPickupable
 
         transform.position = _PickupPosition.position;
         transform.SetParent(null);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerData._Instance._SeedPickedup = 0;
     }
 }

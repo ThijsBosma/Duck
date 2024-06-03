@@ -11,6 +11,8 @@ public class PlantTree : FindInputBinding
 
     [SerializeField] private LayerMask _PlantLayer;
 
+    private PlayerPickUp _playerPickup;
+
     private Transform _plantPos;
 
     private bool _inputIsActive;
@@ -18,7 +20,7 @@ public class PlantTree : FindInputBinding
     // Start is called before the first frame update
     void Start()
     {
-
+        _playerPickup = GetComponent<PlayerPickUp>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,6 @@ public class PlantTree : FindInputBinding
                     _Interact.Enable();
 
                     SetText("to plant the seed", true);
-                    Debug.Log("Lmao");
                 }
             }
             else if (_inputIsActive)
@@ -43,7 +44,6 @@ public class PlantTree : FindInputBinding
 
                 _inputIsActive = false;
 
-                Debug.Log("gay");
                 InteractText.instance.ResetText();
             }
 
@@ -53,6 +53,14 @@ public class PlantTree : FindInputBinding
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
 
                 Instantiate(tree, hit.point, Quaternion.identity);
+
+                _playerPickup.ResetPickup();
+
+                PlayerData._Instance._ObjectPickedup = 0;
+
+                _Interact.Disable();
+
+                Destroy(_Seed);
             }
 
             Debug.DrawRay(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f);

@@ -68,7 +68,10 @@ public class GrowPlant : Plant, IInteractable
 
     public bool HasInteracted()
     {
-        InteractText.instance.ResetText();
+        if (_state == PlantState.grown)
+        {
+            InteractText.instance.ResetText();
+        }
         return _hasInteracted;
     }
 }

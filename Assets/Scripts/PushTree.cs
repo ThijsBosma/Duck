@@ -15,8 +15,6 @@ public class PushTree : MonoBehaviour, IInteractable
     private Animator animator;
     public AnimationClip animationClip;
 
-    private GetSeedBack _getSeed;
-
     private float _time;
 
     private bool _hasInteracted;
@@ -24,10 +22,6 @@ public class PushTree : MonoBehaviour, IInteractable
     private void Start()
     {
         animator = GetComponent<Animator>();
-
-        _getSeed = GetComponent<GetSeedBack>();
-
-        this.enabled = false;
     }
 
     public void Interact()
@@ -53,11 +47,5 @@ public class PushTree : MonoBehaviour, IInteractable
     {
         InteractText.instance.ResetText();
         return _hasInteracted;
-    }
-
-    public void EnablePushTree()
-    {
-        this.enabled = true;
-        _getSeed.enabled = false;
     }
 }
