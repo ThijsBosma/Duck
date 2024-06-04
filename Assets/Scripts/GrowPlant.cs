@@ -44,7 +44,7 @@ public class GrowPlant : MonoBehaviour, IInteractable
             _PlantToGrow.GetComponentInChildren<Animator>().Play("Grow");
 
             _PlantToGrow.transform.rotation = transform.rotation;
-            _PlantToGrow.transform.SetParent(transform);
+            //_PlantToGrow.transform.SetParent(transform);
         }
         else
         {
