@@ -32,9 +32,11 @@ public class ThirdPersonController : InputHandler
     private RaycastHit _slopeHit;
 
     [Header("Climbing")]
-    public bool _IsClimbing;
-    public Vector3 _WallRight;
-    public Vector3 _WallUp;
+    [SerializeField] private float _stopClimbingOffset;
+    [HideInInspector] public bool _IsClimbing;
+    [HideInInspector] public Vector3 _WallRight;
+    [HideInInspector] public Vector3 _WallUp;
+    [HideInInspector] public Vector3 _WallHeight;
 
     private void Start()
     {
@@ -80,8 +82,14 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            //controller.Move(new Vector3(0, _movementInputs.y * _Speed / 2, _movementInputs.x * _Speed / 2) * Time.deltaTime);
-            controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+            if (transform.position.y < _WallHeight.y + _stopClimbingOffset)
+            {
+                controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+            }
+            else
+            {
+                _IsClimbing = false;
+            }
         }
 
         if (!_inAir)
@@ -116,6 +124,11 @@ public class ThirdPersonController : InputHandler
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Edge"))
+        {
+            _IsClimbing = false;
         }
     }
 

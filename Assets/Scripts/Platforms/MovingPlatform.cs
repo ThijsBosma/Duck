@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private Transform[] _Waypoints;
-    private Transform _platformTransform;
+    private Transform _playerTransform;
 
     [SerializeField, Tooltip("Time for a lerp in seconds")] private float _Time;
 
@@ -20,19 +20,24 @@ public class MovingPlatform : MonoBehaviour
     private Coroutine _coroutine;
 
     [SerializeField, Tooltip("In seconds")] private float _TimeBeforeMoving;
+    private bool _isOnPlatform;
 
     private void Start()
     {
         _startPostion = _Waypoints[0].position;
         _endPostion = _Waypoints[1].position;
-        _platformTransform = transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_coroutine == null)
         {
             _coroutine = StartCoroutine(MovePlatform());
+        }
+
+        if(_isOnPlatform)
+        {
+            _playerTransform.localPosition = transform.localPosition;
         }
     }
 
@@ -62,7 +67,6 @@ public class MovingPlatform : MonoBehaviour
             time += Time.deltaTime / _Time;
 
             float t = _Curve.Evaluate(time);
-
             transform.position = Vector3.Lerp(_startPostion, _endPostion, t);
             yield return null;
         }
@@ -96,11 +100,16 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.SetParent(transform);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _isOnPlatform = true;
+            _playerTransform = other.GetComponent<Transform>();
+            other.transform.SetParent(transform);
+        }
     }
-
     private void OnTriggerExit(Collider other)
     {
+        _isOnPlatform = false;
         other.transform.SetParent(null);
     }
 }
