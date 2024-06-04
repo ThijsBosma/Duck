@@ -8,6 +8,9 @@ public class LevelSelectUI : MonoBehaviour
     [SerializeField] private GameObject[] _Levels;
     private int _currentIndex;
 
+    [SerializeField] private int _ImageID;
+    private bool _IsImage;
+
     public void LoadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -38,6 +41,14 @@ public class LevelSelectUI : MonoBehaviour
         if(_currentIndex < 0)
         {
             _currentIndex = _Levels.Length - 1;
+        }
+    }
+
+    private void ShowCorrectImage()
+    {
+        if(_IsImage)
+        {
+
         }
     }
 }

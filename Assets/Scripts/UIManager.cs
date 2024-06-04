@@ -50,6 +50,12 @@ public class UIManager : FindInputBinding
         _GUIAssets.SetActive(true);
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void Quit()
     {
         Debug.Log("it has quit the game but it no work outside of build");

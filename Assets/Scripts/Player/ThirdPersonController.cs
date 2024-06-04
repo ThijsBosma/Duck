@@ -33,7 +33,7 @@ public class ThirdPersonController : InputHandler
 
     [Header("Climbing")]
     public bool _IsClimbing;
-    public Vector3 _ForwardWall;
+    public Vector3 _WallRight;
     public Vector3 _WallUp;
 
     private void Start()
@@ -81,7 +81,7 @@ public class ThirdPersonController : InputHandler
         else
         {
             //controller.Move(new Vector3(0, _movementInputs.y * _Speed / 2, _movementInputs.x * _Speed / 2) * Time.deltaTime);
-            controller.Move((_ForwardWall * _movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+            controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
         }
 
         if (!_inAir)

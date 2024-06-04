@@ -306,6 +306,7 @@ MonoBehaviour:
   _Levels:
   - {fileID: 609174582}
   - {fileID: 848233266}
+  _ImageID: 0
 --- !u!1 &254166077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1205,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922063324}
   m_CullTransparentMesh: 1
+--- !u!1 &964602499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964602501}
+  - component: {fileID: 964602500}
+  m_Layer: 0
+  m_Name: PlayerData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &964602500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964602499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44be455dbfcd6b4583a222cfac9b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DucksCollectedInStage: 0
+  _TotalDucksCollected: 0
+  _ObjectPicedkUp: 0
+  _KeyPickedUp: 0
+  _WateringCanPickedup: 0
+  _WateringCanHasWater: 0
+  _DuckIDs: 
+--- !u!4 &964602501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964602499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &976506636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1385,7 @@ GameObject:
   - component: {fileID: 1037053398}
   - component: {fileID: 1037053400}
   - component: {fileID: 1037053399}
+  - component: {fileID: 1037053401}
   m_Layer: 5
   m_Name: 'ExtraDuck '
   m_TagString: Untagged
@@ -1397,6 +1450,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037053397}
   m_CullTransparentMesh: 1
+--- !u!114 &1037053401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037053397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624c240044e379d4587abfaae6ad117d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ImageID: 0
 --- !u!1 &1093184202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2688,3 +2754,4 @@ SceneRoots:
   - {fileID: 1630486477}
   - {fileID: 1106167400}
   - {fileID: 172215846}
+  - {fileID: 964602501}
