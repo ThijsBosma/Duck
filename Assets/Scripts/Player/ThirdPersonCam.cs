@@ -49,7 +49,7 @@ public class ThirdPersonCam : InputHandler
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(player.position, viewDir.normalized);
+        /*Gizmos.color = Color.red;
+        Gizmos.DrawLine(player.position, viewDir.normalized);*/
     }
 }

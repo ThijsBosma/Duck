@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlantTree : FindInputBinding
 {
-    [SerializeField] private GameObject tree;
+    [Header("Plant sprout")]
+    [SerializeField] public GameObject _sprout;
+    [SerializeField] private GameObject _treeIndicator;
+    [SerializeField] private Grid grid;
     public GameObject _Seed;
+    public GameObject _treeHollowGram;
+
+    private Vector3 _plantPosition;
 
     [SerializeField] private Transform _ShootRayPos;
 
@@ -13,9 +19,8 @@ public class PlantTree : FindInputBinding
 
     private PlayerPickUp _playerPickup;
 
-    private Transform _plantPos;
-
     private bool _inputIsActive;
+    private bool _hollowgramSpawned;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,14 @@ public class PlantTree : FindInputBinding
         {
             if (_Plant.IsPressed())
             {
+                RaycastHit hit;
+                Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
+
+                grid.GetXZ(hit.point, out int x, out int z);
+
+                _plantPosition = grid.GetWorldPosition(x, z);
+                MakeTreeHologram();
+
                 if (!_inputIsActive)
                 {
                     _inputIsActive = true;
@@ -42,6 +55,8 @@ public class PlantTree : FindInputBinding
             {
                 _Interact.Disable();
 
+                Destroy(_treeHollowGram.gameObject);
+
                 _inputIsActive = false;
 
                 InteractText.instance.ResetText();
@@ -49,43 +64,27 @@ public class PlantTree : FindInputBinding
 
             if (_Interact.WasPressedThisFrame())
             {
-                RaycastHit hit;
-                Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
+                Instantiate(_sprout, _plantPosition, Quaternion.identity);
 
-                Instantiate(tree, hit.point, Quaternion.identity);
+                Destroy(_treeHollowGram.gameObject);
+                Destroy(_Seed);
 
                 _playerPickup.ResetPickup();
 
                 PlayerData._Instance._ObjectPickedup = 0;
 
                 _Interact.Disable();
-
-                Destroy(_Seed);
             }
 
             Debug.DrawRay(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f);
         }
     }
 
-    private void SetText(string text, bool needsBindingReference)
+    private void MakeTreeHologram()
     {
-        string controlScheme = playerInput.currentControlScheme;
-
-        if (needsBindingReference)
-        {
-            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
-            {
-                InteractText.instance.SetText($"Press {FindIconBinding("Interact")} {text}");
-            }
-            else
-            {
-                InteractText.instance.SetText($"Press {FindBinding("Interact")} {text}");
-            }
-        }
+        if (_treeHollowGram == null)
+            _treeHollowGram = Instantiate(_treeIndicator, _plantPosition, Quaternion.identity);
         else
-        {
-            InteractText.instance.SetText($"{text}");
-        }
+            _treeHollowGram.transform.position = _plantPosition;
     }
-
 }

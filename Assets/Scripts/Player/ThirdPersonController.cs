@@ -54,8 +54,6 @@ public class ThirdPersonController : InputHandler
             _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
         }
 
-        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.3f));
-
         AddDownForce();
         GetMovementInputs();
         MoveCharacter();

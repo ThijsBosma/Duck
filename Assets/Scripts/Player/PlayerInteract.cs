@@ -220,7 +220,7 @@ public class PlayerInteract : FindInputBinding
 
     private void OnDrawGizmos()
     {
-        if (!_isInteracting)
-            Gizmos.DrawWireSphere(transform.position, _radius);
+        /*if (!_isInteracting)
+            Gizmos.DrawWireSphere(transform.position, _radius);*/
     }
 }

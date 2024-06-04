@@ -145,13 +145,21 @@ public class PlayerPickUp : FindInputBinding
                     else if (pickupable is SeedPickup)
                     {
                         _seedPickupable = pickupable;
-                        _PlantTree._Seed = hit.collider.gameObject;
+                        if (_PlantTree._sprout == null)
+                        {
+                            _PlantTree._Seed = hit.collider.gameObject;
+                        }
                     }
                     else if (pickupable is SproutPickup)
                     {
                         SproutPickup sprout = hit.collider.gameObject.GetComponent<SproutPickup>();
                         sprout._HoldPosition = _HoldPosition;
                         sprout._PickupPosition = _PickupPosition;
+
+                        if (_PlantTree._Seed == null)
+                        {
+                            _PlantTree._Seed = hit.collider.gameObject;
+                        }
 
                         _digUpSprout = pickupable;
                     }
@@ -218,29 +226,6 @@ public class PlayerPickUp : FindInputBinding
         }
     }
 
-    private void SetText(string text, bool needsBindingReference)
-    {
-        string controlScheme = playerInput.currentControlScheme;
-
-        if (needsBindingReference)
-        {
-            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
-            {
-                InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} {text}");
-            }
-            else
-            {
-                InteractText.instance.SetText($"Press {FindBinding("Pickup")} {text}");
-            }
-        }
-        else
-        {
-            InteractText.instance.SetText($"{text}");
-        }
-
-        _textHasReseted = false;
-    }
-
     public void ResetPickup()
     {
         //Disable pickup
@@ -250,6 +235,11 @@ public class PlayerPickUp : FindInputBinding
         _isPickingUp = false;
 
         _buttonPresses = 0;
+
+        _PlantTree._Seed = null;
+        _PlantTree._sprout = null;
+
+        Destroy(_PlantTree._treeHollowGram);
 
         Debug.Log("Pickup reset");
 
@@ -304,10 +294,10 @@ public class PlayerPickUp : FindInputBinding
 
     private void OnDrawGizmos()
     {
-        if (!_isPickingUp)
+        /*if (!_isPickingUp)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _radius);
-        }
+        }*/
     }
 }

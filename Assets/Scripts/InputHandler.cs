@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerControls _Input;
+    [SerializeField] protected PlayerControls _Input;
 
     protected PlayerInput playerInput;
 
