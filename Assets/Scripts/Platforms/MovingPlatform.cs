@@ -5,7 +5,6 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private Transform[] _Waypoints;
-    private Transform _playerTransform;
 
     [SerializeField, Tooltip("Time for a lerp in seconds")] private float _Time;
 
@@ -33,11 +32,6 @@ public class MovingPlatform : MonoBehaviour
         if (_coroutine == null)
         {
             _coroutine = StartCoroutine(MovePlatform());
-        }
-
-        if(_isOnPlatform)
-        {
-            _playerTransform.localPosition = transform.localPosition;
         }
     }
 
@@ -103,7 +97,6 @@ public class MovingPlatform : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _isOnPlatform = true;
-            _playerTransform = other.GetComponent<Transform>();
             other.transform.SetParent(transform);
         }
     }
