@@ -117,7 +117,7 @@ public class FindInputBinding : InputHandler
             return "Unknown Button";
     }
 
-    protected void SetText(string text, bool needsBindingReference)
+    protected void SetText(string text, bool needsBindingReference, string inputType = default)
     {
         string controlScheme = playerInput.currentControlScheme;
 
@@ -125,14 +125,14 @@ public class FindInputBinding : InputHandler
         {
             if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
             {
-                InteractText.instance.SetText($"Press {FindIconBinding("Interact")} {text}");
+                InteractText.instance.SetText($"Press {FindIconBinding(inputType)} {text}");
             }
             else
             {
-                InteractText.instance.SetText($"Press {FindBinding("Interact")} {text}");
+                InteractText.instance.SetText($"Press {FindBinding(inputType)} {text}");
             }
         }
-        else
+        else if(inputType == default)
         {
             InteractText.instance.SetText($"{text}");
         }

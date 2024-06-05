@@ -6,6 +6,7 @@ public class SproutPickup : PickUpObject, IPickupable
 {
     [SerializeField] private GameObject _seed;
     private Plant _plant;
+    public BuildGrid _grid;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class SproutPickup : PickUpObject, IPickupable
         {
             PlayerData._Instance._ObjectPickedup = 0;
             Instantiate(_seed, transform.position, Quaternion.identity);
+            _grid.Setvalue(transform.position, 0);
             Destroy(gameObject);
         }
     }

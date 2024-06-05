@@ -6,10 +6,9 @@ public class PlantTree : FindInputBinding
 {
     [Header("Plant sprout")]
     [SerializeField] public GameObject _sprout;
-    [SerializeField] private GameObject _treeIndicator;
-    [SerializeField] private Grid grid;
+    [SerializeField] public GameObject _treeIndicator;
+    [SerializeField] private BuildGrid grid;
     public GameObject _Seed;
-    public GameObject _treeHollowGram;
 
     private Vector3 _plantPosition;
 
@@ -20,12 +19,22 @@ public class PlantTree : FindInputBinding
     private PlayerPickUp _playerPickup;
 
     private bool _inputIsActive;
-    private bool _hollowgramSpawned;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerPickup = GetComponent<PlayerPickUp>();
+
+        if(grid != null)
+        {
+            grid.GetXZ(transform.position, out int x, out int z);
+
+            Debug.Log(x + " " + z);
+
+            transform.position = new Vector3(x, transform.position.y, z);
+
+            grid.Setvalue(transform.position, 1);
+        }
     }
 
     // Update is called once per frame
@@ -38,24 +47,34 @@ public class PlantTree : FindInputBinding
                 RaycastHit hit;
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
 
+                if (grid == null)
+                {
+                    grid = hit.collider.gameObject.GetComponentInChildren<BuildGrid>();
+                    _sprout.GetComponent<SproutPickup>()._grid = grid;
+                }
+
                 grid.GetXZ(hit.point, out int x, out int z);
 
                 _plantPosition = grid.GetWorldPosition(x, z);
-                MakeTreeHologram();
+                if (grid.CanBuild(_plantPosition))
+                {
+                    _treeIndicator.SetActive(true);
+                    MakeTreeHologram();
+                }
 
                 if (!_inputIsActive)
                 {
                     _inputIsActive = true;
                     _Interact.Enable();
 
-                    SetText("to plant the seed", true);
+                    SetText("to plant the seed", true, "Interact");
                 }
             }
             else if (_inputIsActive)
             {
                 _Interact.Disable();
 
-                Destroy(_treeHollowGram.gameObject);
+                _treeIndicator.SetActive(false);
 
                 _inputIsActive = false;
 
@@ -64,9 +83,13 @@ public class PlantTree : FindInputBinding
 
             if (_Interact.WasPressedThisFrame())
             {
-                Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                if (grid.CanBuild(_plantPosition))
+                {
+                    grid.Setvalue(_plantPosition, 1);
+                    Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                }
 
-                Destroy(_treeHollowGram.gameObject);
+                _treeIndicator.SetActive(false);
                 Destroy(_Seed);
 
                 _playerPickup.ResetPickup();
@@ -82,9 +105,9 @@ public class PlantTree : FindInputBinding
 
     private void MakeTreeHologram()
     {
-        if (_treeHollowGram == null)
-            _treeHollowGram = Instantiate(_treeIndicator, _plantPosition, Quaternion.identity);
+        if (_treeIndicator.activeInHierarchy == false)
+            _treeIndicator.SetActive(true);
         else
-            _treeHollowGram.transform.position = _plantPosition;
+            _treeIndicator.transform.position = _plantPosition;
     }
 }

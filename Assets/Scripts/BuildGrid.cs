@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class Grid : InputHandler
+public class BuildGrid : InputHandler
 {
     [Header("Grid")]
     [SerializeField] private MeshRenderer _Ground;
@@ -56,6 +56,17 @@ public class Grid : InputHandler
             Physics.Raycast(ray, out hit, ground);
 
             Debug.Log(GetValue(hit.point));
+        }
+
+        if (!_showDebug)
+        {
+            for (int j = 0; j < _debugTextArray.GetLength(0); j++)
+            {
+                for (int i = 0; i < _debugTextArray.GetLength(1); i++)
+                {
+                    _debugTextArray[j, i].gameObject.SetActive(true);
+                }
+            }
         }
     }
 
@@ -125,6 +136,11 @@ public class Grid : InputHandler
 
         _width = Mathf.RoundToInt(xD);
         _height = Mathf.RoundToInt(zD);
+    }
+
+    public bool CanBuild(Vector3 buildPosition)
+    {
+        return GetValue(buildPosition) == 0;
     }
 
     private TextMesh CreateWorldText(Transform parent, string text, Vector3 position, int fontsize, Color color)
