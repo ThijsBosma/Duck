@@ -8,9 +8,12 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
 
     public void CollectDuck(PlayerData playerData)
     {
-        playerData._DucksCollectedInStage += 1;
-        PlayerData._Instance._DuckIDs.Add(_ID);
+        if (!playerData._DuckIDs.Contains(_ID))
+        {
+            playerData._DucksCollectedInStage += 1;
+            PlayerData._Instance._DuckIDs.Add(_ID);
 
-        Debug.Log(playerData._DucksCollectedInStage);
+            Debug.Log(playerData._DucksCollectedInStage);
+        }
     }
 }
