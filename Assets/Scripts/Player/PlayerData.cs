@@ -28,4 +28,6 @@ public class PlayerData : MonoBehaviour
     public int _WateringCanPickedup;
     public int _WateringCanHasWater;
     public int _SeedPickedup;
+
+    public List<int> _DuckIDs = new List<int>();
 }

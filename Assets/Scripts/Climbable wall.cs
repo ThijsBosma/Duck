@@ -7,9 +7,11 @@ public class Climbablewall : InputHandler
     private ThirdPersonController _controller;
     private int _buttonPresses;
 
+
     private void Start()
     {
         _controller = FindObjectOfType<ThirdPersonController>();
+        _controller._WallHeight = transform.lossyScale;
     }
 
     private void Update()
@@ -17,7 +19,7 @@ public class Climbablewall : InputHandler
         if(_Climb.WasPressedThisFrame())
         {
             _controller._IsClimbing = true;
-            _controller._ForwardWall = transform.forward;
+            _controller._WallRight = transform.right;
             _controller._WallUp = transform.up;
             _buttonPresses += 1;
         }

@@ -19,6 +19,7 @@ public class MovingPlatform : MonoBehaviour
     private Coroutine _coroutine;
 
     [SerializeField, Tooltip("In seconds")] private float _TimeBeforeMoving;
+    private bool _isOnPlatform;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class MovingPlatform : MonoBehaviour
         _endPostion = _Waypoints[1].position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_coroutine == null)
         {
@@ -60,7 +61,6 @@ public class MovingPlatform : MonoBehaviour
             time += Time.deltaTime / _Time;
 
             float t = _Curve.Evaluate(time);
-
             transform.position = Vector3.Lerp(_startPostion, _endPostion, t);
             yield return null;
         }
@@ -96,15 +96,13 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.transform.SetParent(transform);
+            _isOnPlatform = true;
+            other.transform.SetParent(transform);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.transform.SetParent(null);
-        }
+        _isOnPlatform = false;
+        other.transform.SetParent(null);
     }
 }
