@@ -32,7 +32,6 @@ public class ThirdPersonController : InputHandler
     private RaycastHit _slopeHit;
 
     [Header("Climbing")]
-    [SerializeField] private float _stopClimbingOffset;
     [HideInInspector] public bool _IsClimbing;
     [HideInInspector] public Vector3 _WallRight;
     [HideInInspector] public Vector3 _WallUp;
@@ -82,14 +81,7 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            if (transform.position.y < _WallHeight.y + _stopClimbingOffset)
-            {
-                controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
-            }
-            else
-            {
-                _IsClimbing = false;
-            }
+            controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
         }
 
         if (!_inAir)
