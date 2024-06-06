@@ -24,12 +24,27 @@ public class BuildGrid : InputHandler
     private TextMesh[,] _debugTextArray;
     private bool _textActive;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         GetMeshSize();
         ConstructGrid();
+    }
 
+    private void Start()
+    {
         _Input.UI.Enable();
+
+        if (!_showDebug)
+        {
+            for (int j = 0; j < _debugTextArray.GetLength(0); j++)
+            {
+                for (int i = 0; i < _debugTextArray.GetLength(1); i++)
+                {
+                    _debugTextArray[j, i].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     private void Update()
@@ -43,8 +58,6 @@ public class BuildGrid : InputHandler
             Physics.Raycast(ray, out hit, ground);
 
             mouseClick = hit.point;
-
-            Setvalue(hit.point, 69);
         }
 
         if (_Input.UI.RightClick.WasPressedThisFrame())
@@ -54,8 +67,6 @@ public class BuildGrid : InputHandler
 
             RaycastHit hit;
             Physics.Raycast(ray, out hit, ground);
-
-            Debug.Log(GetValue(hit.point));
         }
 
         if (!_showDebug)
@@ -90,6 +101,7 @@ public class BuildGrid : InputHandler
         {
             _gridArray[x, z] = value;
             _debugTextArray[x, z].text = _gridArray[x, z].ToString();
+            Debug.Log(_width + " " + _height);
         }
     }
 
@@ -164,19 +176,6 @@ public class BuildGrid : InputHandler
     {
         if (_showDebug)
         {
-            if (!_textActive)
-            {
-                for (int j = 0; j < _debugTextArray.GetLength(0); j++)
-                {
-                    for (int i = 0; i < _debugTextArray.GetLength(1); i++)
-                    {
-                        _debugTextArray[j, i].gameObject.SetActive(true);
-                    }
-                }
-
-                _textActive = true;
-            }
-
             for (int x = 0; x < _gridArray.GetLength(0); x++)
             {
                 for (int z = 0; z < _gridArray.GetLength(1); z++)
@@ -187,17 +186,6 @@ public class BuildGrid : InputHandler
             }
             Gizmos.DrawLine(GetWorldPosition(0, _width), GetWorldPosition(_width, _height));
             Gizmos.DrawLine(GetWorldPosition(_width, 0), GetWorldPosition(_width, _height));
-        }
-        else if (_textActive)
-        {
-            for (int j = 0; j < _debugTextArray.GetLength(0); j++)
-            {
-                for (int i = 0; i < _debugTextArray.GetLength(1); i++)
-                {
-                    _debugTextArray[j, i].gameObject.SetActive(false);
-                }
-            }
-            _textActive = false;
         }
     }
 }

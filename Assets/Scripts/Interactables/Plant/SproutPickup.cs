@@ -11,6 +11,8 @@ public class SproutPickup : PickUpObject, IPickupable
     private void Start()
     {
         _plant = GetComponentInChildren<Plant>();
+
+        SetSproutOnGrid();
     }
 
     public void PickUp()
@@ -19,12 +21,25 @@ public class SproutPickup : PickUpObject, IPickupable
         {
             PlayerData._Instance._ObjectPickedup = 0;
             Instantiate(_seed, transform.position, Quaternion.identity);
-            _grid.Setvalue(transform.position, 0);
-            Destroy(gameObject);
+           _grid.Setvalue(transform.position, 0);
+            Destroy(transform.parent.gameObject);
         }
     }
 
     public void LetGo()
     {
+    }
+
+    private void SetSproutOnGrid()
+    {
+        if (_grid != null)
+        {
+            _grid.GetXZ(transform.parent.position, out int x, out int z);
+
+            Debug.Log(x + " " + z);
+            _grid.SetValue(x, z, 1);
+
+            transform.parent.position = _grid.GetWorldPosition(x, z);
+        }
     }
 }

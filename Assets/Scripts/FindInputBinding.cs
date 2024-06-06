@@ -46,7 +46,7 @@ public class FindInputBinding : InputHandler
         }
         else
         {
-            Debug.LogError("Player input not found");
+            Debug.LogError("Player input component not found");
             return "";
         }
     }

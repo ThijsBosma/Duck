@@ -16,6 +16,9 @@ public class PlantTree : FindInputBinding
 
     [SerializeField] private LayerMask _PlantLayer;
 
+    [SerializeField] private Material _HoloGramMaterial;
+    private Color _holowGramColor;
+
     private PlayerPickUp _playerPickup;
 
     private bool _inputIsActive;
@@ -25,16 +28,7 @@ public class PlantTree : FindInputBinding
     {
         _playerPickup = GetComponent<PlayerPickUp>();
 
-        if(grid != null)
-        {
-            grid.GetXZ(transform.position, out int x, out int z);
-
-            Debug.Log(x + " " + z);
-
-            transform.position = new Vector3(x, transform.position.y, z);
-
-            grid.Setvalue(transform.position, 1);
-        }
+        _holowGramColor = _HoloGramMaterial.color;
     }
 
     // Update is called once per frame
@@ -47,19 +41,26 @@ public class PlantTree : FindInputBinding
                 RaycastHit hit;
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
 
-                if (grid == null)
-                {
-                    grid = hit.collider.gameObject.GetComponentInChildren<BuildGrid>();
-                    _sprout.GetComponent<SproutPickup>()._grid = grid;
-                }
-
                 grid.GetXZ(hit.point, out int x, out int z);
 
                 _plantPosition = grid.GetWorldPosition(x, z);
+                MakeTreeHologram();
+
                 if (grid.CanBuild(_plantPosition))
                 {
                     _treeIndicator.SetActive(true);
-                    MakeTreeHologram();
+                    if (grid.GetValue(_plantPosition) == 0)
+                    {
+                        _HoloGramMaterial.color = _holowGramColor;
+                    }
+                }
+                else if (!grid.CanBuild(_plantPosition))
+                {
+                    _HoloGramMaterial.color = Color.red;
+                }
+                else if (grid.GetValue(_plantPosition) == -1)
+                {
+                    _treeIndicator.SetActive(false);
                 }
 
                 if (!_inputIsActive)
@@ -83,23 +84,28 @@ public class PlantTree : FindInputBinding
 
             if (_Interact.WasPressedThisFrame())
             {
+                Debug.Log(grid.CanBuild(_plantPosition));
+
                 if (grid.CanBuild(_plantPosition))
                 {
                     grid.Setvalue(_plantPosition, 1);
-                    Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                    GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                    sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
+
+                    _treeIndicator.SetActive(false);
+                    Destroy(_Seed);
+
+                    _playerPickup.ResetPickup();
+
+                    PlayerData._Instance._ObjectPickedup = 0;
+
+                    _Interact.Disable();
                 }
-
-                _treeIndicator.SetActive(false);
-                Destroy(_Seed);
-
-                _playerPickup.ResetPickup();
-
-                PlayerData._Instance._ObjectPickedup = 0;
-
-                _Interact.Disable();
+                else
+                {
+                    Debug.LogError("You can't plant there dumbass");
+                }
             }
-
-            Debug.DrawRay(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f);
         }
     }
 
@@ -109,5 +115,18 @@ public class PlantTree : FindInputBinding
             _treeIndicator.SetActive(true);
         else
             _treeIndicator.transform.position = _plantPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Grid"))
+        {
+            grid = other.GetComponentInChildren<BuildGrid>();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        _HoloGramMaterial.color = _holowGramColor;
     }
 }
