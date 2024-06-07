@@ -5,4 +5,5 @@ using UnityEngine;
 public class Plant : FindInputBinding
 {
     public PlantState _state;
+    public BuildGrid _grid;
 }

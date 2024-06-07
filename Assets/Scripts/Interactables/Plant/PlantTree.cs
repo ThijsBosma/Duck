@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlantTree : FindInputBinding
 {
     [Header("Plant sprout")]
-    [SerializeField] private PlacedObject _PlacedObject;
     [SerializeField] public GameObject _sprout;
     [SerializeField] public GameObject _treeIndicator;
     [SerializeField] private BuildGrid grid;

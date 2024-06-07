@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PushTree : MonoBehaviour, IInteractable
 {
-    [SerializeField] public Transform _BridgePosition;
-    [SerializeField] public GameObject _BridgToSpawn;
-
-    [SerializeField] private float _MoveTime;
-
-    [SerializeField] private AnimationCurve _Curve;
-
     private AnimationEvent animationEvent;
     private Animator animator;
-    public AnimationClip animationClip;
+    [SerializeField] private AnimationClip animationClip;
+
+    private PlantState _state;
 
     private float _time;
 
@@ -22,21 +17,23 @@ public class PushTree : MonoBehaviour, IInteractable
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        _state = GetComponentInParent<Plant>()._state;
     }
 
     public void Interact()
     {
+        if(_state == PlantState.grown)
         animator.Play("FallOver");
         _hasInteracted = true;
     }
 
     /// <summary>
-    /// Called by animation even
+    /// Called by animation event
     /// </summary>
-    public void SpawnBridge()
+    public void SetPlantStateToGrown()
     {
-        Instantiate(_BridgToSpawn, _BridgePosition.position, _BridgePosition.rotation);
-        Destroy(gameObject);
+        _state = PlantState.grown;
     }
 
     public void UnInteract()

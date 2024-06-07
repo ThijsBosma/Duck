@@ -19,6 +19,7 @@ public class GrowPlant : Plant, IInteractable
         _treeCollider = GetComponentInChildren<CapsuleCollider>();
 
         _animator = GetComponentInChildren<Animator>();
+        _grid = GetComponentInParent<SproutPickup>()._grid;
     }
 
     public void Interact()

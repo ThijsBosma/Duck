@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RotateCamera : InputHandler
 {
-    [SerializeField] private Transform focusPoint;
     [SerializeField] private Transform camPos;
     [SerializeField] private Transform orientation;
 
@@ -24,7 +23,7 @@ public class RotateCamera : InputHandler
 
     private void Start()
     {
-        camPos.LookAt(focusPoint);
+        yRotation = transform.rotation.eulerAngles.y;
     }
 
     // Update is called once per frame

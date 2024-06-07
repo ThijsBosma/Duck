@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6096240661320541220}
   - component: {fileID: 276587963154036909}
   - component: {fileID: 4353312985122148851}
+  - component: {fileID: 3414405361149206770}
   - component: {fileID: 5716849198246399962}
   m_Layer: 8
   m_Name: GrowingPalmtree
@@ -98,35 +99,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9bd539f220c8840998aa5b31fdd9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BridgePosition: {fileID: 0}
-  _BridgToSpawn: {fileID: 8219013622842828665, guid: 531a9c9d422b0b74f880a2eeaac9e6ba,
-    type: 3}
-  _MoveTime: 1
-  _Curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   animationClip: {fileID: 7400000, guid: 73e4dc2e281f6694da4c4b64af10eac7, type: 2}
+--- !u!114 &3414405361149206770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430537992937412649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76e40d07217af844a8b4500be0fe32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BridgePosition: {fileID: 0}
+  _BridgToSpawn: {fileID: 2028861603641771138, guid: b1d7810b5a00c764782bbb49bfd9bcfc,
+    type: 3}
+  _offset: {x: 0, y: 0, z: 4}
 --- !u!95 &5716849198246399962
 Animator:
   serializedVersion: 5

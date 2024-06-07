@@ -7,6 +7,7 @@ public class BuildGrid : InputHandler
 {
     [Header("Grid")]
     [SerializeField] private Collider _Ground;
+    [SerializeField] private Transform[] BridgePlaces;
 
     [Header("Grid sizes")]
     [SerializeField] private int _width;
@@ -30,8 +31,8 @@ public class BuildGrid : InputHandler
     {
         base.Awake();
         GetMeshSize();
-        if (_debugTextArray == null)
-            ConstructGrid();
+        ConstructGrid();
+        SetBridgePlaces();
     }
 
     private void Start()
@@ -60,8 +61,6 @@ public class BuildGrid : InputHandler
             RaycastHit hit;
             Physics.Raycast(ray, out hit, ground);
         }
-
-
     }
 
     protected void ConstructGrid()
@@ -135,6 +134,39 @@ public class BuildGrid : InputHandler
         _height = Mathf.RoundToInt(zD);
     }
 
+    private void SetBridgePlaces()
+    {
+        foreach (Transform transform in BridgePlaces)
+        {
+            Vector3 origin = transform.position;
+
+            GetXZ(transform.position, out int x, out int z);
+            transform.position = GetWorldPosition(x, z) + new Vector3(_cellSize / 2, 0, _cellSize / 2);
+
+            //float offset = Vector3.Distance(origin, transform.position);
+
+            //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + offset);
+        }
+    }
+
+    public Vector3 GetBridgePosition(Vector3 worldPosition)
+    {
+        foreach (Transform transform in BridgePlaces)
+        {
+            GetXZ(transform.position, out int treeX, out int treeZ);
+            GetXZ(worldPosition, out int worldPosX, out int worldPosZ);
+
+            if(treeX == worldPosX && treeZ == worldPosZ)
+            {
+                Debug.Log("Bridge found on place");
+                return transform.gameObject.GetComponent<BridgeOffset>()._offset;
+            }
+        }
+
+        Debug.LogError("Bridge position not found");
+        return Vector3.zero;
+    }
+
     public bool CanBuild(Vector3 buildPosition)
     {
         return GetValue(buildPosition) == 0;
@@ -163,7 +195,6 @@ public class BuildGrid : InputHandler
         {
             GetMeshSize();
             ConstructGrid();
-
             DebugText.gameObject.SetActive(true);
 
             for (int x = 0; x < _gridArray.GetLength(0); x++)
