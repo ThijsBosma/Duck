@@ -678,36 +678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2678815009702539151, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: _WhatIsGround.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 3577017090560107472, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: _InputIcon
       value: 
       objectReference: {fileID: 1408244166}
-    - target: {fileID: 3577017090560107472, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: _pickupLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
-      value: 061e0b39-d77a-489c-86b0-90ba503459ca
-      objectReference: {fileID: 0}
-    - target: {fileID: 5252060811740535455, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
-      value: Player/Plant[/Keyboard/shift,/DualShock4GamepadHID/rightTrigger]
-      objectReference: {fileID: 0}
     - target: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
         type: 3}
       propertyPath: m_Name
@@ -718,19 +693,20 @@ PrefabInstance:
       propertyPath: _InputIcon
       value: 
       objectReference: {fileID: 1408244166}
-    - target: {fileID: 7393431176431124137, guid: defd73102389cf445bca76888565d117,
+    - target: {fileID: 8260459236080056223, guid: defd73102389cf445bca76888565d117,
         type: 3}
-      propertyPath: interactLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1274736463}
+    - target: {fileID: 8260459236080056223, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      propertyPath: _treeIndicator
+      value: 
+      objectReference: {fileID: 1298052463}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2025078317}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: defd73102389cf445bca76888565d117, type: 3}
 --- !u!4 &447923856 stripped
 Transform:
@@ -2098,7 +2074,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.5, y: 0, z: 0.5}
+  m_Center: {x: 0.5, y: -0.42, z: 0.5}
 --- !u!1 &1298052463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1931776623052539177, guid: 915c5ec4cb9c7224cb625c9990f95da8,
@@ -3880,35 +3856,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014859352}
   m_CullTransparentMesh: 1
---- !u!1 &2025078309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6454602585343978873, guid: defd73102389cf445bca76888565d117,
-    type: 3}
-  m_PrefabInstance: {fileID: 447923854}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2025078317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025078309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ddb5f8cb8b3db408350836b9660ebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps4Icons: {fileID: 0}
-  xboxIcons: {fileID: 0}
-  _sprout: {fileID: 3991281503102695042, guid: 9d07b71551dca7d41b8a1502a8be5c04, type: 3}
-  _treeIndicator: {fileID: 1298052463}
-  grid: {fileID: 1274736463}
-  _Seed: {fileID: 0}
-  _ShootRayPos: {fileID: 1963636679}
-  _PlantLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  _HoloGramMaterial: {fileID: 2100000, guid: bd884ff25d85ea3438ed95f4680ffb1f, type: 2}
 --- !u!1 &2060811433
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,11 +4307,6 @@ PrefabInstance:
     - target: {fileID: 915738642736062409, guid: 07997f6b181e37449a87baf7362aea5e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224166397510717974, guid: 07997f6b181e37449a87baf7362aea5e,
-        type: 3}
-      propertyPath: m_Drag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7533739360928074541, guid: 07997f6b181e37449a87baf7362aea5e,

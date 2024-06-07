@@ -6,7 +6,7 @@ using CodeMonkey.Utils;
 public class BuildGrid : InputHandler
 {
     [Header("Grid")]
-    [SerializeField] private MeshRenderer _Ground;
+    [SerializeField] private Collider _Ground;
 
     [Header("Grid sizes")]
     [SerializeField] private int _width;
@@ -16,35 +16,27 @@ public class BuildGrid : InputHandler
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask ground;
 
+    [Header("Debug")]
+    [SerializeField] private Transform DebugText;
     [SerializeField] private bool _showDebug;
 
     private Vector3 mouseClick;
 
     private int[,] _gridArray;
     private TextMesh[,] _debugTextArray;
-    private bool _textActive;
+    private bool _isTextCreated;
 
     protected override void Awake()
     {
         base.Awake();
         GetMeshSize();
-        ConstructGrid();
+        if (_debugTextArray == null)
+            ConstructGrid();
     }
 
     private void Start()
     {
         _Input.UI.Enable();
-
-        if (!_showDebug)
-        {
-            for (int j = 0; j < _debugTextArray.GetLength(0); j++)
-            {
-                for (int i = 0; i < _debugTextArray.GetLength(1); i++)
-                {
-                    _debugTextArray[j, i].gameObject.SetActive(false);
-                }
-            }
-        }
     }
 
     private void Update()
@@ -69,16 +61,7 @@ public class BuildGrid : InputHandler
             Physics.Raycast(ray, out hit, ground);
         }
 
-        if (!_showDebug)
-        {
-            for (int j = 0; j < _debugTextArray.GetLength(0); j++)
-            {
-                for (int i = 0; i < _debugTextArray.GetLength(1); i++)
-                {
-                    _debugTextArray[j, i].gameObject.SetActive(true);
-                }
-            }
-        }
+
     }
 
     protected void ConstructGrid()
@@ -90,9 +73,11 @@ public class BuildGrid : InputHandler
         {
             for (int z = 0; z < _gridArray.GetLength(1); z++)
             {
-                _debugTextArray[x, z] = CreateWorldText(transform, _gridArray[x, z].ToString(), GetWorldPosition(x, z) + new Vector3(_cellSize, 0, _cellSize) * 0.5f, 20, Color.white);
+                if (!_isTextCreated)
+                    _debugTextArray[x, z] = CreateWorldText(DebugText.transform, _gridArray[x, z].ToString(), GetWorldPosition(x, z) + new Vector3(_cellSize, 0, _cellSize) * 0.5f, 20, Color.white);
             }
         }
+        _isTextCreated = true;
     }
 
     public void SetValue(int x, int z, int value)
@@ -176,6 +161,11 @@ public class BuildGrid : InputHandler
     {
         if (_showDebug)
         {
+            GetMeshSize();
+            ConstructGrid();
+
+            DebugText.gameObject.SetActive(true);
+
             for (int x = 0; x < _gridArray.GetLength(0); x++)
             {
                 for (int z = 0; z < _gridArray.GetLength(1); z++)
@@ -186,6 +176,11 @@ public class BuildGrid : InputHandler
             }
             Gizmos.DrawLine(GetWorldPosition(0, _width), GetWorldPosition(_width, _height));
             Gizmos.DrawLine(GetWorldPosition(_width, 0), GetWorldPosition(_width, _height));
+
+        }
+        else if (!_showDebug)
+        {
+            DebugText.gameObject.SetActive(false);
         }
     }
 }

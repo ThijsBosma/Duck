@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2678815009702539151}
   - component: {fileID: 7393431176431124137}
   - component: {fileID: 3577017090560107472}
+  - component: {fileID: 8260459236080056223}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -259,6 +260,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 434eb317-73b5-436b-b507-8d2c04cfb6e3
     m_ActionName: Player/Pickup[/Keyboard/e,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 061e0b39-d77a-489c-86b0-90ba503459ca
+    m_ActionName: Player/Plant[/Keyboard/shift,/DualShock4GamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -361,8 +366,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _IsClimbing: 0
-  _ForwardWall: {x: 0, y: 0, z: 0}
+  _WallRight: {x: 0, y: 0, z: 0}
   _WallUp: {x: 0, y: 0, z: 0}
+  _WallHeight: {x: 0, y: 0, z: 0}
 --- !u!114 &7393431176431124137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,10 +405,38 @@ MonoBehaviour:
   xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
   _Orientation: {fileID: 4457297060851687852}
   _InputIcon: {fileID: 0}
+  _HoldPosition: {fileID: 6158935692093251446}
+  _PickupPosition: {fileID: 6434981121129229398}
   _radius: 0.5
   _pickupLayer:
     serializedVersion: 2
     m_Bits: 512
+  _buttonPresses: 0
+  _isPickingUp: 0
+--- !u!114 &8260459236080056223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454602585343978873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ddb5f8cb8b3db408350836b9660ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps4Icons: {fileID: 0}
+  xboxIcons: {fileID: 0}
+  _PlacedObject: {fileID: 0}
+  _sprout: {fileID: 3991281503102695042, guid: 9d07b71551dca7d41b8a1502a8be5c04, type: 3}
+  _treeIndicator: {fileID: 0}
+  grid: {fileID: 0}
+  _Seed: {fileID: 0}
+  _ShootRayPos: {fileID: 6434981121129229398}
+  _PlantLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _HoloGramMaterial: {fileID: 2100000, guid: bd884ff25d85ea3438ed95f4680ffb1f, type: 2}
 --- !u!1 &6787727880273650965
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class PushTree : MonoBehaviour, IInteractable
 
     [SerializeField] private AnimationCurve _Curve;
 
-    private AnimationEvent animationEvent; 
+    private AnimationEvent animationEvent;
     private Animator animator;
     public AnimationClip animationClip;
 
