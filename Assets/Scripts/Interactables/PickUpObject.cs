@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
@@ -18,12 +19,39 @@ public class PickUpObject : MonoBehaviour
 
     protected bool _hasInteracted;
 
+    [Header("Lerp")]
+    [SerializeField] private AnimationCurve _Curve;
+    [SerializeField] private float _Time;
+    protected bool _coroutineFinished;
+    private Coroutine _lerpCoroutine;
+
     private void Update()
     {
         if (_grabbed)
         {
-            transform.position = _HoldPosition.position + _offsePosition;
-            transform.rotation = _HoldPosition.rotation * _offsetRotation;
+            if (_lerpCoroutine == null && _coroutineFinished == false)
+            {
+               _lerpCoroutine = StartCoroutine(LerpToHoldPosition());
+            }
         }
+    }
+
+    protected IEnumerator LerpToHoldPosition()
+    {
+        float time = 0;
+
+        while (time < 1)
+        {
+            time += Time.deltaTime / _Time;
+
+            float t = _Curve.Evaluate(time);
+
+            transform.position = Vector3.Lerp(transform.position, _HoldPosition.position + _offsePosition, t);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _HoldPosition.rotation * _offsetRotation, t);
+            yield return null;
+        }
+
+        _coroutineFinished = true;
+        _lerpCoroutine = null;
     }
 }

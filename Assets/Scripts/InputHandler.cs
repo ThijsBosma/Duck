@@ -42,6 +42,7 @@ public class InputHandler : MonoBehaviour
         _Climb = _Input.Player.Climb;
 
         _Pickup = _Input.Player.Pickup;
+        _Pickup.Enable();
 
         _Plant = _Input.Player.Plant;
         _Plant.Enable();
