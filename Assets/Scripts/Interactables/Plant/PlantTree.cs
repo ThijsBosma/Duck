@@ -10,7 +10,8 @@ public class PlantTree : FindInputBinding
     [SerializeField] private BuildGrid grid;
     public GameObject _Seed;
 
-    private Vector3 _plantPosition;
+    private Transform _plantPosition;
+    private Transform t;
 
     [SerializeField] private Transform _ShootRayPos;
 
@@ -40,10 +41,10 @@ public class PlantTree : FindInputBinding
             {
                 RaycastHit hit;
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
+                t.position = hit.point;
+                grid.GetXZ(t, out int x, out int z);
 
-                grid.GetXZ(hit.point, out int x, out int z);
-
-                _plantPosition = grid.GetWorldPosition(x, z);
+                _plantPosition.position = grid.GetWorldPosition(x, z);
                 MakeTreeHologram();
 
                 if (grid.CanBuild(_plantPosition))
@@ -54,7 +55,7 @@ public class PlantTree : FindInputBinding
                         _HoloGramMaterial.color = _holowGramColor;
                     }
                 }
-                else if (!grid.CanBuild(_plantPosition))
+                else if (grid.GetValue(_plantPosition) == 1)
                 {
                     _HoloGramMaterial.color = Color.red;
                 }
@@ -84,12 +85,10 @@ public class PlantTree : FindInputBinding
 
             if (_Interact.WasPressedThisFrame())
             {
-                Debug.Log(grid.CanBuild(_plantPosition));
-
                 if (grid.CanBuild(_plantPosition))
                 {
                     grid.Setvalue(_plantPosition, 1);
-                    GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                    GameObject sprout = Instantiate(_sprout, _plantPosition.position, Quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
 
                     _treeIndicator.SetActive(false);
@@ -114,7 +113,7 @@ public class PlantTree : FindInputBinding
         if (_treeIndicator.activeInHierarchy == false)
             _treeIndicator.SetActive(true);
         else
-            _treeIndicator.transform.position = _plantPosition;
+            _treeIndicator.transform.position = _plantPosition.position;
     }
 
     private void OnTriggerEnter(Collider other)

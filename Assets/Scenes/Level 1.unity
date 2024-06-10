@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 196905234}
   - component: {fileID: 196905235}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset8
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1055,7 +1055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 4.38}
+  _offsetRotation: {x: 0, y: -0.070270084, z: 0, w: 0.997528}
 --- !u!1 &204263708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1533,7 @@ GameObject:
   - component: {fileID: 306311618}
   - component: {fileID: 306311619}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset7
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1565,7 +1566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 4.1}
+  _offsetRotation: {x: 0, y: -0.08435612, z: 0, w: 0.99643564}
 --- !u!1001 &322468412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1817,7 +1819,7 @@ GameObject:
   - component: {fileID: 348865576}
   - component: {fileID: 348865577}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset1
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 1.63, y: 0, z: 3.03}
+  _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &392026089
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,7 +2733,7 @@ MonoBehaviour:
   _ObjectPickedup: 0
   _KeyPickedup: 0
   _WateringCanPickedup: 0
-  _WateringCanHasWater: 0
+  _WateringCanHasWater: 1
   _SeedPickedup: 0
   _DuckIDs: 
 --- !u!4 &616329669
@@ -3007,7 +3010,7 @@ GameObject:
   - component: {fileID: 733844938}
   - component: {fileID: 733844939}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset4
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3022,7 +3025,7 @@ Transform:
   m_GameObject: {fileID: 733844937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.71, y: 0, z: 0.781}
+  m_LocalPosition: {x: 1.722, y: 0, z: 0.781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3040,7 +3043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 3.72}
+  _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &769754136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,7 +3586,7 @@ GameObject:
   - component: {fileID: 921679495}
   - component: {fileID: 921679496}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset3
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3615,7 +3619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 3.45}
+  _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &932070541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4077,7 +4082,7 @@ GameObject:
   - component: {fileID: 1143371870}
   - component: {fileID: 1143371871}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset5
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4092,7 +4097,7 @@ Transform:
   m_GameObject: {fileID: 1143371869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.26, y: 0, z: 0.76}
+  m_LocalPosition: {x: 2.2, y: 0, z: 0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4110,7 +4115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 0}
+  _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1146752022
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,7 +5818,7 @@ GameObject:
   - component: {fileID: 1675111570}
   - component: {fileID: 1675111571}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset2
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5845,7 +5851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 0}
+  _offsetPosition: {x: 0, y: 0, z: 3.24}
+  _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1691439215
 GameObject:
   m_ObjectHideFlags: 0
@@ -6100,12 +6107,12 @@ PrefabInstance:
     - target: {fileID: 3900004793175360113, guid: 9d07b71551dca7d41b8a1502a8be5c04,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.7
+      value: 5.22
       objectReference: {fileID: 0}
     - target: {fileID: 3900004793175360113, guid: 9d07b71551dca7d41b8a1502a8be5c04,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.96
+      value: 1.71
       objectReference: {fileID: 0}
     - target: {fileID: 3900004793175360113, guid: 9d07b71551dca7d41b8a1502a8be5c04,
         type: 3}
@@ -6246,7 +6253,7 @@ GameObject:
   - component: {fileID: 1796726453}
   - component: {fileID: 1796726454}
   m_Layer: 0
-  m_Name: BridgeOffset
+  m_Name: BridgeOffset6
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6279,7 +6286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 0, z: 3.48}
+  _offsetPosition: {x: 0, y: 0, z: 3.92}
+  _offsetRotation: {x: 0, y: -0.070592165, z: 0, w: 0.99750525}
 --- !u!4 &1823878465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 698411966977086065, guid: 95c6c180e29c9bb409c034bacacaaafd,

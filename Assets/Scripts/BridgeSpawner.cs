@@ -24,14 +24,16 @@ public class BridgeSpawner : MonoBehaviour
 
         Debug.Log(bridgePivot.name);
 
-        _plant._grid.GetXZ(transform.parent.parent.parent.position, out int x, out int z);
+        _plant._grid.GetXZ(transform.parent.parent.parent, out int x, out int z);
         bridge.transform.position = _plant._grid.GetWorldPosition(x, z);
-        Vector3 offset = _plant._grid.GetBridgePosition(transform.parent.parent.parent.position);
-        Debug.Log(offset);
+        
+        Vector3 offsetPosition = _plant._grid.GetBridgeOffsetPosition(transform.parent.parent.parent);
+        Quaternion offsetRotation = _plant._grid.GetBridgeOffsetRotation(transform.parent.parent.parent);
 
-        if (offset != Vector3.zero)
+        if (offsetPosition != Vector3.zero && offsetRotation != Quaternion.identity)
         {
-            bridgePivot.position += _offset;
+            bridgePivot.localPosition = new Vector3(bridgePivot.localPosition.x, bridgePivot.localPosition.y, offsetPosition.z);
+            bridgePivot.rotation = Quaternion.Euler(bridgePivot.eulerAngles.x, offsetRotation.eulerAngles.y, bridgePivot.eulerAngles.z);
         }
 
         Destroy(gameObject);

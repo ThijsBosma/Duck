@@ -85,11 +85,10 @@ public class BuildGrid : InputHandler
         {
             _gridArray[x, z] = value;
             _debugTextArray[x, z].text = _gridArray[x, z].ToString();
-            Debug.Log(_width + " " + _height);
         }
     }
 
-    public void Setvalue(Vector3 worldPosition, int value)
+    public void Setvalue(Transform worldPosition, int value)
     {
         int x, z;
         GetXZ(worldPosition, out x, out z);
@@ -104,7 +103,7 @@ public class BuildGrid : InputHandler
             return -1;
     }
 
-    public int GetValue(Vector3 worldPosition)
+    public int GetValue(Transform worldPosition)
     {
         int x, z;
         GetXZ(worldPosition, out x, out z);
@@ -116,10 +115,16 @@ public class BuildGrid : InputHandler
         return new Vector3(x, transform.position.y, z) * _cellSize + new Vector3(transform.position.x, 0, transform.position.z);
     }
 
-    public void GetXZ(Vector3 worldPosition, out int x, out int z)
+    public void GetXZ(Transform worldPosition, out int x, out int z)
     {
-        x = Mathf.FloorToInt((worldPosition - transform.position).x / _cellSize);
-        z = Mathf.FloorToInt((worldPosition - transform.position).z / _cellSize);
+        Debug.Log((worldPosition.position - transform.position).x / _cellSize + " " + (worldPosition.position - transform.position).z / _cellSize);
+        Debug.Log(worldPosition.name);
+
+        x = Mathf.FloorToInt((worldPosition.position - transform.position).x / _cellSize);
+        z = Mathf.FloorToInt((worldPosition.position - transform.position).z / _cellSize);
+
+        //Debug.Log(x + " " + z);
+        //Debug.Log(worldPosition.name);
     }
 
     protected void GetMeshSize()
@@ -138,36 +143,54 @@ public class BuildGrid : InputHandler
     {
         foreach (Transform transform in BridgePlaces)
         {
-            Vector3 origin = transform.position;
+            GetXZ(transform, out int x, out int z);
 
-            GetXZ(transform.position, out int x, out int z);
             transform.position = GetWorldPosition(x, z) + new Vector3(_cellSize / 2, 0, _cellSize / 2);
-
-            //float offset = Vector3.Distance(origin, transform.position);
-
-            //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + offset);
         }
     }
 
-    public Vector3 GetBridgePosition(Vector3 worldPosition)
+    public Vector3 GetBridgeOffsetPosition(Transform worldPosition)
     {
         foreach (Transform transform in BridgePlaces)
         {
-            GetXZ(transform.position, out int treeX, out int treeZ);
+            GetXZ(transform, out int treeX, out int treeZ);
             GetXZ(worldPosition, out int worldPosX, out int worldPosZ);
 
-            if(treeX == worldPosX && treeZ == worldPosZ)
+            /*Debug.Log(treeX + " " + treeZ);
+            Debug.Log(transform.name);
+            Debug.Log(worldPosX + " " + worldPosZ);
+            Debug.Log(worldPosition.name);*/
+
+            if (treeX == worldPosX && treeZ == worldPosZ)
             {
-                Debug.Log("Bridge found on place");
-                return transform.gameObject.GetComponent<BridgeOffset>()._offset;
+                Debug.Log("Bridge offset found on grid space");
+                return transform.gameObject.GetComponent<BridgeOffset>()._offsetPosition;
             }
         }
 
-        Debug.LogError("Bridge position not found");
+        Debug.LogError("Bridge offset not found on grid space");
         return Vector3.zero;
     }
 
-    public bool CanBuild(Vector3 buildPosition)
+    public Quaternion GetBridgeOffsetRotation(Transform worldRotation)
+    {
+        foreach (Transform transform in BridgePlaces)
+        {
+            GetXZ(transform, out int treeX, out int treeZ);
+            GetXZ(worldRotation, out int worldPosX, out int worldPosZ);
+
+            if (treeX == worldPosX && treeZ == worldPosZ)
+            {
+                Debug.Log("Bridge offset found on grid space");
+                return transform.gameObject.GetComponent<BridgeOffset>()._offsetRotation;
+            }
+        }
+
+        Debug.LogError("Bridge offset not found on grid space");
+        return Quaternion.identity;
+    }
+
+    public bool CanBuild(Transform buildPosition)
     {
         return GetValue(buildPosition) == 0;
     }
