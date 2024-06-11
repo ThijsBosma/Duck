@@ -32,7 +32,8 @@ public class BuildGrid : InputHandler
         base.Awake();
         GetMeshSize();
         ConstructGrid();
-        SetBridgePlaces();
+        if (BridgePlaces.Length > 0)
+            SetBridgePlaces();
     }
 
     private void Start()
