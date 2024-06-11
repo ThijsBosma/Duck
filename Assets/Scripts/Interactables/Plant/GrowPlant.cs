@@ -8,7 +8,7 @@ public class GrowPlant : Plant, IInteractable
 
     [SerializeField] private Transform _SpawnPoint;
 
-    private CapsuleCollider _treeCollider;
+    private Collider _treeCollider;
     private Animator _animator;
 
     private bool canGrow;
