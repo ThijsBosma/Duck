@@ -24,7 +24,7 @@ public class BridgeSpawner : MonoBehaviour
 
         Debug.Log(bridgePivot.name);
 
-        _plant._grid.GetXZ(transform.parent.parent.parent, out int x, out int z);
+        _plant._grid.GetXZ(transform.parent.parent.parent.position, out int x, out int z, false);
         bridge.transform.position = _plant._grid.GetWorldPosition(x, z);
         
         Vector3 offsetPosition = _plant._grid.GetBridgeOffsetPosition(transform.parent.parent.parent);
@@ -36,6 +36,6 @@ public class BridgeSpawner : MonoBehaviour
             bridgePivot.rotation = Quaternion.Euler(bridgePivot.eulerAngles.x, offsetRotation.eulerAngles.y, bridgePivot.eulerAngles.z);
         }
 
-        Destroy(gameObject);
+        Destroy(transform.parent.parent.parent.gameObject);
     }
 }

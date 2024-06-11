@@ -10,7 +10,7 @@ public class PlantTree : FindInputBinding
     [SerializeField] private BuildGrid grid;
     public GameObject _Seed;
 
-    private Transform _plantPosition;
+    private Vector3 _plantPosition;
     private Transform t;
 
     [SerializeField] private Transform _ShootRayPos;
@@ -41,10 +41,10 @@ public class PlantTree : FindInputBinding
             {
                 RaycastHit hit;
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
-                t.position = hit.point;
-                grid.GetXZ(t, out int x, out int z);
+                
+                grid.GetXZ(hit.point, out int x, out int z, false);
 
-                _plantPosition.position = grid.GetWorldPosition(x, z);
+                _plantPosition = grid.GetWorldPosition(x, z);
                 MakeTreeHologram();
 
                 if (grid.CanBuild(_plantPosition))
@@ -88,7 +88,7 @@ public class PlantTree : FindInputBinding
                 if (grid.CanBuild(_plantPosition))
                 {
                     grid.Setvalue(_plantPosition, 1);
-                    GameObject sprout = Instantiate(_sprout, _plantPosition.position, Quaternion.identity);
+                    GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
 
                     _treeIndicator.SetActive(false);
@@ -113,7 +113,7 @@ public class PlantTree : FindInputBinding
         if (_treeIndicator.activeInHierarchy == false)
             _treeIndicator.SetActive(true);
         else
-            _treeIndicator.transform.position = _plantPosition.position;
+            _treeIndicator.transform.position = _plantPosition;
     }
 
     private void OnTriggerEnter(Collider other)

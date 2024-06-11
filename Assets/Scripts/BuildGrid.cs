@@ -88,10 +88,10 @@ public class BuildGrid : InputHandler
         }
     }
 
-    public void Setvalue(Transform worldPosition, int value)
+    public void Setvalue(Vector3 worldPosition, int value)
     {
         int x, z;
-        GetXZ(worldPosition, out x, out z);
+        GetXZ(worldPosition, out x, out z, false);
         SetValue(x, z, value);
     }
 
@@ -103,10 +103,10 @@ public class BuildGrid : InputHandler
             return -1;
     }
 
-    public int GetValue(Transform worldPosition)
+    public int GetValue(Vector3 worldPosition)
     {
         int x, z;
-        GetXZ(worldPosition, out x, out z);
+        GetXZ(worldPosition, out x, out z, false);
         return GetValue(x, z);
     }
 
@@ -115,16 +115,17 @@ public class BuildGrid : InputHandler
         return new Vector3(x, transform.position.y, z) * _cellSize + new Vector3(transform.position.x, 0, transform.position.z);
     }
 
-    public void GetXZ(Transform worldPosition, out int x, out int z)
+    public void GetXZ(Vector3 worldPosition, out int x, out int z, bool isBridgeOffsetObject)
     {
-        Debug.Log((worldPosition.position - transform.position).x / _cellSize + " " + (worldPosition.position - transform.position).z / _cellSize);
-        Debug.Log(worldPosition.name);
+        float xTemp = worldPosition.x;
+        float xFraction = xTemp - Mathf.Floor(xTemp);
 
-        x = Mathf.FloorToInt((worldPosition.position - transform.position).x / _cellSize);
-        z = Mathf.FloorToInt((worldPosition.position - transform.position).z / _cellSize);
+        if (xFraction >= 0.5f && isBridgeOffsetObject)
+            x = Mathf.RoundToInt((worldPosition - transform.position).x / _cellSize);
+        else
+            x = Mathf.FloorToInt((worldPosition - transform.position).x / _cellSize);
 
-        //Debug.Log(x + " " + z);
-        //Debug.Log(worldPosition.name);
+        z = Mathf.FloorToInt((worldPosition - transform.position).z / _cellSize);
     }
 
     protected void GetMeshSize()
@@ -143,7 +144,7 @@ public class BuildGrid : InputHandler
     {
         foreach (Transform transform in BridgePlaces)
         {
-            GetXZ(transform, out int x, out int z);
+            GetXZ(transform.position, out int x, out int z, true);
 
             transform.position = GetWorldPosition(x, z) + new Vector3(_cellSize / 2, 0, _cellSize / 2);
         }
@@ -153,8 +154,8 @@ public class BuildGrid : InputHandler
     {
         foreach (Transform transform in BridgePlaces)
         {
-            GetXZ(transform, out int treeX, out int treeZ);
-            GetXZ(worldPosition, out int worldPosX, out int worldPosZ);
+            GetXZ(transform.position, out int treeX, out int treeZ, true);
+            GetXZ(worldPosition.position, out int worldPosX, out int worldPosZ, true);
 
             /*Debug.Log(treeX + " " + treeZ);
             Debug.Log(transform.name);
@@ -176,8 +177,8 @@ public class BuildGrid : InputHandler
     {
         foreach (Transform transform in BridgePlaces)
         {
-            GetXZ(transform, out int treeX, out int treeZ);
-            GetXZ(worldRotation, out int worldPosX, out int worldPosZ);
+            GetXZ(transform.position, out int treeX, out int treeZ, true);
+            GetXZ(worldRotation.position, out int worldPosX, out int worldPosZ, true);
 
             if (treeX == worldPosX && treeZ == worldPosZ)
             {
@@ -190,7 +191,7 @@ public class BuildGrid : InputHandler
         return Quaternion.identity;
     }
 
-    public bool CanBuild(Transform buildPosition)
+    public bool CanBuild(Vector3 buildPosition)
     {
         return GetValue(buildPosition) == 0;
     }
