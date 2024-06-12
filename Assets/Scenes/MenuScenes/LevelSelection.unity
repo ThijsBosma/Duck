@@ -306,7 +306,6 @@ MonoBehaviour:
   _Levels:
   - {fileID: 609174582}
   - {fileID: 848233266}
-  _ImageID: 0
 --- !u!1 &254166077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,10 +1235,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _DucksCollectedInStage: 0
   _TotalDucksCollected: 0
-  _ObjectPicedkUp: 0
-  _KeyPickedUp: 0
+  _ObjectPickedup: 0
+  _KeyPickedup: 0
   _WateringCanPickedup: 0
   _WateringCanHasWater: 0
+  _SeedPickedup: 0
   _DuckIDs: 
 --- !u!4 &964602501
 Transform:
