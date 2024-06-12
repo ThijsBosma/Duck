@@ -124,7 +124,13 @@ public class BuildGrid : InputHandler
         if (xFraction >= 0.5f && isBridgeOffsetObject)
             x = Mathf.RoundToInt((worldPosition - transform.position).x / _cellSize);
         else
-            x = Mathf.FloorToInt((worldPosition - transform.position).x / _cellSize);
+        {
+            int worldX = Mathf.FloorToInt(worldPosition.x);
+            int gridX = Mathf.FloorToInt(transform.position.x);
+
+            x = Mathf.FloorToInt((worldX - gridX) / _cellSize);
+        }
+
 
         z = Mathf.FloorToInt((worldPosition - transform.position).z / _cellSize);
     }
