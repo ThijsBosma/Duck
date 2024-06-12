@@ -32,7 +32,7 @@ public class BridgeSpawner : MonoBehaviour
 
         if (offsetPosition != Vector3.zero && offsetRotation != Quaternion.identity)
         {
-            bridgePivot.localPosition = new Vector3(bridgePivot.localPosition.x, bridgePivot.localPosition.y, offsetPosition.z);
+            bridgePivot.localPosition = new Vector3(bridgePivot.localPosition.x, offsetPosition.y, offsetPosition.z);
             bridgePivot.rotation = Quaternion.Euler(bridgePivot.eulerAngles.x, offsetRotation.eulerAngles.y, bridgePivot.eulerAngles.z);
         }
 
