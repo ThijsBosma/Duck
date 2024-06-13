@@ -22,23 +22,32 @@ public class PickUpObject : MonoBehaviour
     [Header("Lerp")]
     [SerializeField] private AnimationCurve _Curve;
     [SerializeField] private float _Time;
-    protected bool _coroutineFinished;
-    private Coroutine _lerpCoroutine;
 
-    private void Update()
+    private Coroutine _pickupCoroutine;
+    protected Coroutine _dropDownCoroutine;
+    protected bool _isPickupCoroutineFinished;
+
+    private void FixedUpdate()
     {
         if (_grabbed)
         {
-            if (_lerpCoroutine == null && _coroutineFinished == false)
+            if (_pickupCoroutine == null && !_isPickupCoroutineFinished)
             {
-               _lerpCoroutine = StartCoroutine(LerpToHoldPosition());
+               _pickupCoroutine = StartCoroutine(LerpToHoldPosition());
             }
         }
     }
 
-    protected IEnumerator LerpToHoldPosition()
+    /// <summary>
+    /// Goes from the transform of the gameobject to the holdposition
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator LerpToHoldPosition()
     {
         float time = 0;
+
+        Vector3 startPosition = transform.position;
+        Quaternion startRotation = transform.rotation;
 
         while (time < 1)
         {
@@ -46,12 +55,37 @@ public class PickUpObject : MonoBehaviour
 
             float t = _Curve.Evaluate(time);
 
-            transform.position = Vector3.Lerp(transform.position, _HoldPosition.position + _offsePosition, t);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _HoldPosition.rotation * _offsetRotation, t);
+            transform.position = Vector3.Lerp(startPosition, _HoldPosition.position + _offsePosition, t);
+            transform.rotation = Quaternion.Slerp(startRotation, _HoldPosition.rotation * _offsetRotation, t);
             yield return null;
         }
 
-        _coroutineFinished = true;
-        _lerpCoroutine = null;
+        _isPickupCoroutineFinished = true;
+        _pickupCoroutine = null;
     }
-}
+
+    /// <summary>
+    /// Goes from the hold position to the pickup position
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator LerpToPickupPostion()
+    {
+        float time = 0;
+        Vector3 startPostion = transform.position;
+        Quaternion startRotation = transform.rotation;
+            
+        while (time < 1)
+        {
+            time += Time.deltaTime / _Time;
+
+            float t = _Curve.Evaluate(time);
+
+            transform.position = Vector3.Lerp(startPostion, _PickupPosition.position, t);
+            transform.rotation = Quaternion.Slerp(startRotation, _PickupPosition.rotation, t);
+            yield return null;
+        }
+
+        _isPickupCoroutineFinished = false;
+        _dropDownCoroutine = null;
+    }
+}   
