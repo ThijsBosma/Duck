@@ -24,8 +24,6 @@ public class UpDownFloat : MonoBehaviour
     {
         transform.rotation *= Quaternion.Euler(0, _Speed * Time.deltaTime * 10f, 0);
 
-        float sinY = Mathf.Sin(Time.time * _Frequency) * _Magnitude;
-
         transform.position = _startPosition + transform.up * Mathf.Sin(Time.time * _Frequency + _offset) * _Magnitude;
     }
 }
