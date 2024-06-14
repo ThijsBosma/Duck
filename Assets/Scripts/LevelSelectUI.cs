@@ -9,11 +9,6 @@ public class LevelSelectUI : MonoBehaviour
 
     private int _currentIndex;
 
-    public void LoadLevel(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
     public void ShowNextLevel()
     {
         _Levels[_currentIndex].SetActive(false);
