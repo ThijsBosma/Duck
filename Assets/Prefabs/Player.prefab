@@ -288,13 +288,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.54
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.19, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5789226709662257355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -341,10 +341,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.62
-  m_Height: 1
+  m_Radius: 0.37
+  m_Height: 0.64
   m_Direction: 1
-  m_Center: {x: 0, y: -0.61, z: 0}
+  m_Center: {x: 0, y: -0.39, z: 0.21}
 --- !u!114 &2678815009702539151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps4Icons: {fileID: 0}
   xboxIcons: {fileID: 0}
-  _PlacedObject: {fileID: 0}
   _sprout: {fileID: 3991281503102695042, guid: 9d07b71551dca7d41b8a1502a8be5c04, type: 3}
   _treeIndicator: {fileID: 0}
   grid: {fileID: 0}

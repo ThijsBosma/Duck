@@ -33,9 +33,18 @@ public class Climbablewall : InputHandler
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<ThirdPersonController>() != null)
+        if (other.gameObject.CompareTag("Player") && _Climb.enabled == false)
         {
             _Climb.Enable();
+            Debug.Log("Enabled");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _Climb.Disable();
         }
     }
 }
