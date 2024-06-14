@@ -19,7 +19,6 @@ public class MovingPlatform : MonoBehaviour
     private Coroutine _coroutine;
 
     [SerializeField, Tooltip("In seconds")] private float _TimeBeforeMoving;
-    private bool _isOnPlatform;
 
     private void Start()
     {
@@ -96,13 +95,11 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _isOnPlatform = true;
             other.transform.SetParent(transform);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        _isOnPlatform = false;
         other.transform.SetParent(null);
     }
 }
