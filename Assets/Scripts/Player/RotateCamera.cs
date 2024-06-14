@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateCamera : InputHandler
 {
@@ -28,7 +29,8 @@ public class RotateCamera : InputHandler
         yRotation = _startRotation.eulerAngles.x;
         xRotation = _startRotation.eulerAngles.y;
 
-        this.enabled = false;
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            this.enabled = false;
     }
 
     // Update is called once per frame
