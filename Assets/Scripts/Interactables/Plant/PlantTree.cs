@@ -88,6 +88,9 @@ public class PlantTree : FindInputBinding
                 if (grid.CanBuild(_plantPosition))
                 {
                     grid.Setvalue(_plantPosition, 1);
+
+                    Debug.Log(_plantPosition);
+
                     GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
 
