@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CollectionInteractable : MonoBehaviour, IPlayerData
 {
-    [SerializeField] private int _ID;
+    public DuckData _duckData;
 
     public void CollectDuck(PlayerData playerData)
     {
-        if (!playerData._DuckIDs.Contains(_ID))
+        if (!playerData._DuckIDs.Contains(_duckData._ID))
         {
             playerData._DucksCollectedInStage += 1;
-            PlayerData._Instance._DuckIDs.Add(_ID);
+            PlayerData._Instance._DuckIDs.Add(_duckData._ID);
 
             Debug.Log(playerData._DucksCollectedInStage);
         }
     }
+}
+
+[System.Serializable]
+public class DuckData
+{
+    public int _ID;
+    public GameObject _DuckObject;
 }

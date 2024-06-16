@@ -55,8 +55,8 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
         }
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
 
         AddDownForce();
         GetMovementInputs();
