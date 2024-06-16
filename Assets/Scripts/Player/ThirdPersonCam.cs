@@ -29,6 +29,9 @@ public class ThirdPersonCam : InputHandler
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager._Instance._enableMove)
+            return;
+
         viewDir = player.position - new Vector3(camT.position.x, player.position.y, camT.position.z);
         orientation.forward = viewDir.normalized;
 

@@ -36,6 +36,9 @@ public class RotateCamera : InputHandler
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager._Instance._enableCameraRotate)
+            return;
+
         if (_Look.IsPressed())
         {
             lookDir = _Look.ReadValue<Vector2>();
@@ -56,5 +59,18 @@ public class RotateCamera : InputHandler
         }
         transform.rotation = Quaternion.Euler(yRotation, xRotation, transform.rotation.eulerAngles.z);
         orientation.rotation = Quaternion.Euler(0, xRotation, 0);
+    }
+
+    /// <summary>
+    /// Enable inputs after the camera has rotated
+    /// </summary>
+    public void ActivateMovement()
+    {
+        GameManager._Instance._enableMove = true;
+    }
+
+    public void ActivateCameraRotation()
+    {
+        GameManager._Instance._enableCameraRotate = true;
     }
 }

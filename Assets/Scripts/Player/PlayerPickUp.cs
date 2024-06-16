@@ -22,7 +22,6 @@ public class PlayerPickUp : FindInputBinding
 
     private IPickupable _Pickupable;
 
-    private IPickupable _boxPickupable;
     private IPickupable _wateringCanPickupable;
     private IPickupable _seedPickupable;
     private IPickupable _digUpSprout;
@@ -51,12 +50,7 @@ public class PlayerPickUp : FindInputBinding
             {
                 PlayerData._Instance._ObjectPickedup = 1;
 
-                _isPickingUp = true;
-                if (_boxPickupable != null)
-                {
-                    _boxPickupable.PickUp();
-                }
-                else if (_wateringCanPickupable != null)
+                if (_wateringCanPickupable != null)
                 {
                     PlayerData._Instance._WateringCanPickedup = 1;
                     _wateringCanPickupable.PickUp();
@@ -80,11 +74,7 @@ public class PlayerPickUp : FindInputBinding
             }
             else if (_buttonPresses > 1)
             {
-                if (_boxPickupable != null)
-                {
-                    _boxPickupable.LetGo();
-                }
-                else if (_wateringCanPickupable != null)
+                if (_wateringCanPickupable != null)
                 {
                     PlayerData._Instance._WateringCanPickedup = 0;
                     _wateringCanPickupable.LetGo();
@@ -138,9 +128,8 @@ public class PlayerPickUp : FindInputBinding
                 if (pickupable != null)
                 {
                     _pickupObject = pickupable.ToString();
-                    if (pickupable is BoxPickup)
-                        _boxPickupable = pickupable;
-                    else if (pickupable is WateringCan)
+                   
+                    if (pickupable is WateringCan)
                         _wateringCanPickupable = pickupable;
                     else if (pickupable is SeedPickup)
                     {
@@ -167,23 +156,13 @@ public class PlayerPickUp : FindInputBinding
     {
         if (!_isPickingUp)
         {
-            if (_boxPickupable != null)
-                HandleBoxPickup();
-            else if (_wateringCanPickupable != null)
+            if (_wateringCanPickupable != null)
                 HandleWateringCanPickup();
             else if (_seedPickupable != null && _PlantTree._Seed != null)
                 HandleSeedPickUp();
             else if (_digUpSprout != null)
                 HandleGetSeedPickUp();
         }
-    }
-
-    private void HandleBoxPickup()
-    {
-        _Pickup.Enable();
-        _pickupableInRange = true;
-
-        SetText("to lift the box", true, "Pickup");
     }
 
     private void HandleWateringCanPickup()
@@ -241,7 +220,6 @@ public class PlayerPickUp : FindInputBinding
         _pickupObject = "";
 
         //Reset pickupables to null
-        _boxPickupable = null;
         _wateringCanPickupable = null;
         _seedPickupable = null;
         _digUpSprout = null;

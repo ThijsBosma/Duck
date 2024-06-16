@@ -44,6 +44,9 @@ public class ThirdPersonController : InputHandler
 
     void Update()
     {
+        if (!GameManager._Instance._enableMove)
+            return;
+
         //Check if we are standing on a slope
         if (OnSlope())
         {
@@ -113,7 +116,8 @@ public class ThirdPersonController : InputHandler
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
-            Destroy(other.gameObject);
+            if (other.gameObject.name != "FinalDuck")
+                Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Edge"))
@@ -124,7 +128,7 @@ public class ThirdPersonController : InputHandler
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
             return angle < controller.slopeLimit && angle != 0;

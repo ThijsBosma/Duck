@@ -16,6 +16,9 @@ public class PlayerAnimator : InputHandler
 
     private void Update()
     {
+        if (!GameManager._Instance._enableMove)
+            return;
+
         _movementValue = _Move.ReadValue<Vector2>();
 
         if(_movementValue.magnitude > 0.5f && !_isPickingUp)

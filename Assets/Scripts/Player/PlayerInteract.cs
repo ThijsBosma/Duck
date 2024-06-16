@@ -180,8 +180,6 @@ public class PlayerInteract : FindInputBinding
         _Interact.Disable();
         _interactableInRange = false;
 
-        Debug.Log("Gay");
-
         // Reset interaction text only once
         if (!_textHasReseted)
         {
