@@ -1465,7 +1465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &376002924
 Transform:
   m_ObjectHideFlags: 0
@@ -1912,6 +1912,37 @@ RectTransform:
   m_AnchoredPosition: {x: 509.63885, y: 0}
   m_SizeDelta: {x: -860, y: -500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &507098662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 507098663}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &507098663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507098662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.118, z: -1.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468642375}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &524070963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8479093750491339263, guid: 2813e90d00fcd7844be984b77fc9da6d,
@@ -6224,6 +6255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c8226edf000c046b5fdaf0138469d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps4Icons: {fileID: 0}
+  xboxIcons: {fileID: 0}
   _LevelUI: {fileID: 376002923}
 --- !u!65 &1468642374
 BoxCollider:
@@ -6261,6 +6294,7 @@ Transform:
   m_Children:
   - {fileID: 2115635753}
   - {fileID: 376002924}
+  - {fileID: 507098663}
   m_Father: {fileID: 419732078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1468642376
@@ -10944,6 +10978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isLevelScene
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801509070846060504, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
+        type: 3}
+      propertyPath: _transitionTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8801509070846060504, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}

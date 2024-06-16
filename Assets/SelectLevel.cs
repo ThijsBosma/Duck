@@ -11,9 +11,7 @@ public class SelectLevel : InputHandler
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_Interact.enabled);
-
-        if (_Interact.IsPressed())
+        if (_Interact.WasPressedThisFrame())
         {
             _levelLoader.GoToLevel(_LevelName);
         }

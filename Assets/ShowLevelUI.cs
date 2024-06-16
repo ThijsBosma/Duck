@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowLevelUI : InputHandler
+public class ShowLevelUI : FindInputBinding
 {
     [SerializeField] private GameObject _LevelUI;
 
@@ -10,11 +10,13 @@ public class ShowLevelUI : InputHandler
     {
         _Interact.Enable();
         _LevelUI.SetActive(true);
+        SetText("to play", true, "Interact");
     }
 
     private void OnTriggerExit(Collider other)
     {
         _LevelUI.SetActive(false);
         _Interact.Disable();
+        InteractText.instance.ResetText();
     }
 }
