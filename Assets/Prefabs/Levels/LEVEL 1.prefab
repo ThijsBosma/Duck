@@ -661,6 +661,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0.2, z: 3.45}
   _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _OffsetGridSpace:
+    transform: {fileID: 1876023493576591553}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: -0.15, y: 1.31, z: 4.5}
 --- !u!1 &806473827878109513
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +883,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0, z: 3.72}
   _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _OffsetGridSpace:
+    transform: {fileID: 249357031904872128}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: -0.05, y: 1.65, z: 4.48}
 --- !u!1 &1107288222447073847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1118,7 @@ MonoBehaviour:
   - {fileID: 4926358347682104248}
   - {fileID: 8459840802786642312}
   - {fileID: 8986027171379581720}
+  _BridgeGridSpaces: []
   _width: 7
   _height: 1
   _cellSize: 1
@@ -1725,7 +1734,7 @@ Transform:
   m_GameObject: {fileID: 5402190972508780661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2, y: 0, z: 0.74}
+  m_LocalPosition: {x: 3.044, y: 0, z: 0.825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1743,8 +1752,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6304c25968f320d40ba090eecdfb17f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offsetPosition: {x: 0, y: 0, z: 4.1}
+  _offsetPosition: {x: 0, y: 0.16, z: 4.26}
   _offsetRotation: {x: 0, y: -0.08435612, z: 0, w: 0.99643564}
+  _OffsetGridSpace:
+    transform: {fileID: 8459840802786642312}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: 0, y: 1.16, z: 4.4}
 --- !u!1 &5667682479356235665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2055,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0.15, z: 3.24}
   _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _OffsetGridSpace:
+    transform: {fileID: 3801604559805436465}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: -0.13, y: 1.04, z: 4.71}
 --- !u!1 &6870318126732837459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2158,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0, z: 3.78}
   _offsetRotation: {x: 0, y: -0.08139057, z: 0, w: 0.9966823}
+  _OffsetGridSpace:
+    transform: {fileID: 254650521119940061}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: 0.06, y: 1.45, z: 4.48}
 --- !u!1 &7245830554773303365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,6 +2479,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0, z: 3.92}
   _offsetRotation: {x: 0, y: -0.070592165, z: 0, w: 0.99750525}
+  _OffsetGridSpace:
+    transform: {fileID: 4926358347682104248}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: 0, y: 1.03, z: 4.34}
 --- !u!1 &8253046754484885847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetPosition: {x: 0, y: 0, z: 4.38}
   _offsetRotation: {x: 0, y: -0.070270084, z: 0, w: 0.997528}
+  _OffsetGridSpace:
+    transform: {fileID: 8986027171379581720}
+    _GridSpace: {x: 0, y: 0}
+  _ParticleOffset: {x: 0, y: 1.27, z: 3.9}
 --- !u!1 &8988293318945036240
 GameObject:
   m_ObjectHideFlags: 0
