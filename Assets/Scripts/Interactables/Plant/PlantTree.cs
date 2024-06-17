@@ -49,7 +49,6 @@ public class PlantTree : FindInputBinding
                 _GridPosition = new Vector2Int(x, z);
 
                 _plantPosition = grid.GetWorldPosition(x, z);
-                Debug.Log(x + " " + z);
                 MakeTreeHologram();
 
                 if (grid.CanBuild(_plantPosition))

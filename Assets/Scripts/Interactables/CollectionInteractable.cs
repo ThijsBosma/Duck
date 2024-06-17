@@ -11,9 +11,8 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
         if (!playerData._DuckIDs.Contains(_duckData._ID))
         {
             playerData._DucksCollectedInStage += 1;
-            PlayerData._Instance._DuckIDs.Add(_duckData._ID);
 
-            Debug.Log(playerData._DucksCollectedInStage);
+            PlayerData._Instance._DuckIDs.Add(_duckData._ID);
         }
     }
 }

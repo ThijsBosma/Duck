@@ -11,6 +11,8 @@ public class LevelData : MonoBehaviour
 
     [SerializeField] private Transform[] _UIDucks;
 
+    public Transform _PlayerCompletedLevelPosition;
+
     [SerializeField] private GameObject _LockedLevel;
     [SerializeField] private GameObject _UnlockedLevel;
 
@@ -20,16 +22,15 @@ public class LevelData : MonoBehaviour
     {
         if (!_IsFirstLevel)
         {
-            if (!PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted))
+            if (PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted._levelName))
+            {
+                EnableLevel();
+            }
+            else
             {
                 _LockedLevel.SetActive(true);
                 _UnlockedLevel.SetActive(false);
                 return;
-            }
-            else
-            {
-                _LockedLevel.SetActive(false);
-                _UnlockedLevel.SetActive(true);
             }
         }
 
@@ -54,5 +55,11 @@ public class LevelData : MonoBehaviour
             }
             timesThroughArray++;
         }
+    }
+
+    public void EnableLevel()
+    {
+        _LockedLevel.SetActive(false);
+        _UnlockedLevel.SetActive(true);
     }
 }

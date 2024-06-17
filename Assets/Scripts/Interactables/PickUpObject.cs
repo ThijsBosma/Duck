@@ -27,14 +27,13 @@ public class PickUpObject : MonoBehaviour
     protected Coroutine _dropDownCoroutine;
     protected bool _isPickupCoroutineFinished;
 
-    private void FixedUpdate()
+    private int _timesPressed;
+
+    private void Update()
     {
         if (_grabbed)
         {
-            if (_pickupCoroutine == null && !_isPickupCoroutineFinished)
-            {
-               _pickupCoroutine = StartCoroutine(LerpToHoldPosition());
-            }
+            transform.position = _HoldPosition.position + _offsePosition;
         }
     }
 
@@ -42,8 +41,20 @@ public class PickUpObject : MonoBehaviour
     /// Goes from the transform of the gameobject to the holdposition
     /// </summary>
     /// <returns></returns>
-    private IEnumerator LerpToHoldPosition()
+    protected IEnumerator LerpToHoldPosition()
     {
+        _dropDownCoroutine = null;
+
+        _Collider.isTrigger = true;
+
+        _hasInteracted = true;
+
+        _Rb.isKinematic = true;
+        _Rb.useGravity = false;
+        _Rb.mass = 0;
+
+        transform.SetParent(_HoldPosition);
+
         float time = 0;
 
         Vector3 startPosition = transform.position;
@@ -60,8 +71,9 @@ public class PickUpObject : MonoBehaviour
             yield return null;
         }
 
+        _grabbed = true;
+
         _isPickupCoroutineFinished = true;
-        _pickupCoroutine = null;
     }
 
     /// <summary>
@@ -70,6 +82,8 @@ public class PickUpObject : MonoBehaviour
     /// <returns></returns>
     protected IEnumerator LerpToPickupPostion()
     {
+        _pickupCoroutine = null;
+
         float time = 0;
         Vector3 startPostion = transform.position;
         Quaternion startRotation = transform.rotation;
@@ -85,7 +99,16 @@ public class PickUpObject : MonoBehaviour
             yield return null;
         }
 
+        _grabbed = false;
+
+        _Collider.isTrigger = false;
+
+        _Rb.isKinematic = false;
+        _Rb.useGravity = true;
+        _Rb.mass = 10;
+
+        transform.SetParent(null);
+
         _isPickupCoroutineFinished = false;
-        _dropDownCoroutine = null;
     }
 }   

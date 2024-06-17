@@ -20,11 +20,11 @@ public class ShowLevelUI : FindInputBinding
     {
         _levelData = GetComponent<LevelData>();
 
-        if (!PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted) && !_levelData._IsFirstLevel)
+        if (!PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted._levelName) && !_levelData._IsFirstLevel)
         {
             _LevelImage.sprite = _LevelNotFoundSprite;
         }
-        else if (_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted))
+        else if (_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted._levelName))
         {
             _LevelImage.sprite = _LevelUnlockedSprite;
             _isLevelUnlocked = true;

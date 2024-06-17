@@ -87,11 +87,11 @@ Transform:
   m_GameObject: {fileID: 3781575941250853393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.145, y: 0.555, z: 0.187}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.17058831, y: 1.1282352, z: 0.22000006}
+  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4058647871130437723}
+  m_Father: {fileID: 8935817228762148787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4798864696481101643
 GameObject:
@@ -118,11 +118,11 @@ Transform:
   m_GameObject: {fileID: 4798864696481101643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.332, z: 0.514}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.08470577, z: 0.60470575}
+  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4058647871130437723}
+  m_Father: {fileID: 8935817228762148787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6454602585343978873
 GameObject:
@@ -358,11 +358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7089c0e67ee5d594382904c915cade5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Speed: 4
+  _Speed: 3.5
   _GravityStrength: 1
   _Orientation: {fileID: 4457297060851687852}
   _PlayerObj: {fileID: 4058647871130437723}
-  _PlayerHeight: 1
+  _PlayerHeight: 1.5
   _WhatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -386,7 +386,7 @@ MonoBehaviour:
   xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
   _Orientation: {fileID: 4058647871130437723}
   _InputIcon: {fileID: 0}
-  _radius: 0.6
+  _radius: 0.75
   interactLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -408,7 +408,7 @@ MonoBehaviour:
   _InputIcon: {fileID: 0}
   _HoldPosition: {fileID: 6158935692093251446}
   _PickupPosition: {fileID: 6434981121129229398}
-  _radius: 0.5
+  _radius: 0.68
   _pickupLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ddb5f8cb8b3db408350836b9660ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps4Icons: {fileID: 0}
-  xboxIcons: {fileID: 0}
+  ps4Icons: {fileID: 11400000, guid: 02690aa65e751bf4fbcd1ed2afdc691c, type: 2}
+  xboxIcons: {fileID: 11400000, guid: 58264ee3c85e8ba418eefb75365c0f7a, type: 2}
   _sprout: {fileID: 3991281503102695042, guid: 9d07b71551dca7d41b8a1502a8be5c04, type: 3}
   _treeIndicator: {fileID: 0}
   grid: {fileID: 0}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec35e2ee8c0ee44da55b4357984fcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerAnimator: {fileID: 0}
+  _PlayerAnimator: {fileID: 286307828539480879}
 --- !u!1 &8314722020556869222
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,8 +480,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8935817228762148787}
-  - {fileID: 6158935692093251446}
-  - {fileID: 6434981121129229398}
   m_Father: {fileID: 1879546677239287457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8361788225336085372
@@ -984,9 +982,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 579113300082386127, guid: adb06e35da4a0104c9624e9d1b64dc1c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6158935692093251446}
+    - targetCorrespondingSourceObject: {fileID: 579113300082386127, guid: adb06e35da4a0104c9624e9d1b64dc1c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6434981121129229398}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adb06e35da4a0104c9624e9d1b64dc1c, type: 3}
+--- !u!95 &286307828539480879 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8643007342263259219, guid: adb06e35da4a0104c9624e9d1b64dc1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8361788225336085372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8935817228762148787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 579113300082386127, guid: adb06e35da4a0104c9624e9d1b64dc1c,
