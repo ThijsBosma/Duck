@@ -5493,7 +5493,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419732077}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88553dc23b34bf2488bbf8945bfb87ca, type: 3}
   m_Name: 
@@ -6387,7 +6387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507098663}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerCompletedLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6402,7 +6402,7 @@ Transform:
   m_GameObject: {fileID: 507098662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.118, z: -1.16}
+  m_LocalPosition: {x: 0, y: -0.118, z: -2.705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8667,7 +8667,9 @@ MonoBehaviour:
   _WateringCanHasWater: 0
   _SeedPickedup: 0
   _DuckIDs: 
-  _CompletedLevels: []
+  _CompletedLevels:
+  - Level 1
+  - Level 2
 --- !u!4 &616329669
 Transform:
   m_ObjectHideFlags: 0
@@ -8969,7 +8971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641309618}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerCompletedLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8984,7 +8986,7 @@ Transform:
   m_GameObject: {fileID: 641309617}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.118, z: -1.16}
+  m_LocalPosition: {x: 0, y: -0.118, z: -2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20334,6 +20336,7 @@ MonoBehaviour:
   _UIDucks:
   - {fileID: 429654191}
   - {fileID: 1680591951}
+  _PlayerCompletedLevelPosition: {fileID: 507098663}
   _LockedLevel: {fileID: 8201145087739782356}
   _UnlockedLevel: {fileID: 5352330817599078388}
   _IsFirstLevel: 1
@@ -24094,7 +24097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _LevelCompleted:
-    _levelName: Level 1
+    _levelName: Level 2
     _isCompleted: 1
   _DucksToCollect:
   - _ID: 0
@@ -24106,6 +24109,7 @@ MonoBehaviour:
   _UIDucks:
   - {fileID: 274717921}
   - {fileID: 1146613154}
+  _PlayerCompletedLevelPosition: {fileID: 641309618}
   _LockedLevel: {fileID: 55583448}
   _UnlockedLevel: {fileID: 1707904967}
   _IsFirstLevel: 0

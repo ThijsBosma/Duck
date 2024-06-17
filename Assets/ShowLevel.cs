@@ -9,11 +9,18 @@ public class ShowLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform playerT = GameObject.Find("Player").transform;
+
         for (int i = 0; i < _Levels.Length; i++)
         {
             if (PlayerData._Instance._CompletedLevels.Contains(_Levels[i]._LevelCompleted._levelName))
             {
-                _Levels[i + 1].EnableLevel();
+                if (i + 1 < _Levels.Length)
+                    _Levels[i + 1].EnableLevel();
+                else
+                    _Levels[i].EnableLevel();
+
+                playerT.position = _Levels[i]._PlayerCompletedLevelPosition.position;
             }
         }
     }
