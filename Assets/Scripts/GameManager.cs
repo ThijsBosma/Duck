@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _Instance;
+    public static GameManager _Instance { get; private set; }
 
     public bool _showInputs;
     public bool _enableMove;
@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _Instance = this;
+        if(_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
     }
 }

@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public static PlayerData _Instance;
+    public static PlayerData _Instance { get; private set; }
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
-        if (_Instance == null)
+        if (_Instance != null && _Instance != this)
         {
-            _Instance = this;
+            Destroy(this);
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            _Instance = this;
         }
     }
 
