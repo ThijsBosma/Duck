@@ -5,11 +5,26 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
+    public LevelCompleted _LevelCompleted;
+
     [SerializeField] private DuckData[] _DucksToCollect;
 
     [SerializeField] private Transform[] _UIDucks;
 
+    public bool _IsFirstLevel;
+
     private void Start()
+    {
+        if (!_IsFirstLevel)
+        {
+            if (!PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted))
+                return;
+        }
+
+        UpdateDucksCollected();
+    }
+
+    private void UpdateDucksCollected()
     {
         int timesThroughArray = 0;
         Transform parentTransform = _UIDucks[0].parent;
