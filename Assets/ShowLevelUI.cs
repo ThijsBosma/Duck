@@ -23,7 +23,7 @@ public class ShowLevelUI : FindInputBinding
         {
             _LevelImage.sprite = _LevelNotFoundSprite;
         }
-        else if(_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted))
+        else if (_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted))
         {
             _LevelImage.sprite = _LevelUnlockedSprite;
             _isLevelUnlocked = true;
@@ -32,17 +32,23 @@ public class ShowLevelUI : FindInputBinding
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_isLevelUnlocked)
-            _Interact.Enable();
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (_isLevelUnlocked)
+                _Interact.Enable();
 
-        _LevelUI.SetActive(true);
-        SetText("to play", true, "Interact");
+            _LevelUI.SetActive(true);
+            SetText("to play", true, "Interact");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _LevelUI.SetActive(false);
-        _Interact.Disable();
-        InteractText.instance.ResetText();
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _LevelUI.SetActive(false);
+            _Interact.Disable();
+            InteractText.instance.ResetText();
+        }
     }
 }
