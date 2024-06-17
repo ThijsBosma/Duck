@@ -10,38 +10,20 @@ public class WateringCan : PickUpObject, IPickupable
 
         PlayerData._Instance._WateringCanPickedup = 1;
 
-        _Collider.isTrigger = true;
+        StartCoroutine(LerpToHoldPosition());
 
         _hasInteracted = true;
-
-        _Rb.isKinematic = true;
-        _Rb.useGravity = false;
-        _Rb.mass = 0;
-
-        transform.SetParent(_HoldPosition);
     }
 
     public void LetGo()
     {
-        if (_dropDownCoroutine == null && _isPickupCoroutineFinished)
-        {
-            _dropDownCoroutine = StartCoroutine(LerpToPickupPostion());
-        }
-
         _grabbed = false;
 
         PlayerData._Instance._WateringCanPickedup = 0;
 
+        StartCoroutine(LerpToPickupPostion());
+
         _hasInteracted = false;
-
-        _Collider.isTrigger = false;
-
-        _Rb.useGravity = true;
-        _Rb.mass = 10;
-
-        _Rb.isKinematic = true;
-        transform.position = _PickupPosition.position;
-        transform.SetParent(null);
     }
 
     private void OnCollisionEnter(Collision collision)

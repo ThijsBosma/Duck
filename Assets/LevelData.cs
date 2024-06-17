@@ -18,18 +18,19 @@ public class LevelData : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted._levelName));
+
         if (!_IsFirstLevel)
         {
-            if (!PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted))
+            if (PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted._levelName))
+            {
+                EnableLevel();
+            }
+            else
             {
                 _LockedLevel.SetActive(true);
                 _UnlockedLevel.SetActive(false);
                 return;
-            }
-            else
-            {
-                _LockedLevel.SetActive(false);
-                _UnlockedLevel.SetActive(true);
             }
         }
 
@@ -54,5 +55,11 @@ public class LevelData : MonoBehaviour
             }
             timesThroughArray++;
         }
+    }
+
+    public void EnableLevel()
+    {
+        _LockedLevel.SetActive(false);
+        _UnlockedLevel.SetActive(true);
     }
 }

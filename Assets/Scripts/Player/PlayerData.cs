@@ -30,7 +30,7 @@ public class PlayerData : MonoBehaviour
     public int _SeedPickedup;
 
     public List<int> _DuckIDs = new List<int>();
-    public List<LevelCompleted> _CompletedLevels = new List<LevelCompleted>();
+    public List<string> _CompletedLevels = new List<string>();
 }
 
 [System.Serializable]
