@@ -30,7 +30,12 @@ public class BridgeSpawner : MonoBehaviour
 
     private IEnumerator DelayDestroy()
     {
-        Instantiate(_Particles, _particleOffset, Quaternion.identity, transform);
+        Vector3 offsetParticle = _plant._grid.GetParticleOffsetPosition(_plant._GridPosition.x, _plant._GridPosition.y);
+        Debug.Log(offsetParticle);
+
+        GameObject particle = Instantiate(_Particles, _particleOffset, Quaternion.identity, transform);
+
+        particle.transform.localPosition = offsetParticle;
         
         yield return new WaitForSeconds(0.4f);
 
@@ -38,11 +43,10 @@ public class BridgeSpawner : MonoBehaviour
 
         Transform bridgePivot = bridge.GetComponentsInChildren<Transform>()[1];
 
-        _plant._grid.GetXZ(transform.parent.parent.parent.position, out int x, out int z, false);
-        bridge.transform.position = _plant._grid.GetWorldPosition(x, z);
+        bridge.transform.position = _plant._grid.GetWorldPosition(_plant._GridPosition.x, _plant._GridPosition.y);
 
-        Vector3 offsetPosition = _plant._grid.GetBridgeOffsetPosition(transform.parent.parent.parent);
-        Quaternion offsetRotation = _plant._grid.GetBridgeOffsetRotation(transform.parent.parent.parent);
+        Vector3 offsetPosition = _plant._grid.GetBridgeOffsetPosition(_plant._GridPosition.x, _plant._GridPosition.y);
+        Quaternion offsetRotation = _plant._grid.GetBridgeOffsetRotation(_plant._GridPosition.x, _plant._GridPosition.y);
 
         if (offsetPosition != Vector3.zero && offsetRotation != Quaternion.identity)
         {
@@ -52,6 +56,6 @@ public class BridgeSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        Destroy(transform.parent.parent.parent.gameObject);
+        //Destroy(transform.parent.parent.parent.gameObject);
     }
 }

@@ -6,4 +6,5 @@ public class Plant : FindInputBinding
 {
     public PlantState _state;
     public BuildGrid _grid;
+    public Vector2Int _GridPosition;
 }

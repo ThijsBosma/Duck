@@ -13,7 +13,8 @@ public class ShowLevelUI : FindInputBinding
 
     private LevelData _levelData;
 
-    private bool _isLevelUnlocked;
+    [HideInInspector]
+    public bool _isLevelUnlocked;
 
     private void Start()
     {
@@ -35,10 +36,11 @@ public class ShowLevelUI : FindInputBinding
         if (other.gameObject.CompareTag("Player"))
         {
             if (_isLevelUnlocked)
+            {
                 _Interact.Enable();
-
+                SetText("to play", true, "Interact");
+            }
             _LevelUI.SetActive(true);
-            SetText("to play", true, "Interact");
         }
     }
 

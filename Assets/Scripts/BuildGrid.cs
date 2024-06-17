@@ -156,19 +156,17 @@ public class BuildGrid : InputHandler
         }
     }
 
-    public Vector3 GetBridgeOffsetPosition(Transform worldPosition)
+    public Vector3 GetBridgeOffsetPosition(float x, float z)
     {
         foreach (Transform transform in BridgePlaces)
         {
             GetXZ(transform.position, out int treeX, out int treeZ, true);
-            GetXZ(worldPosition.position, out int worldPosX, out int worldPosZ, true);
 
-            /*Debug.Log(treeX + " " + treeZ);
+            Debug.Log(treeX + " " + treeZ);
             Debug.Log(transform.name);
-            Debug.Log(worldPosX + " " + worldPosZ);
-            Debug.Log(worldPosition.name);*/
+            Debug.Log(x + " " + z);
 
-            if (treeX == worldPosX && treeZ == worldPosZ)
+            if (treeX == x && treeZ == z)
             {
                 Debug.Log("Bridge offset found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._offsetPosition;
@@ -179,14 +177,30 @@ public class BuildGrid : InputHandler
         return Vector3.zero;
     }
 
-    public Quaternion GetBridgeOffsetRotation(Transform worldRotation)
+    public Vector3 GetParticleOffsetPosition(float x, float z)
     {
         foreach (Transform transform in BridgePlaces)
         {
             GetXZ(transform.position, out int treeX, out int treeZ, true);
-            GetXZ(worldRotation.position, out int worldPosX, out int worldPosZ, true);
 
-            if (treeX == worldPosX && treeZ == worldPosZ)
+            if (treeX == x && treeZ == z)
+            {
+                Debug.Log("Particle offset found on grid space");
+                return transform.gameObject.GetComponent<BridgeOffset>()._ParticleOffset;
+            }
+        }
+
+        Debug.LogError("Particle offset not found on grid space");
+        return Vector3.zero;
+    }
+
+    public Quaternion GetBridgeOffsetRotation(float x, float z)
+    {
+        foreach (Transform transform in BridgePlaces)
+        {
+            GetXZ(transform.position, out int treeX, out int treeZ, true);
+
+            if (treeX == x && treeZ == z)
             {
                 Debug.Log("Bridge offset found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._offsetRotation;

@@ -6,4 +6,7 @@ public class BridgeOffset : MonoBehaviour
 {
     public Vector3 _offsetPosition;
     public Quaternion _offsetRotation;
+
+    [Header("Particle")]
+    public Vector3 _ParticleOffset;
 }

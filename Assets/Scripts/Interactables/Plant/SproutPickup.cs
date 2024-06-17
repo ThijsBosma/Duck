@@ -5,7 +5,7 @@ using UnityEngine;
 public class SproutPickup : PickUpObject, IPickupable
 {
     [SerializeField] private GameObject _seed;
-    private Plant _plant;
+    public Plant _plant;
     public BuildGrid _grid;
 
     private void Start()
