@@ -74,7 +74,15 @@ MonoBehaviour:
   _Rb: {fileID: 0}
   _offsePosition: {x: 0, y: 0, z: 0}
   _offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _Time: 0
   _seed: {fileID: 862675274213365264, guid: 07997f6b181e37449a87baf7362aea5e, type: 3}
+  _plant: {fileID: 5108263063790770227}
   _grid: {fileID: 0}
 --- !u!1 &3991281503102695042
 GameObject:
@@ -182,3 +190,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1236944567570244272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5108263063790770227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6327188825665763971, guid: fe16f7db410a83f4da744c58da8e8e40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1236944567570244272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29498f52795ea34ea46ba95badd96bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

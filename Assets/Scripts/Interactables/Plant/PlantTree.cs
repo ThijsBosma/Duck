@@ -22,6 +22,8 @@ public class PlantTree : FindInputBinding
 
     private PlayerPickUp _playerPickup;
 
+    private Vector2Int _GridPosition;
+
     private bool _inputIsActive;
 
     // Start is called before the first frame update
@@ -44,7 +46,10 @@ public class PlantTree : FindInputBinding
                 
                 grid.GetXZ(hit.point, out int x, out int z, false);
 
+                _GridPosition = new Vector2Int(x, z);
+
                 _plantPosition = grid.GetWorldPosition(x, z);
+                Debug.Log(x + " " + z);
                 MakeTreeHologram();
 
                 if (grid.CanBuild(_plantPosition))
@@ -93,6 +98,7 @@ public class PlantTree : FindInputBinding
 
                     GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
+                    sprout.GetComponentInChildren<SproutPickup>()._plant._GridPosition = _GridPosition;
 
                     _treeIndicator.SetActive(false);
                     Destroy(_Seed);

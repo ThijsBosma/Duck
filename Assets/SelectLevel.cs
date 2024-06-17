@@ -8,12 +8,22 @@ public class SelectLevel : InputHandler
 
     [SerializeField] private string _LevelName;
 
+    private ShowLevelUI _levelUI;
+
+    private void Start()
+    {
+        _levelUI = GetComponent<ShowLevelUI>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (_Interact.WasPressedThisFrame())
+        if (_levelUI._isLevelUnlocked)
         {
-            _levelLoader.GoToLevel(_LevelName);
+            if (_Interact.WasPressedThisFrame())
+            {
+                _levelLoader.GoToLevel(_LevelName);
+            }
         }
     }
 }

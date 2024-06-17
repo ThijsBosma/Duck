@@ -11,6 +11,9 @@ public class LevelData : MonoBehaviour
 
     [SerializeField] private Transform[] _UIDucks;
 
+    [SerializeField] private GameObject _LockedLevel;
+    [SerializeField] private GameObject _UnlockedLevel;
+
     public bool _IsFirstLevel;
 
     private void Start()
@@ -18,7 +21,16 @@ public class LevelData : MonoBehaviour
         if (!_IsFirstLevel)
         {
             if (!PlayerData._Instance._CompletedLevels.Contains(_LevelCompleted))
+            {
+                _LockedLevel.SetActive(true);
+                _UnlockedLevel.SetActive(false);
                 return;
+            }
+            else
+            {
+                _LockedLevel.SetActive(false);
+                _UnlockedLevel.SetActive(true);
+            }
         }
 
         UpdateDucksCollected();
