@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 62314914}
   - component: {fileID: 62314913}
   - component: {fileID: 62314912}
+  - component: {fileID: 62314915}
   m_Layer: 0
   m_Name: CamerHolder
   m_TagString: Untagged
@@ -407,6 +408,27 @@ Transform:
   - {fileID: 124256361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 855.228, z: 0}
+--- !u!95 &62314915
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62314911}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &68629339
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,8 +692,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124256360}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.37306875, y: 0, z: 0, w: 0.9278037}
-  m_LocalPosition: {x: -0.77992535, y: 5.85, z: -7.100052}
+  m_LocalRotation: {x: 0.13559505, y: -0.31921896, z: 0.04620506, w: 0.93679154}
+  m_LocalPosition: {x: -0.15279675, y: 6.5299997, z: -7.4746685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,7 +716,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 12
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -4916,7 +4938,7 @@ PrefabInstance:
     - target: {fileID: 4335080562325948726, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4335080562325948726, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}
@@ -4934,7 +4956,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[5].key
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2674137149087510804, guid: 1312f109e7cf52041890894fa18083bf,
+        type: 2}
     - target: {fileID: 4335080562325948726, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[3].value
@@ -4945,6 +4968,11 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[4].value
       value: 
       objectReference: {fileID: 124256360}
+    - target: {fileID: 4335080562325948726, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].value
+      value: 
+      objectReference: {fileID: 62314915}
     - target: {fileID: 6687188151002373256, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6015,22 +6043,22 @@ PrefabInstance:
     - target: {fileID: 1526850780836777379, guid: 95c6c180e29c9bb409c034bacacaaafd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.37558693
+      value: -0.42143178
       objectReference: {fileID: 0}
     - target: {fileID: 1526850780836777379, guid: 95c6c180e29c9bb409c034bacacaaafd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.057858553
+      value: -0.06099975
       objectReference: {fileID: 0}
     - target: {fileID: 1526850780836777379, guid: 95c6c180e29c9bb409c034bacacaaafd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.91419566
+      value: 0.89547443
       objectReference: {fileID: 0}
     - target: {fileID: 1526850780836777379, guid: 95c6c180e29c9bb409c034bacacaaafd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.14083037
+      value: -0.12961462
       objectReference: {fileID: 0}
     - target: {fileID: 1633473976518077036, guid: 95c6c180e29c9bb409c034bacacaaafd,
         type: 3}
@@ -6080,8 +6108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436762499}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10594197, y: -0.7100937, z: 0.10934853, w: -0.68744904}
-  m_LocalPosition: {x: 2.96, y: 5.422, z: 4.184}
+  m_LocalRotation: {x: 0.094364, y: 0.74461913, z: -0.10777923, w: 0.65193677}
+  m_LocalPosition: {x: -5.155879, y: 7.91, z: 5.4139576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6172,7 +6200,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7198,7 +7226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_FollowOffset: {x: 3.82, y: 2.94, z: 9.18}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

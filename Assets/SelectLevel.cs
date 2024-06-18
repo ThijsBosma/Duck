@@ -20,7 +20,7 @@ public class SelectLevel : InputHandler
     {
         if (_levelUI._isLevelUnlocked)
         {
-            if (_Interact.WasPressedThisFrame())
+            if (_levelUI._LevelInteract.WasPressedThisFrame())
             {
                 _levelLoader.GoToLevel(_LevelName);
             }

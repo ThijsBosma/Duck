@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ShowLevelUI : FindInputBinding
@@ -15,6 +16,15 @@ public class ShowLevelUI : FindInputBinding
 
     [HideInInspector]
     public bool _isLevelUnlocked;
+    
+    [HideInInspector]
+    public InputAction _LevelInteract;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _LevelInteract = _Input.FindAction("Interact");
+    }
 
     private void Start()
     {
@@ -37,8 +47,12 @@ public class ShowLevelUI : FindInputBinding
         {
             if (_isLevelUnlocked)
             {
-                _Interact.Enable();
-                SetText("to play", true, "Interact");
+                if (_LevelInteract != null)
+                {
+                    _LevelInteract.Enable();
+
+                    SetText("to play", true, "Interact");
+                }
             }
             _LevelUI.SetActive(true);
         }
@@ -49,7 +63,7 @@ public class ShowLevelUI : FindInputBinding
         if (other.gameObject.CompareTag("Player"))
         {
             _LevelUI.SetActive(false);
-            _Interact.Disable();
+            _LevelInteract.Disable();
             InteractText.instance.ResetText();
         }
     }

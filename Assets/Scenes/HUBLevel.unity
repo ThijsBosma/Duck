@@ -4449,7 +4449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.120361, y: -260.15833}
+  m_AnchoredPosition: {x: -24.120422, y: -260.15836}
   m_SizeDelta: {x: -927.1089, y: -567.1844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347893853
@@ -20270,6 +20270,15 @@ MonoBehaviour:
   _LevelUnlockedSprite: {fileID: 21300000, guid: 6e138560fcd93574dae5437a4830b1a6,
     type: 3}
   _isLevelUnlocked: 0
+  _LevelInteract:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ab8dfd04-5a3f-4c89-9fed-49cfdc3036a8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!65 &1468642374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20329,7 +20338,7 @@ MonoBehaviour:
     _DuckObject: {fileID: 1615594120783821955, guid: ad95d027920ee0341a2bed7a8735ca53,
       type: 3}
   - _ID: 1
-    _DuckObject: {fileID: 6049468858041612152, guid: d063953bdb08c2e488704d627a58acc3,
+    _DuckObject: {fileID: 820411773896626185, guid: 3de2f73a911ce5f43bddf028122a9a2c,
       type: 3}
   _UIDucks:
   - {fileID: 429654191}
@@ -24132,6 +24141,15 @@ MonoBehaviour:
   _LevelUnlockedSprite: {fileID: 21300000, guid: 6e138560fcd93574dae5437a4830b1a6,
     type: 3}
   _isLevelUnlocked: 0
+  _LevelInteract:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4ab8143a-3556-4bcb-8154-d673d110ddff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!65 &1739947130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25560,7 +25578,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2116792
+  m_Radius: 1.5914778
   m_Height: 4.385887
   m_Direction: 1
   m_Center: {x: 0, y: 0.09853506, z: 0}

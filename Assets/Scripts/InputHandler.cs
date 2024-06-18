@@ -33,7 +33,7 @@ public class InputHandler : MonoBehaviour
         _Look.Enable();
 
         _Interact = _Input.Player.Interact;
-        _Interact.Enable();
+        //_Interact.Enable();
 
         _GrowPlant = _Input.Player.GrowPlant;
 
