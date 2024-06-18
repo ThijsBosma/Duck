@@ -15,35 +15,22 @@ public class SeedPickup : PickUpObject, IPickupable
     {
         PlayerData._Instance._SeedPickedup = 1;
 
+        StartCoroutine(LerpToHoldPosition());
+
         _grabbed = true;
 
-        _Collider.isTrigger = true;
-
         _hasInteracted = true;
-
-        _Rb.isKinematic = true;
-        _Rb.useGravity = false;
-        _Rb.mass = 0;
-
-        transform.SetParent(_HoldPosition);
     }
 
     public void LetGo()
     {
         PlayerData._Instance._SeedPickedup = 0;
 
+        StartCoroutine(LerpToPickupPostion());
+
         _grabbed = false;
 
         _hasInteracted = false;
-
-        _Collider.isTrigger = false;
-
-        _Rb.isKinematic = false;
-        _Rb.useGravity = true;
-        _Rb.mass = 10;
-
-        transform.position = _PickupPosition.position;
-        transform.SetParent(null);
     }
 
     private void OnDestroy()

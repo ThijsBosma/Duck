@@ -7,6 +7,7 @@ public class BuildGrid : InputHandler
     [Header("Grid")]
     [SerializeField] private Collider _Ground;
     [SerializeField] private Transform[] BridgePlaces;
+    public List<BridgeGridSpace> _BridgeGridSpaces = new List<BridgeGridSpace>();
 
     [Header("Grid sizes")]
     [SerializeField] private int _width;
@@ -152,24 +153,22 @@ public class BuildGrid : InputHandler
         {
             GetXZ(transform.position, out int x, out int z, true);
 
+            BridgeGridSpace gridSpace = transform.gameObject.GetComponent<BridgeOffset>()._OffsetGridSpace;
+            gridSpace._GridSpace = new Vector2Int(x, z);
+
+            _BridgeGridSpaces.Add(gridSpace);
+
             transform.position = GetWorldPosition(x, z) + new Vector3(_cellSize / 2, 0, _cellSize / 2);
         }
     }
 
-    public Vector3 GetBridgeOffsetPosition(Transform worldPosition)
+    public Vector3 GetBridgeOffsetPosition(float x, float z)
     {
-        foreach (Transform transform in BridgePlaces)
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
         {
-            GetXZ(transform.position, out int treeX, out int treeZ, true);
-            GetXZ(worldPosition.position, out int worldPosX, out int worldPosZ, true);
-
-            /*Debug.Log(treeX + " " + treeZ);
-            Debug.Log(transform.name);
-            Debug.Log(worldPosX + " " + worldPosZ);
-            Debug.Log(worldPosition.name);*/
-
-            if (treeX == worldPosX && treeZ == worldPosZ)
+            if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
             {
+                Transform transform = gridSpace.transform;
                 Debug.Log("Bridge offset found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._offsetPosition;
             }
@@ -179,15 +178,29 @@ public class BuildGrid : InputHandler
         return Vector3.zero;
     }
 
-    public Quaternion GetBridgeOffsetRotation(Transform worldRotation)
+    public Vector3 GetParticleOffsetPosition(float x, float z)
     {
-        foreach (Transform transform in BridgePlaces)
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
         {
-            GetXZ(transform.position, out int treeX, out int treeZ, true);
-            GetXZ(worldRotation.position, out int worldPosX, out int worldPosZ, true);
-
-            if (treeX == worldPosX && treeZ == worldPosZ)
+            if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
             {
+                Transform transform = gridSpace.transform;
+                Debug.Log("Particle offset found on grid space");
+                return transform.gameObject.GetComponent<BridgeOffset>()._ParticleOffset;
+            }
+        }
+
+        Debug.LogError("Particle offset not found on grid space");
+        return Vector3.zero;
+    }
+
+    public Quaternion GetBridgeOffsetRotation(float x, float z)
+    {
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
+        {
+            if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
+            {
+                Transform transform = gridSpace.transform;
                 Debug.Log("Bridge offset found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._offsetRotation;
             }

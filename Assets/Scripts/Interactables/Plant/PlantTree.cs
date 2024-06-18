@@ -22,6 +22,8 @@ public class PlantTree : FindInputBinding
 
     private PlayerPickUp _playerPickup;
 
+    private Vector2Int _GridPosition;
+
     private bool _inputIsActive;
 
     // Start is called before the first frame update
@@ -43,6 +45,8 @@ public class PlantTree : FindInputBinding
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
                 
                 grid.GetXZ(hit.point, out int x, out int z, false);
+
+                _GridPosition = new Vector2Int(x, z);
 
                 _plantPosition = grid.GetWorldPosition(x, z);
                 MakeTreeHologram();
@@ -93,6 +97,7 @@ public class PlantTree : FindInputBinding
 
                     GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
+                    sprout.GetComponentInChildren<SproutPickup>()._plant._GridPosition = _GridPosition;
 
                     _treeIndicator.SetActive(false);
                     Destroy(_Seed);

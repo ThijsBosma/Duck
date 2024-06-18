@@ -32,7 +32,7 @@ public class ThirdPersonController : InputHandler
     private RaycastHit _slopeHit;
 
     [Header("Climbing")]
-    [HideInInspector] public bool _IsClimbing;
+    public bool _IsClimbing;
     [HideInInspector] public Vector3 _WallRight;
     [HideInInspector] public Vector3 _WallUp;
     [HideInInspector] public Vector3 _WallHeight;
@@ -61,15 +61,6 @@ public class ThirdPersonController : InputHandler
         AddDownForce();
         GetMovementInputs();
         MoveCharacter();
-
-        if (!_grounded)
-        {
-            _airTime += Time.deltaTime;
-            if (_airTime > 0.2f)
-                _inAir = true;
-        }
-        else
-            _inAir = false;
     }
 
     private void MoveCharacter()

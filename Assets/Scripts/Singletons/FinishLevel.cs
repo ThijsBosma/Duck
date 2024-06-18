@@ -22,6 +22,12 @@ public class FinishLevel : MonoBehaviour
         {
             PlayerData._Instance._TotalDucksCollected += PlayerData._Instance._DucksCollectedInStage;
 
+            LevelCompleted levelCompleted = new LevelCompleted();
+            levelCompleted._levelName = "Level 1";
+            levelCompleted._isCompleted = true;
+
+            PlayerData._Instance._CompletedLevels.Add(levelCompleted._levelName);
+
             StartCoroutine(PlayLevelClearSequence(_transitionDelay));
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
         }

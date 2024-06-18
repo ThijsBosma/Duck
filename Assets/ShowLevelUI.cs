@@ -13,17 +13,18 @@ public class ShowLevelUI : FindInputBinding
 
     private LevelData _levelData;
 
-    private bool _isLevelUnlocked;
+    [HideInInspector]
+    public bool _isLevelUnlocked;
 
     private void Start()
     {
         _levelData = GetComponent<LevelData>();
 
-        if (!PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted) && !_levelData._IsFirstLevel)
+        if (!PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted._levelName) && !_levelData._IsFirstLevel)
         {
             _LevelImage.sprite = _LevelNotFoundSprite;
         }
-        else if(_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted))
+        else if (_levelData._IsFirstLevel || PlayerData._Instance._CompletedLevels.Contains(_levelData._LevelCompleted._levelName))
         {
             _LevelImage.sprite = _LevelUnlockedSprite;
             _isLevelUnlocked = true;
@@ -32,17 +33,24 @@ public class ShowLevelUI : FindInputBinding
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_isLevelUnlocked)
-            _Interact.Enable();
-
-        _LevelUI.SetActive(true);
-        SetText("to play", true, "Interact");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (_isLevelUnlocked)
+            {
+                _Interact.Enable();
+                SetText("to play", true, "Interact");
+            }
+            _LevelUI.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _LevelUI.SetActive(false);
-        _Interact.Disable();
-        InteractText.instance.ResetText();
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _LevelUI.SetActive(false);
+            _Interact.Disable();
+            InteractText.instance.ResetText();
+        }
     }
 }
