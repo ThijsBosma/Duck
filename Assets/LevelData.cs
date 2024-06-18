@@ -48,7 +48,7 @@ public class LevelData : MonoBehaviour
             {
                 GameObject UIDuck = Instantiate(duck._DuckObject, _UIDucks[timesThroughArray].position, _UIDucks[timesThroughArray].rotation, parentTransform);
 
-                UIDuck.transform.localScale = _UIDucks[timesThroughArray].localScale;
+                UIDuck.transform.localScale = Vector3.one * duck._DuckSize;
 
                 Debug.Log("Duck found in array");
                 Destroy(_UIDucks[timesThroughArray].gameObject);

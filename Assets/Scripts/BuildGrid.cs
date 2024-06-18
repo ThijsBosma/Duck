@@ -160,6 +160,7 @@ public class BuildGrid : InputHandler
 
             transform.position = GetWorldPosition(x, z) + new Vector3(_cellSize / 2, 0, _cellSize / 2);
         }
+        
     }
 
     public Vector3 GetBridgeOffsetPosition(float x, float z)
@@ -185,12 +186,12 @@ public class BuildGrid : InputHandler
             if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
             {
                 Transform transform = gridSpace.transform;
-                Debug.Log("Particle offset found on grid space");
+                Debug.Log("Particle offset place found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._ParticleOffset;
             }
         }
 
-        Debug.LogError("Particle offset not found on grid space");
+        Debug.LogError("Particle offset place not found on grid space");
         return Vector3.zero;
     }
 
@@ -201,13 +202,36 @@ public class BuildGrid : InputHandler
             if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
             {
                 Transform transform = gridSpace.transform;
-                Debug.Log("Bridge offset found on grid space");
+                Debug.Log("Bridge offset rotation found on grid space");
                 return transform.gameObject.GetComponent<BridgeOffset>()._offsetRotation;
             }
         }
 
-        Debug.LogError("Bridge offset not found on grid space");
+        Debug.LogError("Bridge offset rotaion not found on grid space");
         return Quaternion.identity;
+    }
+
+    public Vector3 GetBridgeOffsetSize(float x, float z)
+    {
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
+        {
+            if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
+            {
+                Transform transform = gridSpace.transform;
+                Debug.Log("Bridge offset size found on grid space");
+                Vector3 scale = transform.gameObject.GetComponent<BridgeOffset>()._offsetScale;
+                if (scale.magnitude > Vector3.zero.magnitude)
+                    return scale;
+                else
+                {
+                    Debug.LogWarning("Bridge scale offset not set");
+                    return Vector3.one;
+                }
+            }
+        }
+
+        Debug.LogError("Bridge offset size not found on grid space");
+        return Vector3.zero;
     }
 
     public bool CanBuild(Vector3 buildPosition)

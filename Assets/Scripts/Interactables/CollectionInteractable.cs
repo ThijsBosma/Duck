@@ -22,4 +22,5 @@ public class DuckData
 {
     public int _ID;
     public GameObject _DuckObject;
+    public float _DuckSize;
 }
