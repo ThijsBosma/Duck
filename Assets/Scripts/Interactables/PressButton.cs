@@ -10,5 +10,5 @@ public class PressButton : MonoBehaviour
 
     public bool holdButton;
 
-    public bool onButton;
+    [HideInInspector] public bool onButton;
 }
