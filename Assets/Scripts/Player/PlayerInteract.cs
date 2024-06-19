@@ -10,6 +10,7 @@ public class PlayerInteract : FindInputBinding
     [Header("References")]
     [SerializeField] private Transform _Orientation;
     [SerializeField] private Image _InputIcon;
+    [SerializeField] private Vector3 _OffsetPosition;
 
     [Header("Interact Options")]
     [SerializeField] private float _radius;
@@ -60,7 +61,7 @@ public class PlayerInteract : FindInputBinding
     {
         if (!_isInteracting)
         {
-            colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
+            colliders = Physics.SphereCastAll(transform.position + _OffsetPosition, _radius, _Orientation.forward, 0f, interactLayer);
             foreach (RaycastHit hit in colliders)
             {
                 IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
@@ -218,7 +219,7 @@ public class PlayerInteract : FindInputBinding
 
     private void OnDrawGizmos()
     {
-        /*if (!_isInteracting)
-            Gizmos.DrawWireSphere(transform.position, _radius);*/
+       if (!_isInteracting)
+            Gizmos.DrawWireSphere(transform.position + _OffsetPosition, _radius);
     }
 }

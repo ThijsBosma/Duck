@@ -234,6 +234,22 @@ public class BuildGrid : InputHandler
         return Vector3.zero;
     }
 
+    public Transform GetBridgeOffsetTransform(float x, float z)
+    {
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
+        {
+            if (gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
+            {
+                Transform transform = gridSpace.transform;
+                Debug.Log("Bridge offset transform found on grid space");
+                return transform;
+            }
+        }
+
+        Debug.LogError("Bridge offset transform not found on grid space");
+        return null;
+    }
+
     public bool CanBuild(Vector3 buildPosition)
     {
         return GetValue(buildPosition) == 0;

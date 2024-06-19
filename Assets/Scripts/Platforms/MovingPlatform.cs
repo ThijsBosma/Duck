@@ -97,6 +97,11 @@ public class MovingPlatform : MonoBehaviour
         {
             other.transform.SetParent(transform);
         }
+
+        if (other.gameObject.CompareTag("Box"))
+        {
+            other.transform.SetParent(transform);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
