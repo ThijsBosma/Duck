@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlantTree : FindInputBinding
@@ -43,7 +44,7 @@ public class PlantTree : FindInputBinding
             {
                 RaycastHit hit;
                 Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
-                
+
                 grid.GetXZ(hit.point, out int x, out int z, false);
 
                 _GridPosition = new Vector2Int(x, z);
@@ -93,11 +94,13 @@ public class PlantTree : FindInputBinding
                 {
                     grid.Setvalue(_plantPosition, 1);
 
-                    Debug.Log(_plantPosition);
+                    Transform rotation = grid.GetBridgeOffsetTransform(_GridPosition.x, _GridPosition.y); 
 
-                    GameObject sprout = Instantiate(_sprout, _plantPosition, Quaternion.identity);
+                    GameObject sprout = Instantiate(_sprout, grid.GetWorldPosition(_GridPosition.x, _GridPosition.y), quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
                     sprout.GetComponentInChildren<SproutPickup>()._plant._GridPosition = _GridPosition;
+
+                    sprout.GetComponentInChildren<GrowPlant>().gameObject.transform.rotation = rotation.rotation;
 
                     _treeIndicator.SetActive(false);
                     Destroy(_Seed);

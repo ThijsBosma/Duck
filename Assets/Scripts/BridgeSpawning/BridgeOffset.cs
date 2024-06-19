@@ -8,6 +8,8 @@ public class BridgeOffset : MonoBehaviour
     public Quaternion _offsetRotation;
     public Vector3 _offsetScale;
 
+    public Vector3 size; 
+
     public BridgeGridSpace _OffsetGridSpace;
 
     [Header("Particle")]
