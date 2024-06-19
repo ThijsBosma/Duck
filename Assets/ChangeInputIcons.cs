@@ -8,18 +8,22 @@ public class ChangeInputIcons : FindInputBinding
 {
     public TextMeshProUGUI[] _Texts;
 
+    [SerializeField] private GameObject _keyboardInputs;
+
+    [SerializeField] private string _changeInteractTo;
+    [SerializeField] private string _changePickupTo;
+
     private InputAction _Action;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //playerInput.onControlsChanged += 
-        foreach (TextMeshProUGUI text in _Texts)
-        {
-            Debug.Log(GetSpriteAssetText(text.text) + '"' + GetCurrentControlScheme() + FindBinding("Interact") + '"' + ">");
-            string inputAction = ExtractInputName(text.text);
-            Debug.Log(GetInputAction(inputAction));
-        }
+        UpdateUIIcons();
     }
 
     private string GetSpriteAssetText(string text)
@@ -35,32 +39,23 @@ public class ChangeInputIcons : FindInputBinding
 
     private string GetCurrentControlScheme()
     {
-        if (playerInput.currentControlScheme == "PlayStation")
-        {
+        if (playerInput.currentControlScheme == "PlaystationController")
             return "PS_";
-        }
-        else if (playerInput.currentControlScheme == "Xbox" || playerInput.currentControlScheme == "Gamepad")
-        {
+        else if (playerInput.currentControlScheme == "XboxController" || playerInput.currentControlScheme == "Gamepad")
             return "Xbox_";
-        }
         else
-        {
             return "Keyboard_";
-        }
     }
 
-    private string ExtractInputName(string text)
+    private string ExtractActiontName(string text)
     {
         string[] splitText = text.Split(">");
         string[] splittedText = splitText[1].Split(" ");
 
-        if (splittedText[1] == "Select")
-            return "Interact";
-        else
-            return splittedText[1];
+        return splittedText[1];
     }
 
-    private string GetInputAction(string text)
+    private string ExtractInputBinding(string text)
     {
         _Action = playerInput.actions.FindAction(text);
 
@@ -92,11 +87,46 @@ public class ChangeInputIcons : FindInputBinding
         return "Action not found";
     }
 
-    private void UpdateUIIcons()
+    public void UpdateUIIcons()
     {
         for (int i = 0; i < _Texts.Length; i++)
         {
-            _Texts[i].text = GetSpriteAssetText(_Texts[i].text) + '"' + GetCurrentControlScheme() + '"' + ">";
+            string spriteAssetName = GetSpriteAssetText(_Texts[i].text) + '"';
+            string currentControlScheme = GetCurrentControlScheme();
+            string inputBinding = ExtractInputBinding(ExtractActiontName(_Texts[i].text)) + '"' + "> ";
+            string actionName = ExtractActiontName(_Texts[i].text);
+
+            if (actionName == "Interact")
+                actionName = _changeInteractTo;
+            else if (actionName == "Pickup")
+                actionName = _changePickupTo;
+
+            if (actionName == "Move" && currentControlScheme != "Keyboard_")
+            {
+                currentControlScheme = "";
+                inputBinding = "Gamepad_L" + '"' + "> ";
+            }
+            else if (actionName == "Look" && currentControlScheme != "Keyboard_")
+            {
+                currentControlScheme = "";
+                inputBinding = "Gamepad_R" + '"' + "> ";
+            }
+
+            if (currentControlScheme == "Keyboard_")
+            {
+                _keyboardInputs.SetActive(true);
+
+                if (actionName == "Move" || actionName == "Look")
+                    _Texts[i].text = "     " + actionName;
+                else
+                    _Texts[i].text = spriteAssetName + currentControlScheme + inputBinding + actionName;
+            }
+            else if (currentControlScheme != "Keyboard_")
+            {
+                _keyboardInputs.SetActive(false);
+
+                _Texts[i].text = spriteAssetName + currentControlScheme + inputBinding + actionName;
+            }
         }
     }
 }

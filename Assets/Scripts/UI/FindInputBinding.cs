@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 
 public class FindInputBinding : InputHandler
 {
-    [Header("Input Icons")]
-    [SerializeField] private GamepadIcons ps4Icons;
-    [SerializeField] private GamepadIcons xboxIcons;
-
     InputAction _action;
 
     protected string FindBinding(string typeOfAction)
@@ -89,7 +85,7 @@ public class FindInputBinding : InputHandler
         return null;
     }
 
-    private string ExtractInputName(string bindingPath)
+    protected string ExtractInputName(string bindingPath)
     {
         string[] splitPath = bindingPath.Split('/');
         if (splitPath.Length > 1)
