@@ -43,8 +43,6 @@ public class SlideUI : InputHandler
 
             time = 0;
         }
-
-        Debug.Log(_moveRoutine);
     }
 
     private IEnumerator SlideIn()
