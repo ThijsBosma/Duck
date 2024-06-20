@@ -14,7 +14,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 _startPostion;
     private Vector3 _endPostion;
 
-    bool _isLooping;
+    private bool _isLooping;
 
     private Coroutine _coroutine;
 
