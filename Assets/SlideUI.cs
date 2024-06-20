@@ -11,15 +11,12 @@ public class SlideUI : InputHandler
 
     [SerializeField] private AnimationCurve _curve;
 
+    [SerializeField] private Transform _InitialPosition;
+    [SerializeField] private Transform _EndPosition;
+
     private Coroutine _moveRoutine;
 
     private float time;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,17 +27,18 @@ public class SlideUI : InputHandler
         {
             if (_moveRoutine == null)
             {
-                StopCoroutine(SlideOut());
+                //StopCoroutine(SlideOut());
                 _moveRoutine = StartCoroutine(SlideIn());
             }
         }
 
         if (_Move.ReadValue<Vector2>() != Vector2.zero)
         {
-            if (_moveRoutine == null)
+            if (_moveRoutine != null)
             {
-                StopCoroutine(SlideIn());
+                //StopCoroutine(SlideIn());
                 _moveRoutine = StartCoroutine(SlideOut());
+                _moveRoutine = null;
             }
 
             time = 0;
@@ -51,16 +49,13 @@ public class SlideUI : InputHandler
     {
         float time = 0;
 
-        Vector3 startPosition = _UIElements.position;
-        Vector3 endPosition = _UIElements.position + Vector3.right * 10;
-
         while (time < 1)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime / _moveTime;
 
             float t = _curve.Evaluate(time);
 
-            _UIElements.position = Vector3.Lerp(startPosition, endPosition, t);
+            _UIElements.position = Vector3.Lerp(_InitialPosition.position, _EndPosition.position, t);
             yield return null;
         }
     }
@@ -69,16 +64,15 @@ public class SlideUI : InputHandler
     {
         float time = 0;
 
-        Vector3 startPosition = _UIElements.position;
-        Vector3 endPosition = _UIElements.position - Vector3.right * 10;
+        Vector3 _startPosition = _UIElements.position;
 
         while (time < 1)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime / _moveTime;
 
             float t = _curve.Evaluate(time);
 
-            _UIElements.position = Vector3.Lerp(startPosition, endPosition, t);
+            _UIElements.position = Vector3.Lerp(_startPosition, _InitialPosition.position, t);
             yield return null;
         }
     }

@@ -68,7 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724edbbacbc6ee54db51107f77ec8b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ID: 0
+  _duckData:
+    _ID: 0
+    _DuckObject: {fileID: 0}
+    _DuckSize: 0
 --- !u!1 &5101465176522539059
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7370609184276659030}
+  - component: {fileID: 6193787798611883414}
   m_Layer: 0
   m_Name: DuckObj
   m_TagString: Untagged
@@ -101,6 +105,19 @@ Transform:
   - {fileID: 9167166613385661119}
   m_Father: {fileID: 698411966977086065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6193787798611883414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5101465176522539059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a6ffe883268d74686e810fd31cbe60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Speed: 5
 --- !u!1 &6057447688363500046
 GameObject:
   m_ObjectHideFlags: 0
