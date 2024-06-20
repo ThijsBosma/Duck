@@ -8,9 +8,12 @@ public class PlayerAnimator : InputHandler
     private bool _isPickingUp;
 
     private Vector2 _movementValue;
+    private ThirdPersonController _controller;
 
     private void Start()
     {
+        _controller = FindObjectOfType<ThirdPersonController>();
+
         _PlayerAnimator.SetInteger("PlayerState", 0);
     }
 
@@ -28,6 +31,11 @@ public class PlayerAnimator : InputHandler
         else if(_movementValue.magnitude < 0.5f && !_isPickingUp)
         {
             _PlayerAnimator.SetInteger("PlayerState", 0);
+        }
+
+        if(_controller._IsClimbing)
+        {
+            _PlayerAnimator.SetInteger("PlayerState", 3);
         }
 
         //if(_Pickup.WasPressedThisFrame())

@@ -73,7 +73,7 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            controller.Move((_WallRight * -_movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+            controller.Move((_WallRight * _movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
         }
 
         if (!_inAir)
