@@ -9,12 +9,13 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField, Tooltip("Time for a lerp in seconds")] private float _Time;
 
     [SerializeField] private AnimationCurve _Curve;
+    private GameObject _thirdWayPoint;
     private int _currentIndex;
 
     private Vector3 _startPostion;
     private Vector3 _endPostion;
 
-    bool _isLooping;
+    private bool _isLooping;
 
     private Coroutine _coroutine;
 
@@ -90,6 +91,17 @@ public class MovingPlatform : MonoBehaviour
 
         _coroutine = null;
     }
+
+    private void SwapSecondPosition()
+    {
+        _thirdWayPoint = GameObject.Find("Waypoint(3)");
+
+        if(_thirdWayPoint.activeInHierarchy && _Waypoints.Length == 2)
+        {
+
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
