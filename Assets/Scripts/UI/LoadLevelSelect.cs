@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadLevelSelect : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.GetComponent<ThirdPersonController>() != null)
+        if (other.gameObject.GetComponent<ThirdPersonController>() != null)
         {
             SceneManager.LoadScene("LevelSelection");
         }

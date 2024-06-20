@@ -3063,6 +3063,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747938355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &751090565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751090566}
+  m_Layer: 0
+  m_Name: PLayerPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751090566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751090565}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.38268024, z: -0, w: -0.92388093}
+  m_LocalPosition: {x: 6.5, y: 5.76, z: -6.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -405, z: 0}
 --- !u!1 &753514232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,7 +3686,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7273,7 +7304,7 @@ PrefabInstance:
     - target: {fileID: 1615594120783821955, guid: ad95d027920ee0341a2bed7a8735ca53,
         type: 3}
       propertyPath: m_Name
-      value: Ducky
+      value: FinalDuck
       objectReference: {fileID: 0}
     - target: {fileID: 1635098414910646854, guid: ad95d027920ee0341a2bed7a8735ca53,
         type: 3}
@@ -8665,3 +8696,4 @@ SceneRoots:
   - {fileID: 410259876}
   - {fileID: 654063173}
   - {fileID: 1534901737}
+  - {fileID: 751090566}
