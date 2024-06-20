@@ -85,32 +85,32 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: PS_East
-    m_HashCode: 1475805471
+    m_Name: PS_BUTTONEAST
+    m_HashCode: -347598839
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 1
     m_Scale: 1
-    m_Name: Xbox_South
-    m_HashCode: 790848007
+    m_Name: Xbox_BUTTONSOUTH
+    m_HashCode: 1662822897
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 2
     m_Scale: 1
-    m_Name: Xbox_East
-    m_HashCode: 805786257
+    m_Name: Xbox_BUTTONEAST
+    m_HashCode: -2032946809
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 3
     m_Scale: 1
-    m_Name: Xbox_West
-    m_HashCode: 804996935
+    m_Name: Xbox_BUTTONEAST
+    m_HashCode: -2032946809
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 4
     m_Scale: 1
-    m_Name: Xbox_North
-    m_HashCode: 824484061
+    m_Name: Xbox_BUTTONNORTH
+    m_HashCode: 1647225067
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 5
@@ -126,9 +126,9 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 7
-    m_Scale: 1
-    m_Name: Keyboard_Down
-    m_HashCode: 778782560
+    m_Scale: 0.5
+    m_Name: Keyboard_DOWNARROW
+    m_HashCode: -1591144775
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 8
@@ -156,9 +156,9 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 12
-    m_Scale: 1
-    m_Name: Keyboard_Left
-    m_HashCode: 779059657
+    m_Scale: 0.5
+    m_Name: Keyboard_LEFTARROW
+    m_HashCode: 174840112
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 13
@@ -193,14 +193,14 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 18
     m_Scale: 1
-    m_Name: PS_South
-    m_HashCode: 1440153161
+    m_Name: PS_BUTTONSOUTH
+    m_HashCode: 1430631103
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 19
-    m_Scale: 1
-    m_Name: Keyboard_RIght
-    m_HashCode: -90018702
+    m_Scale: 0.5
+    m_Name: Keyboard_RIGHTARROW
+    m_HashCode: -1207123029
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 20
@@ -229,14 +229,14 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 24
     m_Scale: 1
-    m_Name: PS_West
-    m_HashCode: 1475168329
+    m_Name: PS_BUTTONWEST
+    m_HashCode: -346961441
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 25
     m_Scale: 1
-    m_Name: KeyBoard_S
-    m_HashCode: -2019107711
+    m_Name: Keyboard_S
+    m_HashCode: -2081430623
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 26
@@ -265,14 +265,14 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 30
     m_Scale: 1
-    m_Name: PS_North
-    m_HashCode: 1446768659
+    m_Name: PS_BUTTONNORTH
+    m_HashCode: 1406125221
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 31
-    m_Scale: 1
-    m_Name: Keyboard_Up
-    m_HashCode: 32266487
+    m_Scale: 0.5
+    m_Name: Keyboard_UPARROW
+    m_HashCode: 1433726094
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 32
@@ -300,15 +300,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 62
       m_Height: 63
-      m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingX: -6.63
+      m_HorizontalBearingY: 61.68
       m_HorizontalAdvance: 62
     m_GlyphRect:
       m_X: 586
       m_Y: 1327
       m_Width: 62
       m_Height: 63
-    m_Scale: 1
+    m_Scale: 1.05
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 1145845321, guid: 664534a12917be54fbfa602cdb5b68a6, type: 3}
@@ -364,15 +364,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingX: 50
+      m_HorizontalBearingY: 118.2
       m_HorizontalAdvance: 75
     m_GlyphRect:
       m_X: 87
       m_Y: 1319
       m_Width: 75
       m_Height: 81
-    m_Scale: 1
+    m_Scale: 0.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -696845954, guid: 664534a12917be54fbfa602cdb5b68a6, type: 3}
@@ -380,15 +380,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingX: -47.6
+      m_HorizontalBearingY: 119
       m_HorizontalAdvance: 75
     m_GlyphRect:
       m_X: 87
       m_Y: 1072
       m_Width: 75
       m_Height: 81
-    m_Scale: 1
+    m_Scale: 0.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -373751236, guid: 664534a12917be54fbfa602cdb5b68a6, type: 3}
@@ -412,8 +412,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingX: -12.9
+      m_HorizontalBearingY: 76.81
       m_HorizontalAdvance: 75
     m_GlyphRect:
       m_X: 581
@@ -461,7 +461,7 @@ MonoBehaviour:
       m_Width: 149
       m_Height: 168
       m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingY: 119
       m_HorizontalAdvance: 149
     m_GlyphRect:
       m_X: 1281
@@ -476,7 +476,7 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
+      m_HorizontalBearingX: 50
       m_HorizontalBearingY: 119.41
       m_HorizontalAdvance: 75
     m_GlyphRect:
@@ -588,7 +588,7 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
+      m_HorizontalBearingX: -47.6
       m_HorizontalBearingY: 119.41
       m_HorizontalAdvance: 75
     m_GlyphRect:
@@ -692,7 +692,7 @@ MonoBehaviour:
       m_Y: 331
       m_Width: 75
       m_Height: 81
-    m_Scale: 1
+    m_Scale: 0.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -175219307, guid: 664534a12917be54fbfa602cdb5b68a6, type: 3}
@@ -781,7 +781,7 @@ MonoBehaviour:
       m_Width: 75
       m_Height: 81
       m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingY: -5
       m_HorizontalAdvance: 75
     m_GlyphRect:
       m_X: 334
@@ -796,15 +796,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 75
       m_Height: 81
-      m_HorizontalBearingX: 1.22
-      m_HorizontalBearingY: 119.41
+      m_HorizontalBearingX: 1
+      m_HorizontalBearingY: -5
       m_HorizontalAdvance: 75
     m_GlyphRect:
       m_X: 581
       m_Y: 84
       m_Width: 75
       m_Height: 81
-    m_Scale: 1
+    m_Scale: 0.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -412655243, guid: 664534a12917be54fbfa602cdb5b68a6, type: 3}
