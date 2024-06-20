@@ -46,7 +46,7 @@ public class LevelTransition : MonoBehaviour
     public void GoToLevelSelection(float delay)
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadScene("HUBLevel", "End", delay));
+        StartCoroutine(LoadScene("LevelSelection", "End", delay));
     }
 
     public void GoToLevel(string levelName)
