@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ public class FinishLevel : MonoBehaviour
 {
     [SerializeField] private LevelTransition _Transition;
     [SerializeField] private GameObject _virtualCam;
+    [SerializeField] private string _ClearedLevelName;
+
+    [SerializeField] private CinemachineBrain _Brain;
 
     //Job please dont look
     [SerializeField] private GameObject _player;
@@ -16,14 +20,21 @@ public class FinishLevel : MonoBehaviour
 
     [SerializeField] private float _transitionDelay;
 
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerData._Instance._TotalDucksCollected += PlayerData._Instance._DucksCollectedInStage;
 
+            _Brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
+
             LevelCompleted levelCompleted = new LevelCompleted();
-            levelCompleted._levelName = "Level 1";
+            levelCompleted._levelName = _ClearedLevelName;
             levelCompleted._isCompleted = true;
 
             PlayerData._Instance._CompletedLevels.Add(levelCompleted._levelName);
@@ -45,6 +56,6 @@ public class FinishLevel : MonoBehaviour
         _player.SetActive(false);
         _playerWin.SetActive(true);
         _Transition.GoToLevelSelection(delay);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

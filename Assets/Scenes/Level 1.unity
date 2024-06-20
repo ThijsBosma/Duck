@@ -855,10 +855,8 @@ PrefabInstance:
       value: 2.6360002
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 7434848127669637347, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
-    - {fileID: 1293703719172738010, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
-    - {fileID: 93239048958154310, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
-    - {fileID: 8616101033338604927, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 7266694213997672178, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
     - {fileID: 8892248189147236063, guid: af72df03ddb57fa48b6fcee175e047b5, type: 3}
@@ -4220,6 +4218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Transition: {fileID: 773742744841482321}
   _virtualCam: {fileID: 598506815}
+  _ClearedLevelName: Level 1
+  _Brain: {fileID: 1436762504}
   _player: {fileID: 539396902}
   _playerWin: {fileID: 139393692412775155}
   _transitionDelay: 4
