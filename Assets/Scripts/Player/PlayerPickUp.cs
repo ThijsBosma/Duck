@@ -10,6 +10,10 @@ public class PlayerPickUp : FindInputBinding
     [SerializeField] private Transform _Orientation;
     [SerializeField] private Image _InputIcon;
 
+    [SerializeField] private Transform _HoldPosition;
+    [SerializeField] private Transform _PickupPosition;
+    private PlantTree _PlantTree;
+
     [Header("Pick Options")]
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _pickupLayer;
@@ -17,14 +21,24 @@ public class PlayerPickUp : FindInputBinding
     private RaycastHit[] colliders;
 
     private IPickupable _Pickupable;
-    private IPickupable _boxPickupable;
-    private IPickupable _wateringCanPickupable;
 
-    private int _buttonPresses;
+    private IPickupable _wateringCanPickupable;
+    private IPickupable _seedPickupable;
+    private IPickupable _digUpSprout;
+
+    public int _buttonPresses;
 
     private bool _pickupableInRange;
-    private bool _textHasReseted;
-    private bool _isPickingUp;
+    private bool _hasReseted;
+
+    public bool _isPickingUp;
+
+    private string _pickupObject;
+
+    private void Start()
+    {
+        _PlantTree = GetComponent<PlantTree>();
+    }
 
     private void Update()
     {
@@ -34,66 +48,49 @@ public class PlayerPickUp : FindInputBinding
 
             if (_buttonPresses == 1)
             {
-                _isPickingUp = true;
-                if (_boxPickupable != null)
-                {
-                    PlayerData._Instance._ObjectPicedkUp = 1;
-                    _boxPickupable.PickUp();
-                }
-                else if (_wateringCanPickupable != null)
+                PlayerData._Instance._ObjectPickedup = 1;
+
+                if (_wateringCanPickupable != null)
                 {
                     PlayerData._Instance._WateringCanPickedup = 1;
                     _wateringCanPickupable.PickUp();
+                }
+                else if (_seedPickupable != null)
+                {
+                    PlayerData._Instance._SeedPickedup = 1;
+
+                    _Plant.Enable();
+
+                    _seedPickupable.PickUp();
+                }
+                else if (_digUpSprout != null)
+                {
+                    _digUpSprout.PickUp();
+                    _isPickingUp = false;
+                    ResetPickup();
                 }
 
                 InteractText.instance.ResetText();
             }
             else if (_buttonPresses > 1)
             {
-                PlayerData._Instance._ObjectPicedkUp = 1;
-
-                if (_boxPickupable != null)
+                if (_wateringCanPickupable != null)
                 {
-                    _boxPickupable.LetGo();
-                }
-                else if (_wateringCanPickupable != null)
-                {
+                    PlayerData._Instance._WateringCanPickedup = 0;
                     _wateringCanPickupable.LetGo();
                 }
-                _isPickingUp = false;
+                else if (_seedPickupable != null)
+                {
+                    PlayerData._Instance._SeedPickedup = 0;
+                    _Plant.Disable();
+                    _seedPickupable.LetGo();
+                }
             }
         }
 
-        /*if (_Pickup.WasPressedThisFrame())
-        {
-            foreach (RaycastHit hit in colliders)
-            {
-                if (_Pickupable == null)
-                {
-                    Debug.LogError($"Object '{hit.collider.name}' does not contain an IPickupable component");
-                }
-                else if (PlayerData._Instance._ObjectPicedkUp == 0)
-                {
-                    PlayerData._Instance._ObjectPicedkUp = 1;
-                    _isPickingUp = true;
-
-                    _Pickupable.PickUp();
-                    _buttonPresses++;
-
-                    InteractText.instance.ResetText();
-                }
-                else if (PlayerData._Instance._ObjectPicedkUp == 1)
-                {
-                    _buttonPresses++;
-                    _Pickupable.LetGo();
-                    _isPickingUp = false;
-                }
-            }
-        }*/
-
         if (_buttonPresses > 1)
         {
-            PlayerData._Instance._ObjectPicedkUp = 0;
+            PlayerData._Instance._ObjectPickedup = 0;
 
             _buttonPresses = 0;
 
@@ -108,8 +105,11 @@ public class PlayerPickUp : FindInputBinding
         if (hasColliders)
         {
             HandlePickup();
+
+            if (_hasReseted)
+                _hasReseted = false;
         }
-        else if (!_isPickingUp)
+        else if (!_isPickingUp && !_hasReseted)
         {
             ResetPickup();
         }
@@ -117,7 +117,7 @@ public class PlayerPickUp : FindInputBinding
 
     private void FixedUpdate()
     {
-        if (PlayerData._Instance._ObjectPicedkUp == 0)
+        if (PlayerData._Instance._ObjectPickedup == 0)
         {
             colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, _pickupLayer);
 
@@ -127,12 +127,27 @@ public class PlayerPickUp : FindInputBinding
 
                 if (pickupable != null)
                 {
-                    if (pickupable is BoxPickup)
-                        _boxPickupable = pickupable;
-                    else if (pickupable is WateringCan)
+                    _pickupObject = pickupable.ToString();
+                   
+                    if (pickupable is WateringCan)
                         _wateringCanPickupable = pickupable;
-                }
+                    else if (pickupable is SeedPickup)
+                    {
+                        _seedPickupable = pickupable;
+                        if (_PlantTree._Seed == null)
+                        {
+                            _PlantTree._Seed = hit.collider.gameObject;
+                        }
+                    }
+                    else if (pickupable is SproutPickup)
+                    {
+                        SproutPickup sprout = hit.collider.gameObject.GetComponent<SproutPickup>();
+                        sprout._HoldPosition = _HoldPosition;
+                        sprout._PickupPosition = _PickupPosition;
 
+                        _digUpSprout = pickupable;
+                    }
+                }
             }
         }
     }
@@ -141,20 +156,13 @@ public class PlayerPickUp : FindInputBinding
     {
         if (!_isPickingUp)
         {
-            if (_boxPickupable != null)
-                HandleBoxPickup();
-            else if (_wateringCanPickupable != null)
+            if (_wateringCanPickupable != null)
                 HandleWateringCanPickup();
+            else if (_seedPickupable != null && _PlantTree._Seed != null)
+                HandleSeedPickUp();
+            else if (_digUpSprout != null)
+                HandleGetSeedPickUp();
         }
-    }
-
-    private void HandleBoxPickup()
-    {
-
-        _Pickup.Enable();
-        _pickupableInRange = true;
-
-        SetText("to lift the box", true);
     }
 
     private void HandleWateringCanPickup()
@@ -162,90 +170,69 @@ public class PlayerPickUp : FindInputBinding
         _Pickup.Enable();
         _pickupableInRange = true;
 
-        SetText("to lift the watering can", true);
+        SetText("to lift the watering can", true, "Pickup");
     }
 
-    private void SetText(string text, bool needsBindingReference)
+    private void HandleSeedPickUp()
     {
-        string controlScheme = playerInput.currentControlScheme;
+        _Pickup.Enable();
+        _pickupableInRange = true;
 
-        if (needsBindingReference)
+        SetText("to get seed back", true, "Pickup");
+    }
+
+    private void HandleGetSeedPickUp()
+    {
+        bool playerIsHoldingObject = PlayerData._Instance._ObjectPickedup == 0;
+
+        if (!playerIsHoldingObject)
         {
-            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
-            {
-                InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} {text}");
-            }
-            else
-                InteractText.instance.SetText($"Press {FindBinding("Pickup")} {text}");
+            SetText("Hands full", false);
+            _pickupableInRange = true;
         }
         else
         {
-            InteractText.instance.SetText($"{text}");
-        }
+            Debug.Log("Pick seed");
+            _Pickup.Enable();
+            _pickupableInRange = true;
 
-        _textHasReseted = false;
+            SetText("to dig up the seed", true);
+        }
     }
 
-    private void ResetPickup()
+    public void ResetPickup()
     {
-        //Disavle pickup
+        //Disable pickup
         _Pickup.Disable();
+
         _pickupableInRange = false;
+        _isPickingUp = false;
 
-        Debug.Log("gay");
+        _buttonPresses = 0;
 
-        //Reset interaction text only once
-        if (!_textHasReseted)
-        {
-            InteractText.instance.ResetText();
-            _textHasReseted = true;
-        }
+        _PlantTree._Seed = null;
+
+        _PlantTree._treeIndicator.SetActive(false);
+
+        Debug.Log("Pickup reset");
+
+        InteractText.instance.ResetText();
+        _pickupObject = "";
 
         //Reset pickupables to null
-        _boxPickupable = null;
         _wateringCanPickupable = null;
-    }
+        _seedPickupable = null;
+        _digUpSprout = null;
 
-    private void CheckPickupInRange()
-    {
-        if (_buttonPresses < 1)
-        {
-            bool hasColliders = colliders.Length > 0;
-
-            if (hasColliders && !_pickupableInRange)
-            {
-                _pickupableInRange = true;
-
-                if (_Pickup.WasPressedThisFrame() ^ _pickupableInRange)
-                {
-                    string controlScheme = playerInput.currentControlScheme;
-                    if (controlScheme == "PlaystationController" || controlScheme == "Gamepad" || controlScheme == "XboxController")
-                    {
-                        InteractText.instance.SetText($"Press {FindIconBinding("Pickup")} to pick up");
-                    }
-                    else if (playerInput.currentControlScheme == "Keyboard&Mouse")
-                    {
-                        InteractText.instance.SetText($"Press {FindBinding("Pickup")} to pick up");
-                    }
-                    _textHasReseted = false;
-                }
-            }
-            else if (!hasColliders && _pickupableInRange)
-            {
-                _pickupableInRange = false;
-
-                _Pickupable = null;
-                Debug.Log(_Pickupable);
-            }
-        }
+        _hasReseted = true;
     }
 
     private void OnDrawGizmos()
     {
-        if (!_isPickingUp)
+        /*if (!_isPickingUp)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _radius);
-        }
+        }*/
     }
 }

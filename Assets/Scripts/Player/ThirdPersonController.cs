@@ -33,8 +33,9 @@ public class ThirdPersonController : InputHandler
 
     [Header("Climbing")]
     public bool _IsClimbing;
-    public Vector3 _ForwardWall;
-    public Vector3 _WallUp;
+    [HideInInspector] public Vector3 _WallRight;
+    [HideInInspector] public Vector3 _WallUp;
+    [HideInInspector] public Vector3 _WallHeight;
 
     private void Start()
     {
@@ -43,6 +44,9 @@ public class ThirdPersonController : InputHandler
 
     void Update()
     {
+        if (!GameManager._Instance._enableMove)
+            return;
+
         //Check if we are standing on a slope
         if (OnSlope())
         {
@@ -51,23 +55,12 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
         }
-
-        Debug.DrawRay(transform.position, Vector3.down * (_PlayerHeight * 0.5f + 0.3f));
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _PlayerHeight * 0.5f, _WhatIsGround);
 
         AddDownForce();
         GetMovementInputs();
         MoveCharacter();
-
-        if (!_grounded)
-        {
-            _airTime += Time.deltaTime;
-            if (_airTime > 0.2f)
-                _inAir = true;
-        }
-        else
-            _inAir = false;
     }
 
     private void MoveCharacter()
@@ -80,8 +73,7 @@ public class ThirdPersonController : InputHandler
         }
         else
         {
-            //controller.Move(new Vector3(0, _movementInputs.y * _Speed / 2, _movementInputs.x * _Speed / 2) * Time.deltaTime);
-            controller.Move((_ForwardWall * _movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
+            controller.Move((_WallRight * _movementInputs.x + _WallUp * _movementInputs.y) * _Speed / 2 * Time.deltaTime);
         }
 
         if (!_inAir)
@@ -115,16 +107,21 @@ public class ThirdPersonController : InputHandler
         if (other.gameObject.GetComponent<IPlayerData>() != null)
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
-            Destroy(other.gameObject);
+            if (other.gameObject.name != "FinalDuck")
+                Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Edge"))
+        {
+            _IsClimbing = false;
         }
     }
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _PlayerHeight * 0.5f + 0.3f, _WhatIsGround))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
-            Debug.Log(angle < controller.slopeLimit && angle != 0);
             return angle < controller.slopeLimit && angle != 0;
         }
 

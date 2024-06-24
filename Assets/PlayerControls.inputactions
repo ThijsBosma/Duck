@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Pickup",
+                    "type": "Button",
+                    "id": "434eb317-73b5-436b-b507-8d2c04cfb6e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "GrowPlant",
                     "type": "Button",
                     "id": "96af7084-8228-4b7b-b4f9-dfaa2112c21d",
@@ -51,9 +60,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pickup",
+                    "name": "Plant",
                     "type": "Button",
-                    "id": "434eb317-73b5-436b-b507-8d2c04cfb6e3",
+                    "id": "061e0b39-d77a-489c-86b0-90ba503459ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -487,6 +496,39 @@
                     "processors": "",
                     "groups": "XboxController;Gamepad",
                     "action": "Climb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6351a027-0be1-471f-8f94-a06c90c8e06b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Plant",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76f989d4-2d53-4702-975b-debf21200213",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlaystationController",
+                    "action": "Plant",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "697c6bbb-5c09-4c0b-b15b-336efcaf5201",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;XboxController",
+                    "action": "Plant",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public static PlayerData _Instance;
+    public static PlayerData _Instance { get; private set; }
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
-        if (_Instance == null)
+        if (_Instance != null && _Instance != this)
         {
-            _Instance = this;
+            Destroy(this);
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            _Instance = this;
         }
     }
 
     public int _DucksCollectedInStage;
     public int _TotalDucksCollected;
-    public int _ObjectPicedkUp;
-    public int _KeyPickedUp;
+    public int _ObjectPickedup;
+    public int _KeyPickedup;
     public int _WateringCanPickedup;
     public int _WateringCanHasWater;
+    public int _SeedPickedup;
+
+    public List<int> _DuckIDs = new List<int>();
+    public List<string> _CompletedLevels = new List<string>();
+}
+
+[System.Serializable]
+public class LevelCompleted
+{
+    public string _levelName;
+    public bool _isCompleted;
 }

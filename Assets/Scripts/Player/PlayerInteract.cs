@@ -10,6 +10,7 @@ public class PlayerInteract : FindInputBinding
     [Header("References")]
     [SerializeField] private Transform _Orientation;
     [SerializeField] private Image _InputIcon;
+    [SerializeField] private Vector3 _OffsetPosition;
 
     [Header("Interact Options")]
     [SerializeField] private float _radius;
@@ -48,25 +49,9 @@ public class PlayerInteract : FindInputBinding
 
         if (hasColliders)
         {
-            foreach (RaycastHit hit in colliders)
-            {
-                IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    if (interactable is GrowPlant)
-                    {
-                        _growTreeInteractable = interactable;
-                    }
-                    else
-                    {
-                        _Interactable = interactable;
-                    }
-                }
-            }
-
             HandleInteraction();
         }
-        else
+        else if(!_textHasReseted)
         {
             ResetInteraction();
         }
@@ -76,7 +61,7 @@ public class PlayerInteract : FindInputBinding
     {
         if (!_isInteracting)
         {
-            colliders = Physics.SphereCastAll(transform.position, _radius, _Orientation.forward, 0f, interactLayer);
+            colliders = Physics.SphereCastAll(transform.position + _OffsetPosition, _radius, _Orientation.forward, 0f, interactLayer);
             foreach (RaycastHit hit in colliders)
             {
                 IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
@@ -91,7 +76,9 @@ public class PlayerInteract : FindInputBinding
                         _waterPlaceInteractable = interactable;
                     else if (interactable is Lever)
                         _leverInteractable = interactable;
+
                     _interactableName = hit.collider.name;
+                    _textHasReseted = false;
                     break;
                 }
             }
@@ -115,18 +102,18 @@ public class PlayerInteract : FindInputBinding
         bool playerHasWateringCan = PlayerData._Instance._WateringCanPickedup == 1;
         bool wateringCanHasWater = PlayerData._Instance._WateringCanHasWater == 1;
 
-        if ((!playerHasWateringCan || (playerHasWateringCan && !wateringCanHasWater)) && !_growTreeInteractable.HasInteracted())
+        if ((playerHasWateringCan && !wateringCanHasWater) && !_growTreeInteractable.HasInteracted())
         {
             SetText("I need water", false);
         }
-        else if (_growTreeInteractable != null && !_growTreeInteractable.HasInteracted())
+        else if (_growTreeInteractable != null && playerHasWateringCan && !_growTreeInteractable.HasInteracted())
         {
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
             SetText("to grow a plant", true);
         }
-        else
+        else if(_growTreeInteractable.HasInteracted())
         {
             ResetInteraction();
         }
@@ -147,10 +134,6 @@ public class PlayerInteract : FindInputBinding
             _interactableInRange = true;
 
             SetText("to push the tree", true);
-        }
-        else
-        {
-            ResetInteraction();
         }
     }
 
@@ -178,10 +161,6 @@ public class PlayerInteract : FindInputBinding
                 SetText("to fill up the watering can", true);
             }
         }
-        else
-        {
-            ResetInteraction();
-        }
     }
 
     private void HandleLeverInteraction()
@@ -193,10 +172,6 @@ public class PlayerInteract : FindInputBinding
             _interactableInRange = true;
 
             SetText("to pull the lever", true);
-        }
-        else
-        {
-            ResetInteraction();
         }
     }
 
@@ -210,6 +185,7 @@ public class PlayerInteract : FindInputBinding
         if (!_textHasReseted)
         {
             InteractText.instance.ResetText();
+            _interactableName = "";
             _textHasReseted = true;
         }
 
@@ -235,9 +211,6 @@ public class PlayerInteract : FindInputBinding
         }
         else
         {
-            Color iconColor = _InputIcon.color;
-            iconColor.a = 0;
-            _InputIcon.color = iconColor;
             InteractText.instance.SetText($"{text}");
         }
 
@@ -246,7 +219,7 @@ public class PlayerInteract : FindInputBinding
 
     private void OnDrawGizmos()
     {
-        if (!_isInteracting)
-            Gizmos.DrawWireSphere(transform.position, _radius);
+       if (!_isInteracting)
+            Gizmos.DrawWireSphere(transform.position + _OffsetPosition, _radius);
     }
 }

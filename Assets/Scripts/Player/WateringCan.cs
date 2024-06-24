@@ -10,15 +10,9 @@ public class WateringCan : PickUpObject, IPickupable
 
         PlayerData._Instance._WateringCanPickedup = 1;
 
-        _Collider.isTrigger = true;
+        StartCoroutine(LerpToHoldPosition());
 
         _hasInteracted = true;
-
-        _Rb.isKinematic = true;
-        _Rb.useGravity = false;
-        _Rb.mass = 0;
-
-        transform.SetParent(_HoldPosition);
     }
 
     public void LetGo()
@@ -27,16 +21,9 @@ public class WateringCan : PickUpObject, IPickupable
 
         PlayerData._Instance._WateringCanPickedup = 0;
 
+        StartCoroutine(LerpToPickupPostion());
+
         _hasInteracted = false;
-
-        _Collider.isTrigger = false;
-
-        _Rb.isKinematic = false;
-        _Rb.useGravity = true;
-        _Rb.mass = 10;
-
-        transform.position = _PickupPosition.position;
-        transform.SetParent(null);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -51,4 +38,5 @@ public class WateringCan : PickUpObject, IPickupable
     {
         PlayerData._Instance._WateringCanHasWater = 1;
     }
+
 }

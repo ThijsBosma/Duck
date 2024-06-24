@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateCamera : InputHandler
 {
-    [SerializeField] private Transform focusPoint;
     [SerializeField] private Transform camPos;
     [SerializeField] private Transform orientation;
 
@@ -20,32 +20,57 @@ public class RotateCamera : InputHandler
     private float yRotation;
 
     private Vector2 lookDir;
-    private Vector3 rotateDir;
+    private Quaternion _startRotation;
 
     private void Start()
     {
-        camPos.LookAt(focusPoint);
+        _startRotation = transform.rotation;
+
+        yRotation = _startRotation.eulerAngles.x;
+        xRotation = _startRotation.eulerAngles.y;
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            this.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        lookDir = _Look.ReadValue<Vector2>();
+        if (!GameManager._Instance._enableCameraRotate)
+            return;
 
-        if (lookDir.x > 0.5f || lookDir.x < -0.5f)
+        if (_Look.IsPressed())
         {
-            if (invertCameraAxis)
-                xRotation += Time.deltaTime * sensX * 10 * (lookDir.x * -1);
-            else
-                xRotation += Time.deltaTime * sensX * 10 * lookDir.x;
-        }
-        else if (lookDir.y > 0.5f || lookDir.y < -0.5f)
-        {
-            yRotation += Time.deltaTime * sensY * 10 * lookDir.y;
-            yRotation = Mathf.Clamp(yRotation, minYRotation, maxYRotation);
-        }
+            lookDir = _Look.ReadValue<Vector2>();
 
+            if (lookDir.x > 0.5f || lookDir.x < -0.5f)
+            {
+                if (invertCameraAxis)
+                    xRotation += Time.deltaTime * sensX * 10 * (lookDir.x * -1);
+                else
+                    xRotation += Time.deltaTime * sensX * 10 * lookDir.x;
+            }
+            else if (lookDir.y > 0.5f || lookDir.y < -0.5f)
+            {
+                yRotation += Time.deltaTime * sensY * 10 * lookDir.y;
+                yRotation = Mathf.Clamp(yRotation, minYRotation, maxYRotation);
+            }
+
+        }
         transform.rotation = Quaternion.Euler(yRotation, xRotation, transform.rotation.eulerAngles.z);
         orientation.rotation = Quaternion.Euler(0, xRotation, 0);
+    }
+
+    /// <summary>
+    /// Enable inputs after the camera has rotated
+    /// </summary>
+    public void ActivateMovement()
+    {
+        GameManager._Instance._enableMove = true;
+    }
+
+    public void ActivateCameraRotation()
+    {
+        GameManager._Instance._enableCameraRotate = true;
     }
 }
