@@ -15,11 +15,6 @@ public class UIManager : FindInputBinding
     private void Start()
     {
         _controlScheme = playerInput.currentControlScheme;
-
-        if (GameManager._Instance._showInputs)
-        {
-            StartCoroutine(ShowControlIcons());
-        }
     }
 
     void Update()
@@ -65,29 +60,5 @@ public class UIManager : FindInputBinding
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    private IEnumerator ShowControlIcons()
-    {
-        if (_controlScheme == "Keyboard&Mouse")
-        {
-            _ControlText[0].SetActive(true);
-        }
-        else
-        {
-            _ControlText[1].SetActive(true);
-        }
-
-        yield return new WaitForSeconds(10);
-
-        if (_controlScheme == "Keyboard&Mouse")
-        {
-            _ControlText[0].SetActive(false);
-        }
-        else
-        {
-            _ControlText[1].SetActive(false);
-        }
-
     }
 }
