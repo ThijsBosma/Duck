@@ -13,7 +13,6 @@ public class Lever : MonoBehaviour, IInteractable
 
     public bool HasInteracted()
     {
-        InteractText.instance.ResetText();
         return _hasInteracted;
     }
 

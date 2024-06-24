@@ -64,7 +64,6 @@ public class ShowLevelUI : FindInputBinding
         {
             _LevelUI.SetActive(false);
             _LevelInteract.Disable();
-            InteractText.instance.ResetText();
         }
     }
 }

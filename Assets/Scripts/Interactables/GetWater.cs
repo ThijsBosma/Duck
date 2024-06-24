@@ -17,12 +17,11 @@ public class GetWater : MonoBehaviour,IInteractable
         }
         else if (PlayerData._Instance._WateringCanHasWater == 1)
         {
-            InteractText.instance.SetText("Watering can already filled");
         }
         else if (PlayerData._Instance._WateringCanPickedup == 0)
         {
             Debug.LogError("Player has no watering can picked up");
-         }
+        }
     }
 
     public void UnInteract()

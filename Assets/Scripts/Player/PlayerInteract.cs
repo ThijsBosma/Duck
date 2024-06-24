@@ -184,7 +184,7 @@ public class PlayerInteract : FindInputBinding
         // Reset interaction text only once
         if (!_textHasReseted)
         {
-            InteractText.instance.ResetText();
+            //InteractText.instance.ResetText();
             _interactableName = "";
             _textHasReseted = true;
         }
@@ -202,16 +202,10 @@ public class PlayerInteract : FindInputBinding
 
         if (needsBindingReference)
         {
-            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
-            {
-                InteractText.instance.SetText($"Press {FindIconBinding("Interact")} {text}");
-            }
-            else
-                InteractText.instance.SetText($"Press {FindBinding("Interact")} {text}");
+            //if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
         }
         else
         {
-            InteractText.instance.SetText($"{text}");
         }
 
         _textHasReseted = false;

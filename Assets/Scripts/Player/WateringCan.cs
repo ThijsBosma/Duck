@@ -10,6 +10,8 @@ public class WateringCan : PickUpObject, IPickupable
 
         PlayerData._Instance._WateringCanPickedup = 1;
 
+        ChangeInputIcons._Instance._changeInteractTo = "Fill up\nwatering can";
+
         StartCoroutine(LerpToHoldPosition());
 
         _hasInteracted = true;
@@ -20,6 +22,8 @@ public class WateringCan : PickUpObject, IPickupable
         _grabbed = false;
 
         PlayerData._Instance._WateringCanPickedup = 0;
+
+        ChangeInputIcons._Instance._changeInteractTo = "Interact";
 
         StartCoroutine(LerpToPickupPostion());
 

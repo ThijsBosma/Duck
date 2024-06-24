@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 
 public class ChangeInputIcons : FindInputBinding
 {
+    public static ChangeInputIcons _Instance { get; private set; }
+
     public TextMeshProUGUI[] _Texts;
 
     [SerializeField] private GameObject _keyboardInputs;
 
-    [SerializeField] private string _changeInteractTo;
+    public string _changeInteractTo;
     [SerializeField] private string _changePickupTo;
 
     private InputAction _Action;
@@ -22,6 +24,15 @@ public class ChangeInputIcons : FindInputBinding
         base.Awake();
         _UITexts = new string[_Texts.Length];
         SaveTexts();
+
+        if(_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -129,10 +140,10 @@ public class ChangeInputIcons : FindInputBinding
             string inputBinding = ExtractInputBinding(playerInput, ExtractActiontName(_UITexts[i])) + '"' + "> ";
             string actionName = ExtractActiontName(_UITexts[i]);
 
-            Debug.Log(spriteAssetName);
+            /*Debug.Log(spriteAssetName);
             Debug.Log(currentControlScheme);
             Debug.Log(inputBinding);
-            Debug.Log(actionName);
+            Debug.Log(actionName);*/
 
             if (actionName == "Interact")
                 actionName = _changeInteractTo;
@@ -162,10 +173,6 @@ public class ChangeInputIcons : FindInputBinding
             else if (currentControlScheme != "Keyboard_")
             {
                 _keyboardInputs.SetActive(false);
-
-                Debug.Log("using controller");
-
-
 
                 _Texts[i].text = spriteAssetName + currentControlScheme + inputBinding + actionName;
             }

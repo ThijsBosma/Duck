@@ -69,8 +69,6 @@ public class PlayerPickUp : FindInputBinding
                     _isPickingUp = false;
                     ResetPickup();
                 }
-
-                InteractText.instance.ResetText();
             }
             else if (_buttonPresses > 1)
             {
@@ -216,7 +214,7 @@ public class PlayerPickUp : FindInputBinding
 
         Debug.Log("Pickup reset");
 
-        InteractText.instance.ResetText();
+        //InteractText.instance.ResetText();
         _pickupObject = "";
 
         //Reset pickupables to null

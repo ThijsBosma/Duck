@@ -31,7 +31,6 @@ public class SpawnClimbableWall : MonoBehaviour, IInteractable
     }
     public bool HasInteracted()
     {
-        InteractText.instance.ResetText();
         return _hasInteracted;
     }
 }

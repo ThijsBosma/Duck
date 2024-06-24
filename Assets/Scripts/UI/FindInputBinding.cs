@@ -121,16 +121,16 @@ public class FindInputBinding : InputHandler
         {
             if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
             {
-                InteractText.instance.SetText($"Press {FindIconBinding(inputType)} {text}");
+                //InteractText.instance.SetText($"Press {FindIconBinding(inputType)} {text}");
             }
             else
             {
-                InteractText.instance.SetText($"Press {FindBinding(inputType)} {text}");
+                //InteractText.instance.SetText($"Press {FindBinding(inputType)} {text}");
             }
         }
         else if(inputType == default)
         {
-            InteractText.instance.SetText($"{text}");
+            //InteractText.instance.SetText($"{text}");
         }
     }
 }
