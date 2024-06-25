@@ -9,13 +9,13 @@ public class PlayerInteract : FindInputBinding
 {
     [Header("References")]
     [SerializeField] private Transform _Orientation;
-    [SerializeField] private Image _InputIcon;
     [SerializeField] private Vector3 _OffsetPosition;
 
     [Header("Interact Options")]
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private FillWaterUI _WaterUI;
+    [SerializeField] private GameObject _InputIcon;
 
     private RaycastHit[] colliders;
 
@@ -36,6 +36,8 @@ public class PlayerInteract : FindInputBinding
     {
         if (_Interact.WasPressedThisFrame())
         {
+            _InputIcon.SetActive(false);
+
             if (_growTreeInteractable != null && !_growTreeInteractable.HasInteracted())
             {
                 _growTreeInteractable.Interact();
@@ -114,6 +116,9 @@ public class PlayerInteract : FindInputBinding
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
+
+            _InputIcon.SetActive(true);
+
             ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
         }
         else if (_growTreeInteractable.HasInteracted())
@@ -134,6 +139,8 @@ public class PlayerInteract : FindInputBinding
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
+
+            _InputIcon.SetActive(true);
 
             ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
         }
@@ -159,6 +166,9 @@ public class PlayerInteract : FindInputBinding
                 // Enable interaction
                 _Interact.Enable();
                 _interactableInRange = true;
+
+                _InputIcon.SetActive(true);
+
                 ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
             }
         }
@@ -171,6 +181,8 @@ public class PlayerInteract : FindInputBinding
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
+
+            _InputIcon.SetActive(true);
         }
     }
 
@@ -179,6 +191,8 @@ public class PlayerInteract : FindInputBinding
         // Disable interaction
         _Interact.Disable();
         _interactableInRange = false;
+
+        _InputIcon.SetActive(false);
 
         // Reset interaction text only once
         if (!_textHasReseted)

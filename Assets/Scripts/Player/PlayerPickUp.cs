@@ -8,7 +8,7 @@ public class PlayerPickUp : FindInputBinding
 {
     [Header("References")]
     [SerializeField] private Transform _Orientation;
-    [SerializeField] private Image _InputIcon;
+    [SerializeField] private GameObject _InputIcon;
 
     [SerializeField] private Transform _HoldPosition;
     [SerializeField] private Transform _PickupPosition;
@@ -152,6 +152,11 @@ public class PlayerPickUp : FindInputBinding
 
     private void HandlePickup()
     {
+        if(PlayerData._Instance._ObjectPickedup == 0)
+            _InputIcon.SetActive(true);
+        else
+            _InputIcon.SetActive(false);
+
         if (!_isPickingUp)
         {
             if (_wateringCanPickupable != null)
@@ -203,6 +208,8 @@ public class PlayerPickUp : FindInputBinding
 
         _pickupableInRange = false;
         _isPickingUp = false;
+
+        _InputIcon.SetActive(false);
 
         _buttonPresses = 0;
 

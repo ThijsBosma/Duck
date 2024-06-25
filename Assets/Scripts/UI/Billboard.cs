@@ -7,6 +7,11 @@ public class Billboard : MonoBehaviour
     [SerializeField] private Transform _Cam;
     public bool _debug;
 
+    private void Start()
+    {
+        _Cam = Camera.main.transform;
+    }
+
     private void Update()
     {
         transform.LookAt(transform.position + _Cam.forward);

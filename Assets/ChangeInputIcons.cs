@@ -10,6 +10,7 @@ public class ChangeInputIcons : FindInputBinding
 
     public TextMeshProUGUI[] _Texts;
 
+
     [SerializeField] private GameObject _keyboardInputs;
 
     public string _changeInteractTo;
@@ -18,6 +19,10 @@ public class ChangeInputIcons : FindInputBinding
     private InputAction _Action;
 
     private string[] _UITexts;
+
+    [Header("Update only icon")]
+    [SerializeField] private bool _OnlyUpdateIcon;
+    [SerializeField] private TextMeshProUGUI _IconText;
 
     protected override void Awake()
     {
@@ -151,8 +156,8 @@ public class ChangeInputIcons : FindInputBinding
                 if (actionName == "Move" || actionName == "Look")
                     _Texts[i].text = "    " + actionName;
                 else
-                    _Texts[i].text = spriteAssetName + 
-                        FilterInputBindingAndControlScheme(currentControlScheme, inputBinding, actionName) + 
+                    _Texts[i].text = spriteAssetName +
+                        FilterInputBindingAndControlScheme(currentControlScheme, inputBinding, actionName) +
                         FilterActionName(actionName);
             }
             else if (currentControlScheme != "Keyboard_")
