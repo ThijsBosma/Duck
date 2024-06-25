@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 
 public class ChangeInputIcons : FindInputBinding
 {
+    public static ChangeInputIcons _Instance { get; private set; }
+
     public TextMeshProUGUI[] _Texts;
 
     [SerializeField] private GameObject _keyboardInputs;
 
-    [SerializeField] private string _changeInteractTo;
+    public string _changeInteractTo;
     [SerializeField] private string _changePickupTo;
 
     private InputAction _Action;
@@ -22,6 +24,15 @@ public class ChangeInputIcons : FindInputBinding
         base.Awake();
         _UITexts = new string[_Texts.Length];
         SaveTexts();
+
+        if (_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -75,7 +86,7 @@ public class ChangeInputIcons : FindInputBinding
 
         for (int i = 0; i < splitText.Length; i++)
         {
-            Debug.Log($"splitted text {i}: {splitText[1]}");
+            //Debug.Log($"splitted text {i}: {splitText[1]}");
         }
 
         string[] splittedText = splitText[1].Split(" ");
@@ -88,8 +99,6 @@ public class ChangeInputIcons : FindInputBinding
 
     private string ExtractInputBinding(PlayerInput playerInput, string text)
     {
-        Debug.Log("Action text: " + text);
-
         _Action = playerInput.actions.FindAction(text);
 
         if (_Action != null)
@@ -129,46 +138,82 @@ public class ChangeInputIcons : FindInputBinding
             string inputBinding = ExtractInputBinding(playerInput, ExtractActiontName(_UITexts[i])) + '"' + "> ";
             string actionName = ExtractActiontName(_UITexts[i]);
 
-            Debug.Log(spriteAssetName);
+            /*Debug.Log(spriteAssetName);
             Debug.Log(currentControlScheme);
             Debug.Log(inputBinding);
-            Debug.Log(actionName);
+            Debug.Log(actionName);*/
 
-            if (actionName == "Interact")
-                actionName = _changeInteractTo;
-            else if (actionName == "Pickup")
-                actionName = _changePickupTo;
-
-            if (actionName == "Move" && currentControlScheme != "Keyboard_")
-            {
-                currentControlScheme = "";
-                inputBinding = "Gamepad_L" + '"' + "> ";
-            }
-            else if (actionName == "Look" && currentControlScheme != "Keyboard_")
-            {
-                currentControlScheme = "";
-                inputBinding = "Gamepad_R" + '"' + "> ";
-            }
 
             if (currentControlScheme == "Keyboard_")
             {
                 _keyboardInputs.SetActive(true);
 
                 if (actionName == "Move" || actionName == "Look")
-                    _Texts[i].text = "     " + actionName;
+                    _Texts[i].text = "    " + actionName;
                 else
-                    _Texts[i].text = spriteAssetName + currentControlScheme + inputBinding + actionName;
+                    _Texts[i].text = spriteAssetName + 
+                        FilterInputBindingAndControlScheme(currentControlScheme, inputBinding, actionName) + 
+                        FilterActionName(actionName);
             }
             else if (currentControlScheme != "Keyboard_")
             {
                 _keyboardInputs.SetActive(false);
 
-                Debug.Log("using controller");
-
-
-
-                _Texts[i].text = spriteAssetName + currentControlScheme + inputBinding + actionName;
+                _Texts[i].text = spriteAssetName +
+                        FilterInputBindingAndControlScheme(currentControlScheme, inputBinding, actionName) +
+                        FilterActionName(actionName);
             }
+        }
+    }
+
+    private string FilterActionName(string actionName)
+    {
+        if (actionName == "Interact")
+        {
+            if (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 1)
+            {
+                actionName = "Water sprout";
+                return actionName;
+            }
+            else if (PlayerData._Instance._WateringCanPickedup == 1)
+            {
+                actionName = "Fill";
+                return actionName;
+            }
+            else if (PlayerData._Instance._SeedPickedup == 1)
+            {
+                actionName = "Plant seed";
+                return actionName;
+            }
+            else
+            {
+                actionName = _changeInteractTo;
+                return actionName;
+            }
+        }
+        else if (actionName == "Pickup")
+            actionName = _changePickupTo;
+
+        return actionName;
+    }
+
+    private string FilterInputBindingAndControlScheme(string currenControlScheme, string inputBinding, string actionName)
+    {
+        if (actionName == "Move" && currenControlScheme != "Keyboard_")
+        {
+            currenControlScheme = "";
+            inputBinding = "Gamepad_L" + '"' + "> ";
+            return currenControlScheme + inputBinding;
+        }
+        else if (actionName == "Look" && currenControlScheme != "Keyboard_")
+        {
+            currenControlScheme = "";
+            inputBinding = "Gamepad_R" + '"' + "> ";
+            return currenControlScheme + inputBinding;
+        }
+        else
+        {
+            return currenControlScheme + inputBinding;
         }
     }
 }

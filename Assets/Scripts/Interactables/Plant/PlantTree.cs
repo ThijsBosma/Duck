@@ -14,11 +14,15 @@ public class PlantTree : FindInputBinding
     private Vector3 _plantPosition;
     private Transform t;
 
+    [Header("Tree hologram")]
     [SerializeField] private Transform _ShootRayPos;
 
     [SerializeField] private LayerMask _PlantLayer;
 
     [SerializeField] private Material _HoloGramMaterial;
+
+    [Header("Input")]
+    [SerializeField] private GameObject _ShiftInput;
     private Color _holowGramColor;
 
     private PlayerPickUp _playerPickup;
@@ -40,6 +44,9 @@ public class PlantTree : FindInputBinding
     {
         if (PlayerData._Instance._SeedPickedup == 1)
         {
+            if(_ShiftInput.activeInHierarchy == false)
+                _ShiftInput.SetActive(true);
+
             if (_Plant.IsPressed())
             {
                 RaycastHit hit;
@@ -74,7 +81,7 @@ public class PlantTree : FindInputBinding
                     _inputIsActive = true;
                     _Interact.Enable();
 
-                    SetText("to plant the seed", true, "Interact");
+                    ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
                 }
             }
             else if (_inputIsActive)
@@ -84,8 +91,6 @@ public class PlantTree : FindInputBinding
                 _treeIndicator.SetActive(false);
 
                 _inputIsActive = false;
-
-                InteractText.instance.ResetText();
             }
 
             if (_Interact.WasPressedThisFrame())
@@ -116,6 +121,10 @@ public class PlantTree : FindInputBinding
                     Debug.LogError("You can't plant there dumbass");
                 }
             }
+        }
+        else if(_ShiftInput.activeInHierarchy == true)
+        {
+            _ShiftInput.SetActive(false);
         }
     }
 

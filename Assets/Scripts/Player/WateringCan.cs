@@ -21,6 +21,8 @@ public class WateringCan : PickUpObject, IPickupable
 
         PlayerData._Instance._WateringCanPickedup = 0;
 
+        ChangeInputIcons._Instance._changeInteractTo = "Interact";
+
         StartCoroutine(LerpToPickupPostion());
 
         _hasInteracted = false;

@@ -39,7 +39,6 @@ public class ObstaclePush : FindInputBinding, IInteractable
         }
         else if (grabbedObject == null && !resetText)
         {
-            InteractText.instance.ResetText();
             resetText = true;
         }
 
@@ -112,14 +111,12 @@ public class ObstaclePush : FindInputBinding, IInteractable
     {
         if (other.gameObject.CompareTag("Box"))
         {
-            InteractText.instance.ResetText();
         }
     }
 
     public void Interact()
     {
         resetText = false;
-        InteractText.instance.SetText($"Press {FindBinding("Pickup")} to pick up");
     }
 
     public void UnInteract()
@@ -128,7 +125,6 @@ public class ObstaclePush : FindInputBinding, IInteractable
 
     public bool HasInteracted()
     {
-        InteractText.instance.ResetText();
         return true;
     }
 }

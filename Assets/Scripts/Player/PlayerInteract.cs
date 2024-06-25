@@ -15,6 +15,7 @@ public class PlayerInteract : FindInputBinding
     [Header("Interact Options")]
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask interactLayer;
+    [SerializeField] private FillWaterUI _WaterUI;
 
     private RaycastHit[] colliders;
 
@@ -36,7 +37,10 @@ public class PlayerInteract : FindInputBinding
         if (_Interact.WasPressedThisFrame())
         {
             if (_growTreeInteractable != null && !_growTreeInteractable.HasInteracted())
+            {
                 _growTreeInteractable.Interact();
+                _WaterUI.FillOutUI();
+            }
             else if (_pushTreeInteractable != null && !_pushTreeInteractable.HasInteracted())
                 _pushTreeInteractable.Interact();
             else if (_waterPlaceInteractable != null && !_waterPlaceInteractable.HasInteracted())
@@ -51,7 +55,7 @@ public class PlayerInteract : FindInputBinding
         {
             HandleInteraction();
         }
-        else if(!_textHasReseted)
+        else if (!_textHasReseted)
         {
             ResetInteraction();
         }
@@ -104,16 +108,15 @@ public class PlayerInteract : FindInputBinding
 
         if ((playerHasWateringCan && !wateringCanHasWater) && !_growTreeInteractable.HasInteracted())
         {
-            SetText("I need water", false);
         }
         else if (_growTreeInteractable != null && playerHasWateringCan && !_growTreeInteractable.HasInteracted())
         {
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
-            SetText("to grow a plant", true);
+            ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
         }
-        else if(_growTreeInteractable.HasInteracted())
+        else if (_growTreeInteractable.HasInteracted())
         {
             ResetInteraction();
         }
@@ -125,7 +128,6 @@ public class PlayerInteract : FindInputBinding
 
         if (playerHasWateringCan)
         {
-            SetText("Your hands are full", false);
         }
         else if (_pushTreeInteractable != null && !_pushTreeInteractable.HasInteracted())
         {
@@ -133,7 +135,7 @@ public class PlayerInteract : FindInputBinding
             _Interact.Enable();
             _interactableInRange = true;
 
-            SetText("to push the tree", true);
+            ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
         }
     }
 
@@ -144,21 +146,20 @@ public class PlayerInteract : FindInputBinding
 
         if (!playerHasWateringCan)
         {
-            SetText("You need something to hold the water in", false);
         }
         // Logic for Push Tree interaction text
         else if (_waterPlaceInteractable != null)
         {
             if (wateringCanHasWater)
             {
-                SetText("Full", false);
+                ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
             }
             else
             {
                 // Enable interaction
                 _Interact.Enable();
                 _interactableInRange = true;
-                SetText("to fill up the watering can", true);
+                ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
             }
         }
     }
@@ -170,8 +171,6 @@ public class PlayerInteract : FindInputBinding
             // Enable interaction
             _Interact.Enable();
             _interactableInRange = true;
-
-            SetText("to pull the lever", true);
         }
     }
 
@@ -184,7 +183,7 @@ public class PlayerInteract : FindInputBinding
         // Reset interaction text only once
         if (!_textHasReseted)
         {
-            InteractText.instance.ResetText();
+            //InteractText.instance.ResetText();
             _interactableName = "";
             _textHasReseted = true;
         }
@@ -196,30 +195,9 @@ public class PlayerInteract : FindInputBinding
         _leverInteractable = null;
     }
 
-    private void SetText(string text, bool needsBindingReference)
-    {
-        string controlScheme = playerInput.currentControlScheme;
-
-        if (needsBindingReference)
-        {
-            if (controlScheme == "PlaystationController" || controlScheme == "XboxController" || controlScheme == "Gamepad")
-            {
-                InteractText.instance.SetText($"Press {FindIconBinding("Interact")} {text}");
-            }
-            else
-                InteractText.instance.SetText($"Press {FindBinding("Interact")} {text}");
-        }
-        else
-        {
-            InteractText.instance.SetText($"{text}");
-        }
-
-        _textHasReseted = false;
-    }
-
     private void OnDrawGizmos()
     {
-       if (!_isInteracting)
+        if (!_isInteracting)
             Gizmos.DrawWireSphere(transform.position + _OffsetPosition, _radius);
     }
 }

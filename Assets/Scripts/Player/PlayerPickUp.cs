@@ -69,8 +69,6 @@ public class PlayerPickUp : FindInputBinding
                     _isPickingUp = false;
                     ResetPickup();
                 }
-
-                InteractText.instance.ResetText();
             }
             else if (_buttonPresses > 1)
             {
@@ -170,7 +168,7 @@ public class PlayerPickUp : FindInputBinding
         _Pickup.Enable();
         _pickupableInRange = true;
 
-        SetText("to lift the watering can", true, "Pickup");
+        ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
     }
 
     private void HandleSeedPickUp()
@@ -178,7 +176,7 @@ public class PlayerPickUp : FindInputBinding
         _Pickup.Enable();
         _pickupableInRange = true;
 
-        SetText("to get seed back", true, "Pickup");
+        ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
     }
 
     private void HandleGetSeedPickUp()
@@ -187,7 +185,6 @@ public class PlayerPickUp : FindInputBinding
 
         if (!playerIsHoldingObject)
         {
-            SetText("Hands full", false);
             _pickupableInRange = true;
         }
         else
@@ -195,8 +192,7 @@ public class PlayerPickUp : FindInputBinding
             Debug.Log("Pick seed");
             _Pickup.Enable();
             _pickupableInRange = true;
-
-            SetText("to dig up the seed", true);
+            ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
         }
     }
 
@@ -216,7 +212,7 @@ public class PlayerPickUp : FindInputBinding
 
         Debug.Log("Pickup reset");
 
-        InteractText.instance.ResetText();
+        //InteractText.instance.ResetText();
         _pickupObject = "";
 
         //Reset pickupables to null

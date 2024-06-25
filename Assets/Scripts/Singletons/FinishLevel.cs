@@ -20,9 +20,11 @@ public class FinishLevel : MonoBehaviour
 
     [SerializeField] private float _transitionDelay;
 
+    private Coroutine _transitionRoutine;
+
     private void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,15 +41,20 @@ public class FinishLevel : MonoBehaviour
 
             PlayerData._Instance._CompletedLevels.Add(levelCompleted._levelName);
 
-            StartCoroutine(PlayLevelClearSequence(_transitionDelay));
+            if (_transitionRoutine == null)
+                _transitionRoutine = StartCoroutine(PlayLevelClearSequence(_transitionDelay));
+
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            GameManager._Instance._LevelEnded = true;
         }
     }
 
     private IEnumerator PlayLevelClearSequence(float delay)
     {
-        if (!AudioManager._Instance.SoundIsPlaying("WinSFX"))
-            AudioManager._Instance.Play("WinSFX");
+        Debug.Log("GAy");
+
+        if (!AudioManager._Instance.SoundIsPlaying("Collect_item"))
+            AudioManager._Instance.Play("Collect_item");
 
         yield return new WaitForSeconds(1f);
         AudioManager._Instance.Play("LevelWin");
