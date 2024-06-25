@@ -81,7 +81,7 @@ public class PlantTree : FindInputBinding
                     _inputIsActive = true;
                     _Interact.Enable();
 
-                    SetText("to plant the seed", true, "Interact");
+                    ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
                 }
             }
             else if (_inputIsActive)

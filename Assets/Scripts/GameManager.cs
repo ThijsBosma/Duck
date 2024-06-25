@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool _showInputs;
     public bool _enableMove;
     public bool _enableCameraRotate;
+    public bool _LevelEnded;
 
     private void Awake()
     {

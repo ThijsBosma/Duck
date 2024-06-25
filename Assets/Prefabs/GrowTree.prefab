@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8288990802218578231}
   - {fileID: 6855625742845425450}
@@ -70,10 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29498f52795ea34ea46ba95badd96bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps4Icons: {fileID: 0}
-  xboxIcons: {fileID: 0}
   _state: 0
   _grid: {fileID: 0}
+  _GridPosition: {x: 0, y: 0}
   _PlantToGrow: {fileID: 3805394668488466425}
   _SpawnPoint: {fileID: 6855625742845425450}
 --- !u!1 &945279733654960317

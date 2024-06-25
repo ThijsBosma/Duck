@@ -50,8 +50,6 @@ public class ShowLevelUI : FindInputBinding
                 if (_LevelInteract != null)
                 {
                     _LevelInteract.Enable();
-
-                    SetText("to play", true, "Interact");
                 }
             }
             _LevelUI.SetActive(true);

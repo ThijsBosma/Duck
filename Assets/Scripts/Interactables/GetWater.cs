@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GetWater : MonoBehaviour,IInteractable
 {
+    [SerializeField] private FillWaterUI _WatercanUI;
+
     public bool HasInteracted()
     {
         return false;
@@ -14,6 +16,7 @@ public class GetWater : MonoBehaviour,IInteractable
         if (PlayerData._Instance._WateringCanPickedup == 1 && PlayerData._Instance._WateringCanHasWater == 0)
         {
             PlayerData._Instance._WateringCanHasWater = 1;
+            _WatercanUI.FillUpUI();
         }
         else if (PlayerData._Instance._WateringCanHasWater == 1)
         {

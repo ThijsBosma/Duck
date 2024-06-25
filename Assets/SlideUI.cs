@@ -21,6 +21,14 @@ public class SlideUI : InputHandler
     // Update is called once per frame
     void Update()
     {
+        if (GameManager._Instance._LevelEnded)
+        {
+            time = 0;
+            StopAllCoroutines();
+            _UIElements.position = _InitialPosition.position;
+            return;
+        }
+
         time += Time.deltaTime;
 
         if (time > _waitTime)

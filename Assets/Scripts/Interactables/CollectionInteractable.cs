@@ -13,6 +13,7 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
             playerData._DucksCollectedInStage += 1;
 
             PlayerData._Instance._DuckIDs.Add(_duckData._ID);
+            AudioManager._Instance.Play("Collect_item");
         }
     }
 }
