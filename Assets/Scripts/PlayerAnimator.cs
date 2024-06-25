@@ -26,21 +26,30 @@ public class PlayerAnimator : InputHandler
 
         _movementValue = _Move.ReadValue<Vector2>();
 
-        if(_movementValue.magnitude > 0.5f && !_isPickingUp)
+        if (_movementValue.magnitude > 0.5f && !_isPickingUp)
         {
+            _PlayerAnimator.speed = 1;
             _PlayerAnimator.SetInteger("PlayerState", 1);
         }
-        else if(_movementValue.magnitude < 0.5f && !_isPickingUp)
+        else if (_movementValue.magnitude < 0.5f && !_isPickingUp)
         {
             _PlayerAnimator.SetInteger("PlayerState", 0);
         }
 
-        if(_controller._IsClimbing)
+        if (_controller._IsClimbing)
         {
             _PlayerAnimator.SetInteger("PlayerState", 3);
+            if (_movementValue.y > 0)
+                _PlayerAnimator.speed = 1;
+            else if(_movementValue.y < 0)
+            {
+                //_PlayerAnimator.recorderMode = AnimatorRecorderMode.Playback;
+                //_PlayerAnimator.speed = -1;
+            }
+            else if (_movementValue == Vector2.zero)
+                _PlayerAnimator.speed = 0;
         }
-        
-        
+
         //if(_Pickup.WasPressedThisFrame())
         //{
         //    _isPickingUp = true;
