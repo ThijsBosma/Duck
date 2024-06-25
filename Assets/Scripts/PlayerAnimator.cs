@@ -35,14 +35,12 @@ public class PlayerAnimator : InputHandler
             _PlayerAnimator.SetInteger("PlayerState", 0);
         }
 
-        if(_controller._IsClimbing && _movementValue.magnitude > 0.5f)
+        if(_controller._IsClimbing)
         {
             _PlayerAnimator.SetInteger("PlayerState", 3);
         }
-        else if (_controller._IsClimbing && _movementValue.magnitude < 0.5f)
-        {
-        }   
-
+        
+        
         //if(_Pickup.WasPressedThisFrame())
         //{
         //    _isPickingUp = true;
