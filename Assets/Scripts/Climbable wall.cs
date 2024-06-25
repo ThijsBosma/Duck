@@ -6,8 +6,6 @@ public class Climbablewall : InputHandler
 {
     private ThirdPersonController _controller;
     private int _buttonPresses;
-
-
     private void Start()
     {
         _controller = FindObjectOfType<ThirdPersonController>();

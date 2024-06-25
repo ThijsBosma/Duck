@@ -18,7 +18,7 @@ public class ThirdPersonController : InputHandler
     [Header("GroundCheck")]
     [SerializeField] private float _PlayerHeight;
     [SerializeField] private LayerMask _WhatIsGround;
-    private bool _grounded;
+    public bool _grounded;
 
     private Vector2 _movementInputs;
 

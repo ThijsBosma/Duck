@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAnimator : InputHandler
 {
     [SerializeField] private Animator _PlayerAnimator;
+    [SerializeField] private Animation _ClimbingAnimataion;
     private bool _isPickingUp;
 
     private Vector2 _movementValue;
@@ -33,10 +35,13 @@ public class PlayerAnimator : InputHandler
             _PlayerAnimator.SetInteger("PlayerState", 0);
         }
 
-        if(_controller._IsClimbing)
+        if(_controller._IsClimbing && _movementValue.magnitude > 0.5f)
         {
             _PlayerAnimator.SetInteger("PlayerState", 3);
         }
+        else if (_controller._IsClimbing && _movementValue.magnitude < 0.5f)
+        {
+        }   
 
         //if(_Pickup.WasPressedThisFrame())
         //{
