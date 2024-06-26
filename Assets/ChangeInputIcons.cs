@@ -20,10 +20,6 @@ public class ChangeInputIcons : FindInputBinding
 
     private string[] _UITexts;
 
-    [Header("Update only icon")]
-    [SerializeField] private bool _OnlyUpdateIcon;
-    [SerializeField] private TextMeshProUGUI _IconText;
-
     protected override void Awake()
     {
         base.Awake();

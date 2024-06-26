@@ -20,7 +20,7 @@ public class SproutPickup : PickUpObject, IPickupable
         if (_plant._state == PlantState.planted)
         {
             PlayerData._Instance._ObjectPickedup = 0;
-            Instantiate(_seed, transform.position, Quaternion.identity);
+            Instantiate(_seed, transform.position + Vector3.up, Quaternion.identity);
            _grid.Setvalue(transform.position, 0);
             Destroy(transform.parent.gameObject);
         }
