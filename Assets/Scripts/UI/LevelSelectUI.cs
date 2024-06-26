@@ -6,23 +6,29 @@ using UnityEngine.SceneManagement;
 public class LevelSelectUI : MonoBehaviour
 {
     [SerializeField] private GameObject[] _Levels;
+    [SerializeField, Tooltip("The render cams for each level in order")] private GameObject[] _RenderCams;
 
     private int _currentIndex;
 
     public void ShowNextLevel()
     {
+
+        _RenderCams[_currentIndex].SetActive(false);
         _Levels[_currentIndex].SetActive(false);
         _currentIndex += 1;
         IsIndexOutOfBounds();
         _Levels[_currentIndex].SetActive(true);
+        _RenderCams[_currentIndex].SetActive(true);
     }
 
     public void ShowPreviousLevel()
     {
+        _RenderCams[_currentIndex].SetActive(false);
         _Levels[_currentIndex].SetActive(false);
         _currentIndex -= 1;
         IsIndexOutOfBounds();
         _Levels[_currentIndex].SetActive(true);
+        _RenderCams[_currentIndex].SetActive(true);
     }
 
     public void IsIndexOutOfBounds()

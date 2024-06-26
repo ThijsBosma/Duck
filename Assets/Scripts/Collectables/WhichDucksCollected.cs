@@ -4,39 +4,13 @@ using UnityEngine;
 
 public class WhichDucksCollected : MonoBehaviour
 {
-    [SerializeField, Tooltip("The ID that corresponds to the duck id in the level")] private int _ImageID;
-
-    [SerializeField] private GameObject[] _DuckObjects;
-
     [SerializeField] private Transform[] _UIDucks;
     [SerializeField] private DuckData[] _DucksToCollect;
 
-    private GameObject _ImageObject;
-    private bool _isActivated;
 
     private void Start()
     {
         UpdateDucksCollected();
-
-        //_ImageObject = gameObject;
-
-        //if (PlayerData._Instance._DuckIDs.Contains(_ImageID))
-        //{
-        //    //_ImageObject.SetActive(true);
-        //    //_isActivated = true;
-
-        //    _DuckObjects[0].SetActive(false);
-        //    _DuckObjects[1].SetActive(true);
-
-        //    Debug.Log("ID Found");
-        //}
-        //else
-        //{
-        //    _isActivated = false;
-        //    _DuckObjects[0].SetActive(false);
-        //    _DuckObjects[1].SetActive(true);
-        //    Debug.Log("No ID found");
-        //}
     }
 
     private void UpdateDucksCollected()
@@ -50,6 +24,7 @@ public class WhichDucksCollected : MonoBehaviour
             {
                 GameObject UIDuck = Instantiate(duck._DuckObject, _UIDucks[timesThroughArray].position, _UIDucks[timesThroughArray].rotation, parentTransform);
                 UIDuck.layer = 10;
+                UIDuck.AddComponent<RotateObjectOverTime>();
 
                 UIDuck.transform.localScale = Vector3.one * duck._DuckSize;
 
