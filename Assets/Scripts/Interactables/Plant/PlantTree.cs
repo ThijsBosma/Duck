@@ -8,35 +8,34 @@ public class PlantTree : FindInputBinding
     [Header("Plant sprout")]
     [SerializeField] public GameObject _sprout;
     [SerializeField] public GameObject _treeIndicator;
+    [SerializeField] public MeshRenderer _treeIndicatorMesh;
     [SerializeField] private BuildGrid grid;
     public GameObject _Seed;
-
-    private Vector3 _plantPosition;
-    private Transform t;
 
     [Header("Tree hologram")]
     [SerializeField] private Transform _ShootRayPos;
 
     [SerializeField] private LayerMask _PlantLayer;
 
-    [SerializeField] private Material _HoloGramMaterial;
+    [Header("InputIcon")]
+    [SerializeField] private GameObject _InputIcon;
 
-    [Header("Input")]
-    [SerializeField] private GameObject _ShiftInput;
     private Color _holowGramColor;
 
     private PlayerPickUp _playerPickup;
 
+    private Vector3 _plantPosition;
+
     private Vector2Int _GridPosition;
 
-    private bool _inputIsActive;
+    private bool _isHoldingSeed;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerPickup = GetComponent<PlayerPickUp>();
 
-        _holowGramColor = _HoloGramMaterial.color;
+        _holowGramColor = _treeIndicatorMesh.material.color;
     }
 
     // Update is called once per frame
@@ -44,53 +43,46 @@ public class PlantTree : FindInputBinding
     {
         if (PlayerData._Instance._SeedPickedup == 1)
         {
-            if(_ShiftInput.activeInHierarchy == false)
-                _ShiftInput.SetActive(true);
+            RaycastHit hit;
+            Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
 
-            if (_Plant.IsPressed())
+            grid.GetXZ(hit.point, out int x, out int z, false);
+
+            _GridPosition = new Vector2Int(x, z);
+
+            _plantPosition = grid.GetWorldPosition(x, z);
+            MakeTreeHologram();
+
+            if (grid.CanBuild(_plantPosition))
             {
-                RaycastHit hit;
-                Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
+                _treeIndicator.gameObject.SetActive(true);
 
-                grid.GetXZ(hit.point, out int x, out int z, false);
+                _InputIcon.SetActive(true);
 
-                _GridPosition = new Vector2Int(x, z);
-
-                _plantPosition = grid.GetWorldPosition(x, z);
-                MakeTreeHologram();
-
-                if (grid.CanBuild(_plantPosition))
+                if (grid.GetValue(_plantPosition) == 0)
                 {
-                    _treeIndicator.SetActive(true);
-                    if (grid.GetValue(_plantPosition) == 0)
-                    {
-                        _HoloGramMaterial.color = _holowGramColor;
-                    }
-                }
-                else if (grid.GetValue(_plantPosition) == 1)
-                {
-                    _HoloGramMaterial.color = Color.red;
-                }
-                else if (grid.GetValue(_plantPosition) == -1)
-                {
-                    _treeIndicator.SetActive(false);
-                }
-
-                if (!_inputIsActive)
-                {
-                    _inputIsActive = true;
-                    _Interact.Enable();
-
-                    ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
+                    _treeIndicatorMesh.material.color = _holowGramColor;
                 }
             }
-            else if (_inputIsActive)
+            else if (grid.GetValue(_plantPosition) == 1)
             {
-                _Interact.Disable();
+                _InputIcon.SetActive(false);
+
+                _treeIndicatorMesh.material.color = Color.red;
+            }
+            else if (grid.GetValue(_plantPosition) == -1)
+            {
+                _InputIcon.SetActive(false);
 
                 _treeIndicator.SetActive(false);
+            }
 
-                _inputIsActive = false;
+            if (!_isHoldingSeed)
+            {
+                _isHoldingSeed = true;
+                _Interact.Enable();
+
+                ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
             }
 
             if (_Interact.WasPressedThisFrame())
@@ -99,7 +91,7 @@ public class PlantTree : FindInputBinding
                 {
                     grid.Setvalue(_plantPosition, 1);
 
-                    Transform rotation = grid.GetBridgeOffsetTransform(_GridPosition.x, _GridPosition.y); 
+                    Transform rotation = grid.GetBridgeOffsetTransform(_GridPosition.x, _GridPosition.y);
 
                     GameObject sprout = Instantiate(_sprout, grid.GetWorldPosition(_GridPosition.x, _GridPosition.y), quaternion.identity);
                     sprout.GetComponentInChildren<SproutPickup>()._grid = grid;
@@ -109,6 +101,8 @@ public class PlantTree : FindInputBinding
 
                     _treeIndicator.SetActive(false);
                     Destroy(_Seed);
+
+                    _InputIcon.SetActive(false);
 
                     _playerPickup.ResetPickup();
 
@@ -122,9 +116,13 @@ public class PlantTree : FindInputBinding
                 }
             }
         }
-        else if(_ShiftInput.activeInHierarchy == true)
+        else if (_isHoldingSeed)
         {
-            _ShiftInput.SetActive(false);
+            _Interact.Disable();
+
+            _treeIndicator.SetActive(false);
+
+            _isHoldingSeed = false;
         }
     }
 
@@ -146,6 +144,6 @@ public class PlantTree : FindInputBinding
 
     private void OnApplicationQuit()
     {
-        _HoloGramMaterial.color = _holowGramColor;
+        _treeIndicatorMesh.material.color = _holowGramColor;
     }
 }

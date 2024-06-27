@@ -5,7 +5,7 @@ using UnityEngine;
 public class Climbablewall : InputHandler
 {
     private ThirdPersonController _controller;
-    private int _buttonPresses;
+
     private void Start()
     {
         _controller = FindObjectOfType<ThirdPersonController>();
@@ -14,26 +14,18 @@ public class Climbablewall : InputHandler
 
     private void Update()
     {
-        if(_Climb.WasPressedThisFrame())
+        if(_controller._IsClimbing)
         {
-            _controller._IsClimbing = true;
             _controller._WallRight = transform.right;
             _controller._WallUp = transform.up;
-            _buttonPresses += 1;
         }
-        else if(_buttonPresses > 1)
-        {
-            _buttonPresses = 0;
-            _controller._IsClimbing = false;
-        }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && _Climb.enabled == false)
+        if (other.gameObject.CompareTag("Player"))
         {
-            _Climb.Enable();
+            _controller._IsClimbing = true;
             Debug.Log("Enabled");
         }
     }
@@ -42,7 +34,7 @@ public class Climbablewall : InputHandler
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _Climb.Disable();
+            //_controller._IsClimbing = false;
         }
     }
 }

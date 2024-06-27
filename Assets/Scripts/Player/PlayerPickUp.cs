@@ -24,7 +24,6 @@ public class PlayerPickUp : FindInputBinding
 
     private IPickupable _wateringCanPickupable;
     private IPickupable _seedPickupable;
-    private IPickupable _digUpSprout;
 
     public int _buttonPresses;
 
@@ -62,12 +61,6 @@ public class PlayerPickUp : FindInputBinding
                     _Plant.Enable();
 
                     _seedPickupable.PickUp();
-                }
-                else if (_digUpSprout != null)
-                {
-                    _digUpSprout.PickUp();
-                    _isPickingUp = false;
-                    ResetPickup();
                 }
             }
             else if (_buttonPresses > 1)
@@ -137,14 +130,6 @@ public class PlayerPickUp : FindInputBinding
                             _PlantTree._Seed = hit.collider.gameObject;
                         }
                     }
-                    else if (pickupable is SproutPickup)
-                    {
-                        SproutPickup sprout = hit.collider.gameObject.GetComponent<SproutPickup>();
-                        sprout._HoldPosition = _HoldPosition;
-                        sprout._PickupPosition = _PickupPosition;
-
-                        _digUpSprout = pickupable;
-                    }
                 }
             }
         }
@@ -163,8 +148,6 @@ public class PlayerPickUp : FindInputBinding
                 HandleWateringCanPickup();
             else if (_seedPickupable != null && _PlantTree._Seed != null)
                 HandleSeedPickUp();
-            else if (_digUpSprout != null)
-                HandleGetSeedPickUp();
         }
     }
 
@@ -184,23 +167,6 @@ public class PlayerPickUp : FindInputBinding
         ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
     }
 
-    private void HandleGetSeedPickUp()
-    {
-        bool playerIsHoldingObject = PlayerData._Instance._ObjectPickedup == 0;
-
-        if (!playerIsHoldingObject)
-        {
-            _pickupableInRange = true;
-        }
-        else
-        {
-            Debug.Log("Pick seed");
-            _Pickup.Enable();
-            _pickupableInRange = true;
-            ChangeInputIcons._Instance.UpdateUIIcons(playerInput);
-        }
-    }
-
     public void ResetPickup()
     {
         //Disable pickup
@@ -215,7 +181,7 @@ public class PlayerPickUp : FindInputBinding
 
         _PlantTree._Seed = null;
 
-        _PlantTree._treeIndicator.SetActive(false);
+        _PlantTree._treeIndicator.gameObject.SetActive(false);
 
         Debug.Log("Pickup reset");
 
@@ -225,7 +191,6 @@ public class PlayerPickUp : FindInputBinding
         //Reset pickupables to null
         _wateringCanPickupable = null;
         _seedPickupable = null;
-        _digUpSprout = null;
 
         _hasReseted = true;
     }
