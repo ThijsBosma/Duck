@@ -22,6 +22,11 @@ public class RotateCamera : InputHandler
     private Vector2 lookDir;
     private Quaternion _startRotation;
 
+    [Header("MouseRotation")]
+    private Vector3 _OldMousePosition;
+    private Vector3 _MousePosition;
+    
+
     private void Start()
     {
         _startRotation = transform.rotation;
@@ -72,5 +77,10 @@ public class RotateCamera : InputHandler
     public void ActivateCameraRotation()
     {
         GameManager._Instance._enableCameraRotate = true;
+    }
+
+    private void GetMousePosition()
+    {
+
     }
 }
