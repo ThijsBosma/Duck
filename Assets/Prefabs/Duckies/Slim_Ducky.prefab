@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 4448328980784988210}
   - component: {fileID: 4992522569077693735}
   - component: {fileID: 6249033517358026325}
+  - component: {fileID: 3284311184071556564}
+  - component: {fileID: 828833316642568241}
   m_Layer: 0
   m_Name: Slim_Ducky
   m_TagString: Untagged
@@ -170,6 +172,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3284311184071556564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929578564923271197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724edbbacbc6ee54db51107f77ec8b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duckData:
+    _ID: 8
+    _DuckObject: {fileID: 5929578564923271197}
+    _DuckSize: 39.50395
+  _ParticleSystem: {fileID: 1291708352040839930}
+--- !u!65 &828833316642568241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929578564923271197}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.006529465, y: 0.008212333, z: 0.008985521}
+  m_Center: {x: -0.0000000015154157, y: -0.0017359293, z: 0.0010822813}
 --- !u!1 &7956011166701598048
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +361,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7032248c39cf5de488c4248c1b6db5e9, type: 3}
+--- !u!198 &1291708352040839930 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5998450752261033299, guid: 7032248c39cf5de488c4248c1b6db5e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4815428592210880425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3269993221456120514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8048653027377081707, guid: 7032248c39cf5de488c4248c1b6db5e9,

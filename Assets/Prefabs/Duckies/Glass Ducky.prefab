@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2381070373205105891}
   - component: {fileID: 7930704514809174218}
   - component: {fileID: 3760162136140282408}
+  - component: {fileID: 2989785866654214925}
+  - component: {fileID: 4038145820822520918}
   m_Layer: 0
   m_Name: Glass Ducky
   m_TagString: Untagged
@@ -84,6 +86,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2989785866654214925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675107262302877632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724edbbacbc6ee54db51107f77ec8b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duckData:
+    _ID: 5
+    _DuckObject: {fileID: 675107262302877632}
+    _DuckSize: 39.50396
+  _ParticleSystem: {fileID: 6475053310899322826}
+--- !u!65 &4038145820822520918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675107262302877632}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0065294653, y: 0.008212333, z: 0.008985521}
+  m_Center: {x: -0.0000000014811452, y: -0.0017359293, z: 0.0010822813}
 --- !u!1001 &784406453744005785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,6 +192,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7032248c39cf5de488c4248c1b6db5e9, type: 3}
+--- !u!198 &6475053310899322826 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5998450752261033299, guid: 7032248c39cf5de488c4248c1b6db5e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 784406453744005785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7300417233514242034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8048653027377081707, guid: 7032248c39cf5de488c4248c1b6db5e9,
