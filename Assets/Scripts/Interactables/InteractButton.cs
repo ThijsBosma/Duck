@@ -59,7 +59,7 @@ public class InteractButton : MonoBehaviour
 
             button.onButton = true;
 
-            button.OnClick.Invoke(); ;
+            button.OnClick.Invoke();
         }
     }
 
