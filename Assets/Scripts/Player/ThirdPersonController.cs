@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThirdPersonController : InputHandler
@@ -108,7 +109,9 @@ public class ThirdPersonController : InputHandler
         {
             other.gameObject.GetComponent<IPlayerData>().CollectDuck(PlayerData._Instance);
             if (other.gameObject.name != "FinalDuck")
-                Destroy(other.gameObject);
+            {
+                Destroy(other.gameObject, other.gameObject.GetComponent<CollectionInteractable>()._ParticleSystem.main.duration);
+            }
         }
 
         if (other.gameObject.CompareTag("Edge"))
