@@ -19,6 +19,7 @@ public class Lever : MonoBehaviour, IInteractable
     public void Interact()
     {
         _InteractAnimation.SetBool("IsPressed", true);
+        AudioManager._Instance.Play("PullLever");
         _hasInteracted = true;
     }
 

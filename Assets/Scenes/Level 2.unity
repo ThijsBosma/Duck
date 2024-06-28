@@ -717,6 +717,36 @@ MonoBehaviour:
     Pitch: 1
     SpatialBend: 0.5
     _Source: {fileID: 0}
+  - _soundName: PullLever
+    _clip: {fileID: 8300000, guid: 1c9b89db5b75ee844a97eb7b6821f3c2, type: 3}
+    _mixerOutput: {fileID: -8005532038669431959, guid: 86d1da5133438b649a992e5912f445ac,
+      type: 2}
+    _PlayOnAwake: 0
+    _Loop: 0
+    Volume: 1
+    Pitch: 1
+    SpatialBend: 0.5
+    _Source: {fileID: 0}
+  - _soundName: PlayerWalk
+    _clip: {fileID: 8300000, guid: fe5cec533d510fd4a8d333879740bc0d, type: 3}
+    _mixerOutput: {fileID: -8005532038669431959, guid: 86d1da5133438b649a992e5912f445ac,
+      type: 2}
+    _PlayOnAwake: 0
+    _Loop: 0
+    Volume: 1
+    Pitch: 1
+    SpatialBend: 0.5
+    _Source: {fileID: 0}
+  - _soundName: ClimbVine
+    _clip: {fileID: 8300000, guid: acbd6dcda91b68d4abc39c84c899c4e3, type: 3}
+    _mixerOutput: {fileID: -8005532038669431959, guid: 86d1da5133438b649a992e5912f445ac,
+      type: 2}
+    _PlayOnAwake: 0
+    _Loop: 0
+    Volume: 1
+    Pitch: 1
+    SpatialBend: 0.5
+    _Source: {fileID: 0}
   sfxMixer: {fileID: -8005532038669431959, guid: 86d1da5133438b649a992e5912f445ac,
     type: 2}
 --- !u!4 &107372009
@@ -3447,6 +3477,7 @@ MonoBehaviour:
     _ID: 4
     _DuckObject: {fileID: 543371777}
     _DuckSize: 39.50396
+  _ParticleSystem: {fileID: 0}
 --- !u!65 &543371779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5099,8 +5130,30 @@ PrefabInstance:
     - {fileID: 7471871286336049731, guid: defd73102389cf445bca76888565d117, type: 3}
     - {fileID: 6787727880273650965, guid: defd73102389cf445bca76888565d117, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6139838680408791942, guid: defd73102389cf445bca76888565d117,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 854703834}
   m_SourcePrefab: {fileID: 100100000, guid: defd73102389cf445bca76888565d117, type: 3}
+--- !u!1 &854703833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6139838680408791942, guid: defd73102389cf445bca76888565d117,
+    type: 3}
+  m_PrefabInstance: {fileID: 854703832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &854703834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854703833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d82311ae1194d2418cd855d0d095f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &914239478
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,6 +6245,7 @@ MonoBehaviour:
     _ID: 5
     _DuckObject: {fileID: 1133032792}
     _DuckSize: 39.50396
+  _ParticleSystem: {fileID: 0}
 --- !u!1001 &1144668902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7177,6 +7231,7 @@ MonoBehaviour:
     _ID: 3
     _DuckObject: {fileID: 1377196495}
     _DuckSize: 39.50396
+  _ParticleSystem: {fileID: 0}
 --- !u!65 &1377196497
 BoxCollider:
   m_ObjectHideFlags: 0

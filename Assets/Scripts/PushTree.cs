@@ -26,6 +26,7 @@ public class PushTree : MonoBehaviour, IInteractable
         if(_state == PlantState.grown)
         animator.Play("FallOver");
         _hasInteracted = true;
+        AudioManager._Instance.Play("ChopTree");
     }
 
     /// <summary>
