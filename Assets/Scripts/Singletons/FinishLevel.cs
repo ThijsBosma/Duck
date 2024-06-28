@@ -51,8 +51,6 @@ public class FinishLevel : MonoBehaviour
 
     private IEnumerator PlayLevelClearSequence(float delay)
     {
-        Debug.Log("GAy");
-
         if (!AudioManager._Instance.SoundIsPlaying("Collect_item"))
             AudioManager._Instance.Play("Collect_item");
 

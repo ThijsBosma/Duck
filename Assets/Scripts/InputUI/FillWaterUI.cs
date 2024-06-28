@@ -5,6 +5,7 @@ using UnityEngine;
 public class FillWaterUI : MonoBehaviour
 {
     [SerializeField] private Transform _Fill;
+    [SerializeField] private GameObject[] _WaterBuckets; // 0 is empty bucket, 1 is filled bucket
 
     [SerializeField] private float _FillTime;
 
@@ -37,6 +38,9 @@ public class FillWaterUI : MonoBehaviour
             _Fill.transform.localScale = new Vector3(1, yScale, 1);
             yield return null;
         }
+
+        _WaterBuckets[1].SetActive(true);
+        _WaterBuckets[0].SetActive(false);
     }
 
     private IEnumerator FillOut()
@@ -54,5 +58,8 @@ public class FillWaterUI : MonoBehaviour
             _Fill.transform.localScale = new Vector3(1, yScale, 1);
             yield return null;
         }
+
+        _WaterBuckets[1].SetActive(false);
+        _WaterBuckets[0].SetActive(true);
     }
 }
