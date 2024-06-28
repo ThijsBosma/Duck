@@ -1643,49 +1643,6 @@ MonoBehaviour:
     type: 3}
   _WaterSpawnpoint: {fileID: 821709658}
   _TimeBetweenSpawns: 1
---- !u!1 &242870459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4394310915634386769, guid: a679d2a1653ce84439e5fab85943e307,
-    type: 3}
-  m_PrefabInstance: {fileID: 654063173}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &242870463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242870459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724edbbacbc6ee54db51107f77ec8b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duckData:
-    _ID: 10
-    _DuckObject: {fileID: 242870459}
-    _DuckSize: 39.50396
---- !u!65 &242870464
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242870459}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.006529467, y: 0.008212333, z: 0.008985525}
-  m_Center: {x: -0.0000000015134003, y: -0.0017359293, z: 0.0010822818}
 --- !u!1001 &254475646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2854,15 +2811,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2836462905376750191, guid: 62d34ec236046094e952bafb4b31c7ee,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1566853028}
-    - targetCorrespondingSourceObject: {fileID: 2836462905376750191, guid: 62d34ec236046094e952bafb4b31c7ee,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1566853027}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d34ec236046094e952bafb4b31c7ee, type: 3}
 --- !u!1001 &410963943
 PrefabInstance:
@@ -3301,12 +3250,12 @@ PrefabInstance:
     - target: {fileID: 534297445534824505, guid: a679d2a1653ce84439e5fab85943e307,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.809
+      value: 1.951
       objectReference: {fileID: 0}
     - target: {fileID: 534297445534824505, guid: a679d2a1653ce84439e5fab85943e307,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.866
+      value: 6.963
       objectReference: {fileID: 0}
     - target: {fileID: 534297445534824505, guid: a679d2a1653ce84439e5fab85943e307,
         type: 3}
@@ -3351,15 +3300,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4394310915634386769, guid: a679d2a1653ce84439e5fab85943e307,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 242870463}
-    - targetCorrespondingSourceObject: {fileID: 4394310915634386769, guid: a679d2a1653ce84439e5fab85943e307,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 242870464}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a679d2a1653ce84439e5fab85943e307, type: 3}
 --- !u!1 &662629287
 GameObject:
@@ -4511,6 +4452,7 @@ MonoBehaviour:
     _ID: 11
     _DuckObject: {fileID: 941130672}
     _DuckSize: 39.50396
+  _ParticleSystem: {fileID: 0}
 --- !u!65 &941130678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7738,49 +7680,6 @@ Transform:
   - {fileID: 1091961357}
   m_Father: {fileID: 777014344}
   m_LocalEulerAnglesHint: {x: -16.464552, y: 70.418915, z: 15.998898}
---- !u!1 &1566853023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2836462905376750191, guid: 62d34ec236046094e952bafb4b31c7ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 410259876}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1566853027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566853023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724edbbacbc6ee54db51107f77ec8b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duckData:
-    _ID: 9
-    _DuckObject: {fileID: 1566853023}
-    _DuckSize: 39.50396
---- !u!65 &1566853028
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566853023}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0065294625, y: 0.008212333, z: 0.0089855185}
-  m_Center: {x: -0.0000000015133992, y: -0.0017359293, z: 0.001082281}
 --- !u!1 &1589556597
 GameObject:
   m_ObjectHideFlags: 0
