@@ -29,7 +29,6 @@ public class UIManager : FindInputBinding
             Time.timeScale = 0f;
 
             _PauseAssets.SetActive(true);
-            _GUIAssets.SetActive(false);
         }
         else if (_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
         {

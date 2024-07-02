@@ -250,6 +250,20 @@ public class BuildGrid : InputHandler
         return null;
     }
 
+    public BridgeOffset GetBridgeOffsetScript(float x, float z)
+    {
+        foreach (BridgeGridSpace gridSpace in _BridgeGridSpaces)
+        {
+            if(gridSpace._GridSpace.x == x && gridSpace._GridSpace.y == z)
+            {
+                return gridSpace.transform.gameObject.GetComponent<BridgeOffset>();
+            }
+        }
+
+        Debug.LogError("Bridgeoffset not found");
+        return null;
+    }
+
     public bool CanBuild(Vector3 buildPosition)
     {
         return GetValue(buildPosition) == 0;

@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class ShowLevel : MonoBehaviour
 {
-    public LevelData[] _Levels;
+    public GameObject[] _Levels;
+    public GameObject[] _RenderTextures;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform playerT = GameObject.Find("Player").transform;
-
         for (int i = 0; i < _Levels.Length; i++)
         {
-            if (PlayerData._Instance._CompletedLevels.Contains(_Levels[i]._LevelCompleted._levelName))
+            if (PlayerData._Instance._CompletedLevels.Contains(_Levels[i].name))
             {
-                Debug.Log("Gay");
-                if (i + 1 < _Levels.Length)
-                    _Levels[i + 1].EnableLevel();
-                else
-                    _Levels[i].EnableLevel();
+                _Levels[i].SetActive(true);
+                _RenderTextures[i].SetActive(true);
 
-                if(i - 1 < 0)
-                    playerT.position = _Levels[i]._PlayerCompletedLevelPosition.position;
+                //disable the previous levels
+                if (i - 1 < i && i - 1 != -1)
+                {
+                    _Levels[i - 1].SetActive(false);
+                    _RenderTextures[i - 1].SetActive(false);
+                }
                 else
                 {
-                    Debug.Log("Player set on previous position");
-                    playerT.position = _Levels[i - 1]._PlayerCompletedLevelPosition.position;
+                    _Levels[i].SetActive(false);
+                    _RenderTextures[i].SetActive(false);
                 }
             }
         }

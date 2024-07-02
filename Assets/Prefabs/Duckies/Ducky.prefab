@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1635098414910646854}
   - component: {fileID: 3053398603092581238}
   - component: {fileID: 676924261553127415}
+  - component: {fileID: 8811526651852665421}
   m_Layer: 0
   m_Name: Ducky
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8811526651852665421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615594120783821955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a6ffe883268d74686e810fd31cbe60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Speed: 2.5
 --- !u!1 &5824650086858529493
 GameObject:
   m_ObjectHideFlags: 0

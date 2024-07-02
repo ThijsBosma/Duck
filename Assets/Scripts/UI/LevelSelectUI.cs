@@ -8,7 +8,7 @@ public class LevelSelectUI : MonoBehaviour
     [SerializeField] private GameObject[] _Levels;
     [SerializeField, Tooltip("The render cams for each level in order")] private GameObject[] _RenderCams;
 
-    private int _currentIndex;
+    public int _currentIndex;
 
     public void ShowNextLevel()
     {

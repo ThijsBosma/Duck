@@ -41,6 +41,14 @@ public class BridgeSpawner : MonoBehaviour
 
         GameObject bridge = Instantiate(_BridgToSpawn);
 
+        BridgeOffset bridgeOffset = _plant._grid.GetBridgeOffsetScript(_plant._GridPosition.x, _plant._GridPosition.y);
+
+        //Disable colliders that are in the way of the bridge
+        foreach (Collider collider in bridgeOffset._ObstructionColliders)
+        {
+            collider.gameObject.SetActive(false);
+        }
+
         Transform bridgePivot = bridge.GetComponentsInChildren<Transform>()[1];
 
         bridge.transform.position = _plant._grid.GetWorldPosition(_plant._GridPosition.x, _plant._GridPosition.y);

@@ -52,6 +52,7 @@ public class LevelTransition : MonoBehaviour
     public void GoToLevel(string levelName)
     {
         GameManager._Instance._enableMove = false;
+        Time.timeScale = 1f;
 
         StartCoroutine(LoadScene(levelName, "End", _transitionTime));
     }
