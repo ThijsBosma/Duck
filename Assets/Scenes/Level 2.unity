@@ -7589,7 +7589,7 @@ MonoBehaviour:
     _ID: 3
     _DuckObject: {fileID: 1377196495}
     _DuckSize: 39.50396
-  _ParticleSystem: {fileID: 0}
+  _ParticleSystem: {fileID: 1377196499}
 --- !u!65 &1377196497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7614,6 +7614,12 @@ BoxCollider:
 --- !u!4 &1377196498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1635098414910646854, guid: ad95d027920ee0341a2bed7a8735ca53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1377196494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1377196499 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5987208930785147981, guid: ad95d027920ee0341a2bed7a8735ca53,
     type: 3}
   m_PrefabInstance: {fileID: 1377196494}
   m_PrefabAsset: {fileID: 0}

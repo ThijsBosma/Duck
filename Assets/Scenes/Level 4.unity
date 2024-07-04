@@ -5585,6 +5585,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7367422450378444151, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8801509070846060504, guid: 4af7cf2fbf1b2bd4cb14aa32be915987,
         type: 3}
       propertyPath: _cameraTransitionDelay
@@ -7800,6 +7805,7 @@ MonoBehaviour:
   _OffsetGridSpace:
     transform: {fileID: 1533672223}
     _GridSpace: {x: 0, y: 0}
+  _ObstructionColliders: []
   _ParticleOffset: {x: -0.13, y: 1.04, z: 4.71}
 --- !u!1 &1537224887
 GameObject:

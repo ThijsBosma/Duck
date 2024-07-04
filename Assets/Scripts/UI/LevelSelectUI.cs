@@ -12,10 +12,8 @@ public class LevelSelectUI : MonoBehaviour
 
     public void ShowNextLevel()
     {
-
         _RenderCams[_currentIndex].SetActive(false);
         _Levels[_currentIndex].SetActive(false);
-        _currentIndex += 1;
         IsIndexOutOfBounds();
         _Levels[_currentIndex].SetActive(true);
         _RenderCams[_currentIndex].SetActive(true);
@@ -25,7 +23,6 @@ public class LevelSelectUI : MonoBehaviour
     {
         _RenderCams[_currentIndex].SetActive(false);
         _Levels[_currentIndex].SetActive(false);
-        _currentIndex -= 1;
         IsIndexOutOfBounds();
         _Levels[_currentIndex].SetActive(true);
         _RenderCams[_currentIndex].SetActive(true);

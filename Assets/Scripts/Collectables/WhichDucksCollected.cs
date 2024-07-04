@@ -5,20 +5,18 @@ using UnityEngine;
 public class WhichDucksCollected : MonoBehaviour
 {
     [SerializeField] private Transform[] _UIDucks;
-    [SerializeField] private DuckData[] _DucksToCollect;
+    public DuckData[] _DucksToCollect;
     [SerializeField] private string _LevelName;
-    [SerializeField] private LevelSelectUI _LevelSelectUI;
+    [SerializeField] private ShowLevel _ShowLevelScript;
 
-    [SerializeField] private int _LevelIndex;
+    public int _LevelIndex;
 
-    [SerializeField] private GameObject _PlayButton;
-    [SerializeField] private GameObject _NextButton;
+    public GameObject _PlayButton;
 
-    [SerializeField] private GameObject[] _LevelImages;
-    [SerializeField] private GameObject[] _LevelNames;
+    public GameObject[] _LevelImages;
+    public GameObject[] _LevelTitles;
 
-    [SerializeField] private bool _IsFirstLevel;
-
+    public bool _IsFirstLevel;
 
     private void Start()
     {
@@ -36,13 +34,15 @@ public class WhichDucksCollected : MonoBehaviour
             {
                 GameObject UIDuck = Instantiate(duck._DuckObject, _UIDucks[timesThroughArray].position, _UIDucks[timesThroughArray].rotation, parentTransform);
                 UIDuck.layer = 10;
-                if(UIDuck.GetComponent<RotateObjectOverTime>() == null && UIDuck.GetComponentInChildren<RotateObjectOverTime>() == null)
+                if (UIDuck.GetComponent<RotateObjectOverTime>() == null && UIDuck.GetComponentInChildren<RotateObjectOverTime>() == null)
                     UIDuck.AddComponent<RotateObjectOverTime>();
 
                 UIDuck.transform.localScale = Vector3.one * duck._DuckSize;
 
                 Debug.Log("Duck found in array");
                 Destroy(_UIDucks[timesThroughArray].gameObject);
+
+                _ShowLevelScript._currentIndex = _LevelIndex;
             }
             timesThroughArray++;
         }
@@ -50,30 +50,7 @@ public class WhichDucksCollected : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerData._Instance._CompletedLevels.Contains(_LevelName) || _IsFirstLevel)
-        {
-            _PlayButton.SetActive(true);
-            _NextButton.SetActive(true);
 
-            _LevelImages[0].SetActive(true);
-            _LevelImages[1].SetActive(false);
-
-            _LevelNames[0].SetActive(true);
-            _LevelNames[1].SetActive(false);
-
-            _LevelSelectUI._currentIndex = _LevelIndex;
-        }
-        else
-        {
-            _LevelImages[0].SetActive(false);
-            _LevelImages[1].SetActive(true);
-
-            _LevelNames[0].SetActive(false);
-            _LevelNames[1].SetActive(true);
-
-            _PlayButton.SetActive(false);
-            _NextButton.SetActive(false);
-        }
     }
 }
 

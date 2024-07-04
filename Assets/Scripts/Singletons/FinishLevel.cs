@@ -35,11 +35,8 @@ public class FinishLevel : MonoBehaviour
 
             _Brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
 
-            LevelCompleted levelCompleted = new LevelCompleted();
-            levelCompleted._levelName = _ClearedLevelName;
-            levelCompleted._isCompleted = true;
-
-            PlayerData._Instance._CompletedLevels.Add(levelCompleted._levelName);
+            if (!PlayerData._Instance._CompletedLevels.Contains(_ClearedLevelName))
+                PlayerData._Instance._CompletedLevels.Add(_ClearedLevelName);
 
             if (_transitionRoutine == null)
                 _transitionRoutine = StartCoroutine(PlayLevelClearSequence(_transitionDelay));

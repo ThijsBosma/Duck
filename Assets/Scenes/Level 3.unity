@@ -443,9 +443,10 @@ GameObject:
   m_Component:
   - component: {fileID: 35019194}
   - component: {fileID: 35019195}
-  m_Layer: 7
+  - component: {fileID: 35019196}
+  m_Layer: 8
   m_Name: River (10)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,6 +487,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.227495, y: 1, z: 0.24732733}
   m_Center: {x: 0.33625674, y: 0, z: 0.37633577}
+--- !u!114 &35019196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35019193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &49337622
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,9 +834,10 @@ GameObject:
   m_Component:
   - component: {fileID: 87348539}
   - component: {fileID: 87348540}
-  m_Layer: 7
+  - component: {fileID: 87348541}
+  m_Layer: 8
   m_Name: River
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -861,8 +876,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.24732736}
-  m_Center: {x: 0, y: 0, z: 0.37633634}
+  m_Size: {x: 0.90737116, y: 1.3324405, z: 0.3506211}
+  m_Center: {x: -0.046314523, y: 0.16622025, z: 0.42798594}
+--- !u!114 &87348541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87348538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &89811639
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,9 +1006,10 @@ GameObject:
   m_Component:
   - component: {fileID: 112409422}
   - component: {fileID: 112409423}
-  m_Layer: 7
+  - component: {fileID: 112409424}
+  m_Layer: 8
   m_Name: River (14)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1021,6 +1050,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &112409424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112409421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &124883739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,9 +1239,10 @@ GameObject:
   m_Component:
   - component: {fileID: 159512853}
   - component: {fileID: 159512854}
-  m_Layer: 7
+  - component: {fileID: 159512855}
+  m_Layer: 8
   m_Name: River (1)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1238,8 +1281,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9, y: 1, z: 0.24732736}
-  m_Center: {x: 0, y: 0, z: 0.37633634}
+  m_Size: {x: 2.356467, y: 1.2426084, z: 0.24732745}
+  m_Center: {x: 0.27176747, y: 0.121304214, z: 0.37633637}
+--- !u!114 &159512855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159512852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &198546129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,9 +1471,10 @@ GameObject:
   m_Component:
   - component: {fileID: 219316389}
   - component: {fileID: 219316390}
-  m_Layer: 7
+  - component: {fileID: 219316391}
+  m_Layer: 8
   m_Name: River (7)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1458,6 +1515,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3688014, y: 1, z: 0.24732757}
   m_Center: {x: -1.7132283, y: 0, z: 0.37634003}
+--- !u!114 &219316391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219316388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &230178005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,9 +2236,10 @@ GameObject:
   m_Component:
   - component: {fileID: 338467854}
   - component: {fileID: 338467855}
-  m_Layer: 7
+  - component: {fileID: 338467856}
+  m_Layer: 8
   m_Name: River (12)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2209,6 +2280,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &338467856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338467853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &347893851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,9 +2877,10 @@ GameObject:
   m_Component:
   - component: {fileID: 404178513}
   - component: {fileID: 404178514}
-  m_Layer: 7
+  - component: {fileID: 404178515}
+  m_Layer: 8
   m_Name: River (5)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2834,8 +2919,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9211827, y: 1, z: 0.24732736}
-  m_Center: {x: -0.9894085, y: 0, z: 0.37633604}
+  m_Size: {x: 1.1346182, y: 1, z: 0.24732736}
+  m_Center: {x: -0.88269854, y: 0, z: 0.37633625}
+--- !u!114 &404178515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404178512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1001 &407856119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3060,6 +3158,73 @@ Transform:
   - {fileID: 1831925761}
   m_Father: {fileID: 505665956}
   m_LocalEulerAnglesHint: {x: -65.8986, y: 4.1419334, z: 2.0959232}
+--- !u!1 &443203063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443203064}
+  - component: {fileID: 443203066}
+  - component: {fileID: 443203065}
+  m_Layer: 8
+  m_Name: River (20)
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443203064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443203063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.0026179885, z: 0, w: 0.9999966}
+  m_LocalPosition: {x: -4.436, y: 0.212, z: -2.878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2140390712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.3, z: 0}
+--- !u!114 &443203065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443203063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
+--- !u!65 &443203066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443203063}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.84429073, y: 1.9, z: 0.24732739}
+  m_Center: {x: -0.8049502, y: 0, z: 0.37633595}
 --- !u!1 &446833067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,9 +3787,10 @@ GameObject:
   m_Component:
   - component: {fileID: 608682670}
   - component: {fileID: 608682671}
-  m_Layer: 7
+  - component: {fileID: 608682672}
+  m_Layer: 8
   m_Name: River (13)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3665,6 +3831,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &608682672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608682669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &611274468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6139838680408791942, guid: defd73102389cf445bca76888565d117,
@@ -3735,6 +3914,9 @@ MonoBehaviour:
   _OffsetGridSpace:
     transform: {fileID: 625256328}
     _GridSpace: {x: 0, y: 0}
+  _ObstructionColliders:
+  - {fileID: 87348540}
+  - {fileID: 1490038022}
   _ParticleOffset: {x: -0.15, y: 1.31, z: 4.5}
 --- !u!4 &645256205 stripped
 Transform:
@@ -4454,6 +4636,73 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1789725082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &859108656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859108657}
+  - component: {fileID: 859108659}
+  - component: {fileID: 859108658}
+  m_Layer: 8
+  m_Name: River (18)
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859108657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859108656}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.047932126, z: -0, w: 0.99885064}
+  m_LocalPosition: {x: -3.568, y: 0.212, z: -2.293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2140390712}
+  m_LocalEulerAnglesHint: {x: 0, y: -5.495, z: 0}
+--- !u!114 &859108658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859108656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
+--- !u!65 &859108659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859108656}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.84429073, y: 1.9, z: 0.24732739}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &893096906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7773175660773356075, guid: b77bc77c7615dca4497bea85ad5aea4b,
@@ -4470,9 +4719,10 @@ GameObject:
   m_Component:
   - component: {fileID: 896817100}
   - component: {fileID: 896817101}
-  m_Layer: 7
+  - component: {fileID: 896817102}
+  m_Layer: 8
   m_Name: River (3)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4513,6 +4763,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9211827, y: 1, z: 0.24732736}
   m_Center: {x: -0.9894085, y: 0, z: 0.37633604}
+--- !u!114 &896817102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896817099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &898887842
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,6 +5720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 302553745162096527, guid: 62c43fad5eb30244cad520798abd6692,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 302553745162096527, guid: 62c43fad5eb30244cad520798abd6692,
+        type: 3}
       propertyPath: m_TagString
       value: Water
       objectReference: {fileID: 0}
@@ -6013,9 +6281,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1195688974}
   - component: {fileID: 1195688975}
-  m_Layer: 7
+  - component: {fileID: 1195688976}
+  m_Layer: 8
   m_Name: River (16)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6056,6 +6325,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.2854285, y: 3.7982285, z: 0.051373668}
   m_Center: {x: -1.1427064, y: 1.399114, z: 0.27835932}
+--- !u!114 &1195688976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195688973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1205615407
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,6 +7027,9 @@ MonoBehaviour:
   _OffsetGridSpace:
     transform: {fileID: 1403337117}
     _GridSpace: {x: 0, y: 0}
+  _ObstructionColliders:
+  - {fileID: 2141028440}
+  - {fileID: 859108659}
   _ParticleOffset: {x: -0.13, y: 1.04, z: 4.71}
 --- !u!1001 &1431653896
 PrefabInstance:
@@ -7115,9 +7400,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1455406459}
   - component: {fileID: 1455406460}
-  m_Layer: 7
+  - component: {fileID: 1455406461}
+  m_Layer: 8
   m_Name: River (8)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7158,6 +7444,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.567475, y: 1, z: 0.24732739}
   m_Center: {x: -0.81255275, y: 0, z: 0.3763352}
+--- !u!114 &1455406461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455406458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1470202764
 GameObject:
   m_ObjectHideFlags: 0
@@ -7276,9 +7575,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1490038021}
   - component: {fileID: 1490038022}
-  m_Layer: 7
+  - component: {fileID: 1490038023}
+  m_Layer: 8
   m_Name: River (2)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7317,8 +7617,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9, y: 1, z: 0.24732736}
-  m_Center: {x: 0, y: 0, z: 0.37633634}
+  m_Size: {x: 0.84429073, y: 1.9, z: 0.24732739}
+  m_Center: {x: -0.8049502, y: 0, z: 0.37633595}
+--- !u!114 &1490038023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490038020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1496804904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8908,9 +9221,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1632856837}
   - component: {fileID: 1632856838}
-  m_Layer: 7
+  - component: {fileID: 1632856839}
+  m_Layer: 8
   m_Name: River (15)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8951,6 +9265,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &1632856839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632856836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1661893549 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1931776623052539177, guid: 915c5ec4cb9c7224cb625c9990f95da8,
@@ -10941,9 +11268,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1838176919}
   - component: {fileID: 1838176920}
-  m_Layer: 7
+  - component: {fileID: 1838176921}
+  m_Layer: 8
   m_Name: River (6)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10984,6 +11312,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &1838176921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838176918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1841235685
 GameObject:
   m_ObjectHideFlags: 0
@@ -11119,9 +11460,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1860034248}
   - component: {fileID: 1860034249}
-  m_Layer: 7
+  - component: {fileID: 1860034250}
+  m_Layer: 8
   m_Name: River (11)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11162,6 +11504,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &1860034250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860034247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1861037333
 GameObject:
   m_ObjectHideFlags: 0
@@ -11342,6 +11697,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1930003990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1930003991}
+  - component: {fileID: 1930003993}
+  - component: {fileID: 1930003992}
+  m_Layer: 8
+  m_Name: River (19)
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1930003991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930003990}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.047932126, z: -0, w: 0.99885064}
+  m_LocalPosition: {x: -2.711, y: 0.212, z: -2.184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2140390712}
+  m_LocalEulerAnglesHint: {x: 0, y: -5.495, z: 0}
+--- !u!114 &1930003992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930003990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
+--- !u!65 &1930003993
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930003990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.84429073, y: 1.9, z: 0.24732739}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1937143576
 GameObject:
   m_ObjectHideFlags: 0
@@ -11646,9 +12068,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1948185362}
   - component: {fileID: 1948185363}
-  m_Layer: 7
+  - component: {fileID: 1948185364}
+  m_Layer: 8
   m_Name: River (9)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11689,6 +12112,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.24732736}
   m_Center: {x: 0, y: 0, z: 0.37633634}
+--- !u!114 &1948185364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948185361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &1953393797
 GameObject:
   m_ObjectHideFlags: 0
@@ -12783,9 +13219,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2112236800}
   - component: {fileID: 2112236801}
-  m_Layer: 7
+  - component: {fileID: 2112236802}
+  m_Layer: 8
   m_Name: River (4)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12826,6 +13263,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9211827, y: 1, z: 0.24732736}
   m_Center: {x: -0.9894085, y: 0, z: 0.37633604}
+--- !u!114 &2112236802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112236799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1 &2136872758
 GameObject:
   m_ObjectHideFlags: 0
@@ -12913,8 +13363,12 @@ Transform:
   - {fileID: 816021866}
   - {fileID: 648382164}
   - {fileID: 87348539}
+  - {fileID: 2141028439}
   - {fileID: 159512853}
   - {fileID: 1490038021}
+  - {fileID: 443203064}
+  - {fileID: 859108657}
+  - {fileID: 1930003991}
   - {fileID: 896817100}
   - {fileID: 2112236800}
   - {fileID: 404178513}
@@ -12931,6 +13385,73 @@ Transform:
   - {fileID: 1195688974}
   m_Father: {fileID: 2011153163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2141028438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141028439}
+  - component: {fileID: 2141028440}
+  - component: {fileID: 2141028441}
+  m_Layer: 8
+  m_Name: River (17)
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141028439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141028438}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.02518069, z: -0, w: 0.9996829}
+  m_LocalPosition: {x: -4.015, y: 0.146, z: -0.278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2140390712}
+  m_LocalEulerAnglesHint: {x: 0, y: -2.886, z: 0}
+--- !u!65 &2141028440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141028438}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.635748, y: 1.3324405, z: 0.3506211}
+  m_Center: {x: 0.20232601, y: 0, z: 7.78233e-12}
+--- !u!114 &2141028441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141028438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260ab314c7a2a944d8888715dc180450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _WatercanUI: {fileID: 1034026020}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
