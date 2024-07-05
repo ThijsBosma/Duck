@@ -41,7 +41,6 @@ public class UIManager : FindInputBinding
         Time.timeScale = 1f;
 
         _PauseAssets.SetActive(false);
-        _GUIAssets.SetActive(true);
     }
 
     public void Restart()

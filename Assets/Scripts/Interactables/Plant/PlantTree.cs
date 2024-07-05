@@ -14,6 +14,7 @@ public class PlantTree : FindInputBinding
 
     [Header("Tree hologram")]
     [SerializeField] private Transform _ShootRayPos;
+    [SerializeField] private GameObject[] _CoconutImages;
 
     [SerializeField] private LayerMask _PlantLayer;
 
@@ -44,7 +45,7 @@ public class PlantTree : FindInputBinding
         if (PlayerData._Instance._SeedPickedup == 1)
         {
             RaycastHit hit;
-            Physics.Raycast(_ShootRayPos.position, Vector3.down + _ShootRayPos.forward.normalized * 2f, out hit, _PlantLayer);
+            Physics.SphereCast(_ShootRayPos.position, 0.5f,Vector3.down * 0.5f + _ShootRayPos.forward.normalized * 0.5f, out hit, _PlantLayer);
 
             grid.GetXZ(hit.point, out int x, out int z, false);
 
@@ -99,6 +100,11 @@ public class PlantTree : FindInputBinding
 
                     sprout.GetComponentInChildren<GrowPlant>().gameObject.transform.rotation = rotation.rotation;
 
+                    foreach (GameObject coconut in _CoconutImages)
+                    {
+                        coconut.SetActive(false);
+                    }
+
                     _treeIndicator.SetActive(false);
                     Destroy(_Seed);
 
@@ -132,6 +138,11 @@ public class PlantTree : FindInputBinding
             _treeIndicator.SetActive(true);
         else
             _treeIndicator.transform.position = _plantPosition;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(_ShootRayPos.position + Vector3.down * 0.5f + _ShootRayPos.forward.normalized * 0.5f, 0.5f);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3430043422558749001}
   - component: {fileID: 1266680373227572476}
   - component: {fileID: 8861688329328853322}
+  - component: {fileID: 1134772681730417840}
   m_Layer: 9
   m_Name: WateringCan
   m_TagString: Box
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.4276, y: 2.229, z: -8.7235}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3513575732815577254}
@@ -58,10 +59,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &1266680373227572476
 BoxCollider:
@@ -128,6 +129,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _Time: 0.3
+--- !u!114 &1134772681730417840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7760363159119281725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89f09df96491184a85bd9a62b047a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Frequency: 3
+  _Magnitude: 1
+  _Yoffset: 200
 --- !u!1001 &533844707350577251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bucket With Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 10195492958099664, guid: 6e871a425093ff049985c2196c3f8975,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2453488361673172947, guid: 6e871a425093ff049985c2196c3f8975,
         type: 3}

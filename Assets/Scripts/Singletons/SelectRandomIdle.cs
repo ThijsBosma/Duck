@@ -14,9 +14,18 @@ public class SelectRandomIdle : MonoBehaviour
         _Animator.SetInteger("RandomIdle", Random.Range(0, 3));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayWalkingSound()
     {
-        
+        AudioManager._Instance.Play("Walking");
+    }
+
+    public void PlayVineSound()
+    {
+        AudioManager._Instance.Play("ClimbVine");
+    }
+
+    public void SetIdle()
+    {
+        _Animator.SetInteger("PlayerState", 0);
     }
 }

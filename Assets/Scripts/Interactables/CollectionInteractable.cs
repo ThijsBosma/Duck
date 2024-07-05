@@ -6,6 +6,7 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
 {
     public DuckData _duckData;
     public ParticleSystem _ParticleSystem;
+    public GameObject _Accesories;
 
     private MeshRenderer _DuckMesh;
     private RotateObjectOverTime _RotateObject;
@@ -21,6 +22,10 @@ public class CollectionInteractable : MonoBehaviour, IPlayerData
         if (!playerData._DuckIDs.Contains(_duckData._ID))
         {
             _DuckMesh.enabled = false;
+
+            if (_Accesories != null)
+                _Accesories.SetActive(false);
+
             _RotateObject._Speed = 0;
 
             _ParticleSystem.Play();

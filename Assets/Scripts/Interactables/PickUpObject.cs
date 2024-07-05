@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class PickUpObject : MonoBehaviour
+public class PickUpObject : InputHandler
 {
     public bool _grabbed;
 
@@ -44,13 +44,14 @@ public class PickUpObject : MonoBehaviour
     protected IEnumerator LerpToHoldPosition()
     {
         _dropDownCoroutine = null;
+        _Pickup.Disable();
+        _Interact.Disable();
 
         _Collider.isTrigger = true;
 
         _hasInteracted = true;
 
         _Rb.isKinematic = true;
-        _Rb.useGravity = false;
         _Rb.mass = 0;
 
         transform.SetParent(_HoldPosition);
@@ -83,6 +84,8 @@ public class PickUpObject : MonoBehaviour
     protected IEnumerator LerpToPickupPostion()
     {
         _pickupCoroutine = null;
+        _Pickup.Disable();
+        _Interact.Disable();
 
         float time = 0;
         Vector3 startPostion = transform.position;
@@ -104,7 +107,6 @@ public class PickUpObject : MonoBehaviour
         _Collider.isTrigger = false;
 
         _Rb.isKinematic = false;
-        _Rb.useGravity = true;
         _Rb.mass = 10;
 
         transform.SetParent(null);

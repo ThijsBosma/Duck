@@ -14,6 +14,8 @@ public class BridgeOffset : MonoBehaviour
 
     public Collider[] _ObstructionColliders; //Colliders that are in the way of walking over a bridge 
 
+    public GameObject _Coconut;
+
     [Header("Particle")]
     public Vector3 _ParticleOffset;
 }
