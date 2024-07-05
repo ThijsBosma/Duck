@@ -7,18 +7,15 @@ public class ShowLevel : MonoBehaviour
     public GameObject[] _Levels;
     public GameObject[] _RenderTextures;
 
-    [SerializeField] private GameObject _NextButton;
-    [SerializeField] private GameObject _PreviousButton;
-
     private List<WhichDucksCollected> _LevelScripts = new List<WhichDucksCollected>();
+
+    public UIManager _UIManager;
 
     public int _currentIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        _PreviousButton.SetActive(false);
-
         for (int i = 0; i < _Levels.Length; i++)
         {
             _LevelScripts.Add(_Levels[i].GetComponent<WhichDucksCollected>());
@@ -28,10 +25,10 @@ public class ShowLevel : MonoBehaviour
         {
             if (PlayerData._Instance._CompletedLevels.Contains(_Levels[i].name) && i + 1 <= _Levels.Length && i - 1 >= 0)
             {
-                _PreviousButton.SetActive(true);
-
                 _Levels[i - 1].SetActive(false);
                 _RenderTextures[i - 1].SetActive(false);
+
+                _LevelScripts[i + 1]._PlayButton.SetActive(true);
 
                 _Levels[i].SetActive(true);
                 _RenderTextures[i].SetActive(true);
@@ -43,10 +40,13 @@ public class ShowLevel : MonoBehaviour
                 _LevelScripts[i]._LevelTitles[0].SetActive(true);
                 _LevelScripts[i]._LevelTitles[1].SetActive(false);
 
-                if (i == _Levels.Length - 1)
-                {
-                    _NextButton.SetActive(false);
-                }
+                _UIManager.SetFirstSelected(_LevelScripts[i]._PlayButton);
+            }
+            
+            if(!PlayerData._Instance._CompletedLevels.Contains(_Levels[i].name) && i + 1 < _Levels.Length)
+            {
+                _LevelScripts[i + 1]._PlayButton.SetActive(false);
+                Debug.Log("play disabled");
             }
         }
     }
@@ -60,43 +60,25 @@ public class ShowLevel : MonoBehaviour
             _currentIndex = _Levels.Length - 1;
         }
 
-        _PreviousButton.SetActive(true);
-
         if (PlayerData._Instance._DuckIDs.Contains(_LevelScripts[_currentIndex - 1]._DucksToCollect[0]._ID))
         {
-            _NextButton.SetActive(true);
-
             _LevelScripts[_currentIndex]._LevelImages[0].SetActive(true);
             _LevelScripts[_currentIndex]._LevelImages[1].SetActive(false);
 
             _LevelScripts[_currentIndex]._LevelTitles[0].SetActive(true);
             _LevelScripts[_currentIndex]._LevelTitles[1].SetActive(false);
-
-            _LevelScripts[_currentIndex]._PlayButton.SetActive(true);
         }
         else
         {
-            _NextButton.SetActive(false);
-
             _LevelScripts[_currentIndex]._LevelImages[0].SetActive(false);
             _LevelScripts[_currentIndex]._LevelImages[1].SetActive(true);
 
             _LevelScripts[_currentIndex]._LevelTitles[0].SetActive(false);
             _LevelScripts[_currentIndex]._LevelTitles[1].SetActive(true);
-
-            if (_LevelScripts[_currentIndex]._IsFirstLevel)
-                _LevelScripts[_currentIndex]._PlayButton.SetActive(true);
-            else
-                _LevelScripts[_currentIndex]._PlayButton.SetActive(false);
         }
 
         _Levels[_currentIndex].SetActive(true);
         _RenderTextures[_currentIndex].SetActive(true);
-
-        if (_currentIndex == _Levels.Length - 1)
-        {
-            _NextButton.SetActive(false);
-        }
 
         DisablePreviousLevel();
     }
@@ -107,13 +89,6 @@ public class ShowLevel : MonoBehaviour
 
         _Levels[_currentIndex].SetActive(true);
         _RenderTextures[_currentIndex].SetActive(true);
-
-        _NextButton.SetActive(true);
-
-        if (_currentIndex == 0)
-        {
-            _PreviousButton.SetActive(false);
-        }
 
         DisableNextLevel();
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIManager : FindInputBinding
@@ -9,6 +10,9 @@ public class UIManager : FindInputBinding
     [SerializeField] private GameObject _GUIAssets;
 
     [SerializeField] private GameObject[] _ControlText;
+
+    [SerializeField] private GameObject _Helpcanvas;
+    [SerializeField] private GameObject _ContinueButtton;
 
     private string _controlScheme;
 
@@ -28,9 +32,13 @@ public class UIManager : FindInputBinding
         {
             Time.timeScale = 0f;
 
-            _PauseAssets.SetActive(true);
+            if (!_Helpcanvas.activeInHierarchy)
+            {
+                _PauseAssets.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(_ContinueButtton);
+            }
         }
-        else if (_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy)
+        else if ((_Pause.WasPressedThisFrame() && _PauseAssets.activeInHierarchy) || (_Pause.WasPressedThisFrame() && _Helpcanvas.activeInHierarchy))
         {
             Continue();
         }
@@ -41,6 +49,11 @@ public class UIManager : FindInputBinding
         Time.timeScale = 1f;
 
         _PauseAssets.SetActive(false);
+    }
+
+    public void SetFirstSelected(GameObject gameObject)
+    {
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
     public void Restart()

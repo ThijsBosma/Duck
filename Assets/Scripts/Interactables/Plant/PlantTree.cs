@@ -45,7 +45,7 @@ public class PlantTree : FindInputBinding
         if (PlayerData._Instance._SeedPickedup == 1)
         {
             RaycastHit hit;
-            Physics.SphereCast(_ShootRayPos.position, 0.5f,Vector3.down * 0.5f + _ShootRayPos.forward.normalized * 0.5f, out hit, _PlantLayer);
+            Physics.SphereCast(_ShootRayPos.position, 0.5f,Vector3.down * 0.1f + _ShootRayPos.forward.normalized * 0.2f, out hit, _PlantLayer);
 
             grid.GetXZ(hit.point, out int x, out int z, false);
 
@@ -142,7 +142,7 @@ public class PlantTree : FindInputBinding
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(_ShootRayPos.position + Vector3.down * 0.5f + _ShootRayPos.forward.normalized * 0.5f, 0.5f);
+        Gizmos.DrawWireSphere(_ShootRayPos.position + Vector3.down * 0.1f + _ShootRayPos.forward.normalized * 0.2f, 0.5f);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class WateringCan : PickUpObject, IPickupable
 {
+    private SinUpAndDown _SinUpAndDown;
+
+    private void Start()
+    {
+        _SinUpAndDown = GetComponent<SinUpAndDown>();
+    }
+
     public void PickUp()
     {
         _grabbed = true;
+
+        _SinUpAndDown.enabled = true;
 
         PlayerData._Instance._WateringCanPickedup = 1;
 
@@ -34,6 +43,12 @@ public class WateringCan : PickUpObject, IPickupable
         {
             FillWateringCan();
         }
+    }
+
+    public void EnableRigidbody()
+    {
+        _Rb.useGravity = true;
+        _SinUpAndDown.enabled = false;
     }
 
     private void FillWateringCan()

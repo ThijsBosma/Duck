@@ -6583,7 +6583,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 001dd348b4658c44db18d0cda87c2f53,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: c5012d885c04dd94da1ab228b30f92ca, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 001dd348b4658c44db18d0cda87c2f53, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: c5012d885c04dd94da1ab228b30f92ca, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -6908,7 +6908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2016725988}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &717302283
 MonoBehaviour:
@@ -6922,7 +6922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 694905588}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &717302284
@@ -15840,7 +15840,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 717302281}
   - {fileID: 1451758485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17251,3 +17250,4 @@ SceneRoots:
   - {fileID: 49089816}
   - {fileID: 53349280}
   - {fileID: 1843443793}
+  - {fileID: 717302281}
